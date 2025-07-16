@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ title }}{% endblock %} | FABI+ Admin</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="/static/css/bootstrap@5.3.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="/static/css/bootstrap-icons@1.10.0.css" rel="stylesheet">
+    <!-- HTMX -->
+    <script src="/static/js/unpkg.js"></script>
+    
+    <!-- Custom Admin CSS -->
+    <style>
+        :root {
+            --admin-primary: #0d6efd;
+            --admin-secondary: #6c757d;
+            --admin-success: #198754;
+            --admin-danger: #dc3545;
+            --admin-warning: #ffc107;
+            --admin-info: #0dcaf0;
+            --admin-light: #f8f9fa;
+            --admin-dark: #212529;
+            --admin-sidebar-bg: #343a40;
+            --admin-sidebar-text: #ffffff;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--admin-light);
+        }
+        
+        .admin-sidebar {
+            background-color: var(--admin-sidebar-bg);
+            color: var(--admin-sidebar-text);
+            min-height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 250px;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        
+        .admin-sidebar .nav-link {
+            color: var(--admin-sidebar-text);
+            padding: 0.75rem 1rem;
+            border-radius: 0;
+            transition: all 0.2s;
+        }
+        
+        .admin-sidebar .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--admin-sidebar-text);
+        }
+        
+        .admin-sidebar .nav-link.active {
+            background-color: var(--admin-primary);
+            color: white;
+        }
+        
+        .admin-main {
+            margin-left: 250px;
+            padding: 0;
+            transition: all 0.3s;
+        }
+        
+        .admin-header {
+            background-color: white;
+            border-bottom: 1px solid #dee2e6;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .admin-content {
+            padding: 2rem;
+        }
+        
+        .admin-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--admin-sidebar-text);
+            text-decoration: none;
+            padding: 1rem;
+            display: block;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .admin-brand:hover {
+            color: var(--admin-sidebar-text);
+            text-decoration: none;
+        }
+        
+        .model-section {
+            margin-bottom: 2rem;
+        }
+        
+        .model-section h6 {
+            color: #6c757d;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+            padding: 0 1rem;
+        }
+        
+        .breadcrumb {
+            background-color: transparent;
+            padding: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .breadcrumb-item + .breadcrumb-item::before {
+            content: "›";
+            color: #6c757d;
+        }
+        
+        .card {
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .table th {
+            border-top: none;
+            font-weight: 600;
+            color: #495057;
+            background-color: #f8f9fa;
+        }
+        
+        .btn-admin {
+            background-color: var(--admin-primary);
+            border-color: var(--admin-primary);
+            color: white;
+        }
+        
+        .btn-admin:hover {
+            background-color: #0b5ed7;
+            border-color: #0a58ca;
+            color: white;
+        }
+        
+        .alert {
+            border: none;
+            border-radius: 0.5rem;
+        }
+        
+        .form-control:focus {
+            border-color: var(--admin-primary);
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+        
+        .sidebar-toggle {
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .admin-sidebar {
+                transform: translateX(-100%);
+            }
+            
+            .admin-sidebar.show {
+                transform: translateX(0);
+            }
+            
+            .admin-main {
+                margin-left: 0;
+            }
+            
+            .sidebar-toggle {
+                display: inline-block;
+            }
+        }
+        
+        /* HTMX Loading Indicators */
+        .htmx-indicator {
+            opacity: 0;
+            transition: opacity 500ms ease-in;
+        }
+        
+        .htmx-request .htmx-indicator {
+            opacity: 1;
+        }
+        
+        .htmx-request.htmx-indicator {
+            opacity: 1;
+        }
+        
+        /* Custom loading spinner */
+        .loading-spinner {
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid var(--admin-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Sidebar -->
+    <nav class="admin-sidebar" id="sidebar">
+        <a href="/admin/" class="admin-brand">
+            <i class="bi bi-speedometer2 me-2"></i>
+            FABI+ Admin
+        </a>
+
+        <div class="nav flex-column">
+            <a href="/admin/" class="nav-link {% if request.url.path == '/admin/' %}active{% endif %}">
+                <i class="bi bi-house-door me-2"></i>
+                Dashboard
+            </a>
+            
+            {% if dashboard_data and dashboard_data.models %}
+            <div class="model-section">
+                <h6>Models</h6>
+                {% for model in dashboard_data.models %}
+                <a href="{{ model.url }}" class="nav-link">
+                    <i class="bi bi-table me-2"></i>
+                    {{ model.verbose_name_plural }}
+                    {% if model.count is defined %}
+                    <span class="badge bg-secondary ms-auto">{{ model.count }}</span>
+                    {% endif %}
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
+            {% if user and user.is_superuser %}
+            <div class="model-section">
+                <h6>Administration</h6>
+                <a href="/admin/user/" class="nav-link">
+                    <i class="bi bi-people me-2"></i>
+                    Users
+                </a>
+            </div>
+
+            {% if dashboard_data and dashboard_data.system_tools %}
+            <div class="model-section">
+                <h6>System Monitoring</h6>
+                {% for tool in dashboard_data.system_tools %}
+                <a href="{{ tool.url }}" class="nav-link" title="{{ tool.description }}">
+                    <i class="{{ tool.icon }} me-2"></i>
+                    {{ tool.verbose_name }}
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endif %}
+        </div>
+        
+        <div class="mt-auto p-3">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-person-circle me-2"></i>
+                <div>
+                    <div class="fw-bold">{{ user.username if user else 'Anonymous' }}</div>
+                    {% if user %}
+                    <small class="text-muted">
+                        {% if user.is_superuser %}Superuser{% elif user.is_staff %}Staff{% else %}User{% endif %}
+                    </small>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="mt-2">
+                <a href="/admin/logout/" class="btn btn-outline-light btn-sm">
+                    <i class="bi bi-box-arrow-right me-1"></i>
+                    Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="admin-main">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <button class="btn btn-outline-secondary sidebar-toggle me-3" onclick="toggleSidebar()">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    
+                    {% block breadcrumb %}
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb mb-0">
+                            <li class="breadcrumb-item">
+                                <a href="/admin/">Home</a>
+                            </li>
+                            {% block breadcrumb_items %}{% endblock %}
+                        </ol>
+                    </nav>
+                    {% endblock %}
+                </div>
+                
+                <div class="d-flex align-items-center">
+                    {% block header_actions %}{% endblock %}
+                </div>
+            </div>
+        </header>
+        
+        <!-- Content -->
+        <main class="admin-content">
+            {% block messages %}
+            {% if request.query_params.get('success') %}
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle me-2"></i>
+                {% if request.query_params.get('success') == 'created' %}
+                    Object created successfully.
+                {% elif request.query_params.get('success') == 'updated' %}
+                    Object updated successfully.
+                {% elif request.query_params.get('success') == 'deleted' %}
+                    Object deleted successfully.
+                {% else %}
+                    Operation completed successfully.
+                {% endif %}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+            
+            {% if error %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-triangle me-2"></i>
+                {{ error }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+            {% endif %}
+            {% endblock %}
+            
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom Admin JS -->
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('show');
+        }
+        
+        // HTMX Configuration
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add CSRF token to all HTMX requests
+            document.body.addEventListener('htmx:configRequest', function(evt) {
+                evt.detail.headers['X-Requested-With'] = 'XMLHttpRequest';
+            });
+            
+            // Handle HTMX errors
+            document.body.addEventListener('htmx:responseError', function(evt) {
+                console.error('HTMX Error:', evt.detail);
+                showToast('An error occurred. Please try again.', 'error');
+            });
+
+            // Handle successful HTMX responses
+            document.body.addEventListener('htmx:afterRequest', function(evt) {
+                // Check if response contains success parameter
+                if (evt.detail.xhr.responseURL && evt.detail.xhr.responseURL.includes('success=')) {
+                    const url = new URL(evt.detail.xhr.responseURL);
+                    const success = url.searchParams.get('success');
+
+                    if (success === 'created') {
+                        showToast('Item created successfully!', 'success');
+                    } else if (success === 'updated') {
+                        showToast('Item updated successfully!', 'success');
+                    } else if (success === 'deleted') {
+                        showToast('Item deleted successfully!', 'success');
+                    }
+                }
+            });
+        });
+
+        // Toast notification function
+        function showToast(message, type = 'info', duration = 5000) {
+            const toastContainer = document.getElementById('toast-container');
+            if (!toastContainer) return;
+
+            // Create unique ID for this toast
+            const toastId = 'toast-' + Date.now();
+
+            // Determine icon and color based on type
+            let icon, bgClass, textClass;
+            switch (type) {
+                case 'success':
+                    icon = 'bi-check-circle';
+                    bgClass = 'bg-success';
+                    textClass = 'text-white';
+                    break;
+                case 'error':
+                case 'danger':
+                    icon = 'bi-exclamation-triangle';
+                    bgClass = 'bg-danger';
+                    textClass = 'text-white';
+                    break;
+                case 'warning':
+                    icon = 'bi-exclamation-circle';
+                    bgClass = 'bg-warning';
+                    textClass = 'text-dark';
+                    break;
+                default:
+                    icon = 'bi-info-circle';
+                    bgClass = 'bg-primary';
+                    textClass = 'text-white';
+            }
+
+            // Create toast HTML
+            const toastHTML = `
+                <div id="${toastId}" class="toast ${bgClass} ${textClass}" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header ${bgClass} ${textClass} border-0">
+                        <i class="bi ${icon} me-2"></i>
+                        <strong class="me-auto">Notification</strong>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body">
+                        ${message}
+                    </div>
+                </div>
+            `;
+
+            // Add toast to container
+            toastContainer.insertAdjacentHTML('beforeend', toastHTML);
+
+            // Initialize and show toast
+            const toastElement = document.getElementById(toastId);
+            const toast = new bootstrap.Toast(toastElement, {
+                autohide: true,
+                delay: duration
+            });
+
+            // Remove toast from DOM after it's hidden
+            toastElement.addEventListener('hidden.bs.toast', function() {
+                toastElement.remove();
+            });
+
+            toast.show();
+        }
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+
+    <!-- Toast Container -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" id="toast-container">
+        <!-- Toasts will be dynamically added here -->
+    </div>
+</body>
+</html>

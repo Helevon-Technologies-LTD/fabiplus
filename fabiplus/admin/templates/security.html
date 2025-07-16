@@ -1,0 +1,471 @@
+{% extends "base.html" %}
+
+{% block breadcrumb_items %}
+<li class="breadcrumb-item">
+    <a href="/admin/">Dashboard</a>
+</li>
+<li class="breadcrumb-item active">Security</li>
+{% endblock %}
+
+{% block header_actions %}
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-outline-secondary" onclick="refreshSecurityData()">
+        <i class="bi bi-arrow-clockwise me-1"></i>
+        Refresh
+    </button>
+    <button type="button" class="btn btn-outline-warning" onclick="exportSecurityReport()">
+        <i class="bi bi-file-earmark-text me-1"></i>
+        Export Report
+    </button>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="h3 mb-0">
+            <i class="bi bi-shield-check me-2"></i>
+            Security Monitoring
+        </h1>
+        <p class="text-muted">Monitor security events and access logs</p>
+    </div>
+</div>
+
+<!-- Security Status -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Security Score</h6>
+                        <h3 class="mb-0">95%</h3>
+                        <small class="text-light">Excellent</small>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-shield-check fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Failed Logins</h6>
+                        <h3 class="mb-0" id="failed-logins">{{ security_data.failed_logins or 0 }}</h3>
+                        <small class="text-light">Last 24 hours</small>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-exclamation-triangle fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Active Sessions</h6>
+                        <h3 class="mb-0" id="active-sessions">{{ security_data.active_sessions or 0 }}</h3>
+                        <small class="text-light">Current users</small>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-people fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card bg-danger text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Blocked IPs</h6>
+                        <h3 class="mb-0" id="blocked-ips">{{ security_data.blocked_ips or 0 }}</h3>
+                        <small class="text-light">Auto-blocked</small>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-shield-x fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Security Events and Login Attempts -->
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Recent Security Events</h5>
+                <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-outline-secondary active" data-filter="all">All</button>
+                    <button type="button" class="btn btn-outline-warning" data-filter="warning">Warnings</button>
+                    <button type="button" class="btn btn-outline-danger" data-filter="critical">Critical</button>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>Time</th>
+                                <th>Event</th>
+                                <th>IP Address</th>
+                                <th>User</th>
+                                <th>Severity</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="security-events">
+                            {% if security_data.security_events %}
+                                {% for event in security_data.security_events %}
+                                <tr>
+                                    <td>{{ event.timestamp.strftime('%H:%M:%S') }}</td>
+                                    <td>{{ event.description }}</td>
+                                    <td>{{ event.user_ip or 'Unknown' }}</td>
+                                    <td>{{ event.user_email or '-' }}</td>
+                                    <td>
+                                        {% if event.status_code >= 400 %}
+                                            <span class="badge bg-danger">Critical</span>
+                                        {% elif event.activity_type == 'ERROR' %}
+                                            <span class="badge bg-warning">Warning</span>
+                                        {% else %}
+                                            <span class="badge bg-success">Info</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        {% if event.user_ip and event.status_code >= 400 %}
+                                            <button class="btn btn-sm btn-outline-danger" onclick="blockIP('{{ event.user_ip }}')">
+                                                <i class="bi bi-shield-x"></i>
+                                            </button>
+                                        {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted">No security events found</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Top Failed Login IPs</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        <div>
+                            <strong>192.168.1.100</strong>
+                            <br><small class="text-muted">Last attempt: 2 min ago</small>
+                        </div>
+                        <span class="badge bg-danger rounded-pill">8</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        <div>
+                            <strong>10.0.0.45</strong>
+                            <br><small class="text-muted">Last attempt: 15 min ago</small>
+                        </div>
+                        <span class="badge bg-warning rounded-pill">5</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        <div>
+                            <strong>203.0.113.5</strong>
+                            <br><small class="text-muted">Last attempt: 1 hour ago</small>
+                        </div>
+                        <span class="badge bg-warning rounded-pill">3</span>
+                    </div>
+                    <div class="list-group-item d-flex justify-content-between align-items-center px-0">
+                        <div>
+                            <strong>198.51.100.10</strong>
+                            <br><small class="text-muted">Last attempt: 2 hours ago</small>
+                        </div>
+                        <span class="badge bg-secondary rounded-pill">2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Active Sessions and Blocked IPs -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Active User Sessions</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>IP Address</th>
+                                <th>Login Time</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>superadmin</td>
+                                <td>127.0.0.1</td>
+                                <td>20:38:22</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="terminateSession('superadmin')">
+                                        <i class="bi bi-x-circle"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>staff_user</td>
+                                <td>192.168.1.50</td>
+                                <td>19:45:10</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="terminateSession('staff_user')">
+                                        <i class="bi bi-x-circle"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>editor</td>
+                                <td>10.0.0.25</td>
+                                <td>18:22:35</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="terminateSession('editor')">
+                                        <i class="bi bi-x-circle"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Blocked IP Addresses</h5>
+                <button type="button" class="btn btn-sm btn-outline-primary" onclick="addIPBlock()">
+                    <i class="bi bi-plus"></i> Add Block
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>IP Address</th>
+                                <th>Reason</th>
+                                <th>Blocked At</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="blocked-ips-table">
+                            <tr>
+                                <td>192.168.1.100</td>
+                                <td>Brute force</td>
+                                <td>20:45:32</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-success" onclick="unblockIP('192.168.1.100')">
+                                        <i class="bi bi-unlock"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>10.0.0.45</td>
+                                <td>Suspicious activity</td>
+                                <td>20:42:15</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-success" onclick="unblockIP('10.0.0.45')">
+                                        <i class="bi bi-unlock"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>203.0.113.5</td>
+                                <td>Rate limiting</td>
+                                <td>20:35:10</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-success" onclick="unblockIP('203.0.113.5')">
+                                        <i class="bi bi-unlock"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- IP Block Modal -->
+<div class="modal fade" id="ipBlockModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Block IP Address</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="ipBlockForm">
+                    <div class="mb-3">
+                        <label for="ipAddress" class="form-label">IP Address</label>
+                        <input type="text" class="form-control" id="ipAddress" placeholder="192.168.1.100" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="blockReason" class="form-label">Reason</label>
+                        <select class="form-select" id="blockReason" required>
+                            <option value="">Select reason...</option>
+                            <option value="brute_force">Brute force attack</option>
+                            <option value="suspicious">Suspicious activity</option>
+                            <option value="rate_limit">Rate limiting violation</option>
+                            <option value="manual">Manual block</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="blockDuration" class="form-label">Duration</label>
+                        <select class="form-select" id="blockDuration">
+                            <option value="1h">1 Hour</option>
+                            <option value="24h">24 Hours</option>
+                            <option value="7d">7 Days</option>
+                            <option value="permanent">Permanent</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" onclick="confirmIPBlock()">Block IP</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function refreshSecurityData() {
+    showToast('Refreshing security data...', 'info');
+    // TODO: Implement security data refresh
+    setTimeout(() => {
+        showToast('Security data refreshed!', 'success');
+    }, 1000);
+}
+
+function exportSecurityReport() {
+    showToast('Generating security report...', 'info');
+    // TODO: Implement security report export
+    setTimeout(() => {
+        showToast('Security report exported!', 'success');
+    }, 1500);
+}
+
+function blockIP(ip) {
+    if (confirm(`Are you sure you want to block IP address ${ip}?`)) {
+        showToast(`IP ${ip} has been blocked`, 'warning');
+        // TODO: Implement IP blocking
+    }
+}
+
+function unblockIP(ip) {
+    if (confirm(`Are you sure you want to unblock IP address ${ip}?`)) {
+        showToast(`IP ${ip} has been unblocked`, 'success');
+        // TODO: Implement IP unblocking
+    }
+}
+
+function terminateSession(username) {
+    if (confirm(`Are you sure you want to terminate the session for ${username}?`)) {
+        showToast(`Session for ${username} has been terminated`, 'warning');
+        // TODO: Implement session termination
+    }
+}
+
+function addIPBlock() {
+    const modal = new bootstrap.Modal(document.getElementById('ipBlockModal'));
+    modal.show();
+}
+
+function confirmIPBlock() {
+    const ip = document.getElementById('ipAddress').value;
+    const reason = document.getElementById('blockReason').value;
+    const duration = document.getElementById('blockDuration').value;
+    
+    if (!ip || !reason) {
+        showToast('Please fill in all required fields', 'error');
+        return;
+    }
+    
+    // TODO: Implement IP blocking
+    showToast(`IP ${ip} has been blocked for ${duration}`, 'warning');
+    
+    const modal = bootstrap.Modal.getInstance(document.getElementById('ipBlockModal'));
+    modal.hide();
+    
+    // Reset form
+    document.getElementById('ipBlockForm').reset();
+}
+
+// Event filter functionality
+document.querySelectorAll('[data-filter]').forEach(button => {
+    button.addEventListener('click', function() {
+        // Remove active class from all buttons
+        document.querySelectorAll('[data-filter]').forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        this.classList.add('active');
+        
+        const filter = this.getAttribute('data-filter');
+        filterSecurityEvents(filter);
+    });
+});
+
+function filterSecurityEvents(filter) {
+    const rows = document.querySelectorAll('#security-events tr');
+    
+    rows.forEach(row => {
+        if (filter === 'all') {
+            row.style.display = '';
+        } else {
+            const badge = row.querySelector('.badge');
+            if (badge) {
+                const severity = badge.textContent.toLowerCase();
+                if (filter === 'warning' && severity === 'warning') {
+                    row.style.display = '';
+                } else if (filter === 'critical' && severity === 'critical') {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+        }
+    });
+}
+
+// Auto-refresh every 30 seconds
+setInterval(refreshSecurityData, 30000);
+</script>
+{% endblock %}

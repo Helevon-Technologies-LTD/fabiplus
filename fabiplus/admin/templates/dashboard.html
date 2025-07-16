@@ -1,0 +1,404 @@
+{% extends "base.html" %}
+
+{% block breadcrumb_items %}
+<li class="breadcrumb-item active">Dashboard</li>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="h3 mb-0">
+            <i class="bi bi-speedometer2 me-2"></i>
+            Admin Dashboard
+        </h1>
+        <p class="text-muted">Welcome to the FABI+ administration interface</p>
+    </div>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-primary">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title mb-0">{{ dashboard_data.models|length }}</h5>
+                        <p class="card-text">Models</p>
+                    </div>
+                    <i class="bi bi-table fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-success">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title mb-0">
+                            {% set total_records = dashboard_data.models|sum(attribute='count') %}
+                            {{ total_records }}
+                        </h5>
+                        <p class="card-text">Total Records</p>
+                    </div>
+                    <i class="bi bi-database fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-info">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title mb-0">{{ user.username }}</h5>
+                        <p class="card-text">Current User</p>
+                    </div>
+                    <i class="bi bi-person-circle fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3 mb-3">
+        <div class="card text-white bg-warning">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title mb-0">
+                            {% if user.is_superuser %}
+                                Superuser
+                            {% elif user.is_staff %}
+                                Staff
+                            {% else %}
+                                User
+                            {% endif %}
+                        </h5>
+                        <p class="card-text">Access Level</p>
+                    </div>
+                    <i class="bi bi-shield-check fs-1 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Models Overview -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-table me-2"></i>
+                    Models Overview
+                </h5>
+                <small class="text-muted">Click on a model to manage its data</small>
+            </div>
+            <div class="card-body">
+                {% if dashboard_data.models %}
+                <div class="row">
+                    {% for model in dashboard_data.models %}
+                    <div class="col-md-6 col-lg-4 mb-3">
+                        <div class="card h-100 border-0 shadow-sm">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h6 class="card-title mb-0">
+                                        <i class="bi bi-table me-2 text-primary"></i>
+                                        {{ model.verbose_name_plural }}
+                                    </h6>
+                                    <span class="badge bg-primary">{{ model.count }}</span>
+                                </div>
+                                
+                                <p class="card-text text-muted small mb-3">
+                                    {{ model.description or 'No description available' }}
+                                </p>
+                                
+                                <div class="d-flex gap-2">
+                                    <a href="{{ model.url }}" class="btn btn-primary btn-sm">
+                                        <i class="bi bi-list me-1"></i>
+                                        View All
+                                    </a>
+                                    <a href="{{ model.url }}add/" class="btn btn-outline-primary btn-sm">
+                                        <i class="bi bi-plus me-1"></i>
+                                        Add New
+                                    </a>
+                                </div>
+                                
+                                <!-- Model Fields Preview -->
+                                {% if model.fields %}
+                                <div class="mt-3">
+                                    <small class="text-muted d-block mb-1">Fields:</small>
+                                    <div class="d-flex flex-wrap gap-1">
+                                        {% for field in model.fields %}
+                                        {% if loop.index <= 4 %}
+                                        <span class="badge bg-light text-dark">{{ field.name }}</span>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% if model.fields|length > 4 %}
+                                        <span class="badge bg-light text-muted">+{{ model.fields|length - 4 }} more</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="text-center py-5">
+                    <i class="bi bi-inbox display-1 text-muted"></i>
+                    <h5 class="mt-3 text-muted">No Models Found</h5>
+                    <p class="text-muted">No models are currently registered in the system.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Actions -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-lightning me-2"></i>
+                    Quick Actions
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-center p-3 bg-light rounded">
+                            <i class="bi bi-people fs-3 text-primary me-3"></i>
+                            <div>
+                                <h6 class="mb-1">User Management</h6>
+                                <p class="mb-0 text-muted small">Manage user accounts and permissions</p>
+                            </div>
+                            <a href="/admin/user/" class="btn btn-primary ms-auto">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    {% if user.is_superuser %}
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-center p-3 bg-light rounded">
+                            <i class="bi bi-activity fs-3 text-info me-3"></i>
+                            <div>
+                                <h6 class="mb-1">Activity Monitor</h6>
+                                <p class="mb-0 text-muted small">View system activities and logs</p>
+                            </div>
+                            <a href="/admin/activities/" class="btn btn-info ms-auto">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-center p-3 bg-light rounded">
+                            <i class="bi bi-terminal fs-3 text-dark me-3"></i>
+                            <div>
+                                <h6 class="mb-1">Live Server Logs</h6>
+                                <p class="mb-0 text-muted small">Monitor real-time server logs</p>
+                            </div>
+                            <a href="/admin/logs/" class="btn btn-dark ms-auto">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-center p-3 bg-light rounded">
+                            <i class="bi bi-gear fs-3 text-secondary me-3"></i>
+                            <div>
+                                <h6 class="mb-1">System Settings</h6>
+                                <p class="mb-0 text-muted small">Configure application settings</p>
+                            </div>
+                            <a href="/admin/settings/" class="btn btn-secondary ms-auto">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-center p-3 bg-light rounded">
+                            <i class="bi bi-graph-up fs-3 text-success me-3"></i>
+                            <div>
+                                <h6 class="mb-1">Analytics</h6>
+                                <p class="mb-0 text-muted small">View system analytics and reports</p>
+                            </div>
+                            <a href="/admin/analytics/" class="btn btn-success ms-auto">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-center p-3 bg-light rounded">
+                            <i class="bi bi-shield-check fs-3 text-warning me-3"></i>
+                            <div>
+                                <h6 class="mb-1">Security</h6>
+                                <p class="mb-0 text-muted small">Monitor security and access logs</p>
+                            </div>
+                            <a href="/admin/security/" class="btn btn-warning ms-auto">
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Activity -->
+{% if user.is_superuser %}
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-clock-history me-2"></i>
+                    Recent Activity
+                </h5>
+                <a href="/admin/activities/" class="btn btn-sm btn-outline-primary">
+                    <i class="bi bi-arrow-right me-1"></i>
+                    View All
+                </a>
+            </div>
+            <div class="card-body">
+                {% if recent_activities %}
+                <div class="list-group list-group-flush">
+                    {% for activity in recent_activities %}
+                    <div class="list-group-item border-0 px-0">
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    {% if activity.activity_type == 'LOGIN' %}
+                                        <i class="bi bi-box-arrow-in-right text-success"></i>
+                                    {% elif activity.activity_type == 'LOGOUT' %}
+                                        <i class="bi bi-box-arrow-left text-warning"></i>
+                                    {% elif activity.activity_type == 'CREATE' %}
+                                        <i class="bi bi-plus-circle text-primary"></i>
+                                    {% elif activity.activity_type == 'UPDATE' %}
+                                        <i class="bi bi-pencil-square text-info"></i>
+                                    {% elif activity.activity_type == 'DELETE' %}
+                                        <i class="bi bi-trash text-danger"></i>
+                                    {% elif activity.activity_type == 'ADMIN_ACCESS' %}
+                                        <i class="bi bi-shield-check text-secondary"></i>
+                                    {% else %}
+                                        <i class="bi bi-activity text-muted"></i>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <h6 class="mb-1">{{ activity.description }}</h6>
+                                    <p class="mb-1 text-muted small">
+                                        {% if activity.user_email %}
+                                            by {{ activity.user_email }}
+                                        {% else %}
+                                            by anonymous user
+                                        {% endif %}
+                                        {% if activity.user_ip %}
+                                            from {{ activity.user_ip }}
+                                        {% endif %}
+                                    </p>
+                                    {% if activity.object_type and activity.object_repr %}
+                                    <small class="text-muted">
+                                        {{ activity.object_type }}: {{ activity.object_repr }}
+                                    </small>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <small class="text-muted">
+                                    {{ activity.timestamp.strftime('%H:%M:%S') }}
+                                </small>
+                                {% if activity.level == 'high' or activity.level == 'critical' %}
+                                <br><span class="badge bg-danger">{{ activity.level.upper() }}</span>
+                                {% elif activity.level == 'medium' %}
+                                <br><span class="badge bg-warning">{{ activity.level.upper() }}</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <div class="text-center py-4">
+                    <i class="bi bi-clock-history display-4 text-muted"></i>
+                    <h6 class="mt-3 text-muted">No Recent Activity</h6>
+                    <p class="text-muted">No recent activities to display.</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Activity Statistics for Superusers -->
+{% if user.is_superuser and dashboard_stats %}
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-bar-chart me-2"></i>
+                    Activity Statistics
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <h4 class="text-primary">{{ dashboard_stats.total_activities or 0 }}</h4>
+                        <small class="text-muted">Total Activities</small>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="text-success">{{ dashboard_stats.today_activities or 0 }}</h4>
+                        <small class="text-muted">Today</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-database me-2"></i>
+                    Database Statistics
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    {% set total_records = dashboard_data.models|sum(attribute='count') %}
+                    <div class="col-6">
+                        <h4 class="text-info">{{ dashboard_data.models|length }}</h4>
+                        <small class="text-muted">Models</small>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="text-warning">{{ total_records }}</h4>
+                        <small class="text-muted">Records</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add any dashboard-specific JavaScript here
+    console.log('FABI+ Admin Dashboard loaded');
+});
+</script>
+{% endblock %}

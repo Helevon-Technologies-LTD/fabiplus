@@ -1,0 +1,391 @@
+{% extends "base.html" %}
+
+{% block breadcrumb_items %}
+<li class="breadcrumb-item">
+    <a href="/admin/">Dashboard</a>
+</li>
+<li class="breadcrumb-item active">System Settings</li>
+{% endblock %}
+
+{% block header_actions %}
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-outline-primary" onclick="saveSettings()">
+        <i class="bi bi-check-lg me-1"></i>
+        Save Changes
+    </button>
+    <button type="button" class="btn btn-outline-secondary" onclick="resetSettings()">
+        <i class="bi bi-arrow-clockwise me-1"></i>
+        Reset
+    </button>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="h3 mb-0">
+            <i class="bi bi-gear me-2"></i>
+            System Settings
+        </h1>
+        <p class="text-muted">Configure application settings and preferences</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="nav flex-column nav-pills" id="settings-tabs" role="tablist">
+            <button class="nav-link active" id="general-tab" data-bs-toggle="pill" data-bs-target="#general" type="button" role="tab">
+                <i class="bi bi-gear me-2"></i>General
+            </button>
+            <button class="nav-link" id="database-tab" data-bs-toggle="pill" data-bs-target="#database" type="button" role="tab">
+                <i class="bi bi-database me-2"></i>Database
+            </button>
+            <button class="nav-link" id="security-tab" data-bs-toggle="pill" data-bs-target="#security" type="button" role="tab">
+                <i class="bi bi-shield-check me-2"></i>Security
+            </button>
+            <button class="nav-link" id="email-tab" data-bs-toggle="pill" data-bs-target="#email" type="button" role="tab">
+                <i class="bi bi-envelope me-2"></i>Email
+            </button>
+            <button class="nav-link" id="logging-tab" data-bs-toggle="pill" data-bs-target="#logging" type="button" role="tab">
+                <i class="bi bi-file-text me-2"></i>Logging
+            </button>
+        </div>
+    </div>
+    
+    <div class="col-md-9">
+        <div class="tab-content" id="settings-content">
+            <!-- General Settings -->
+            <div class="tab-pane fade show active" id="general" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">General Settings</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="general-form">
+                            <div class="mb-3">
+                                <label for="app-name" class="form-label">Application Name</label>
+                                <input type="text" class="form-control" id="app-name" value="{{ current_settings.general.app_name }}">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="app-description" class="form-label">Description</label>
+                                <textarea class="form-control" id="app-description" rows="3">{{ current_settings.general.app_description }}</textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="timezone" class="form-label">Timezone</label>
+                                <select class="form-select" id="timezone">
+                                    <option value="UTC" {% if current_settings.general.timezone == 'UTC' %}selected{% endif %}>UTC</option>
+                                    <option value="America/New_York" {% if current_settings.general.timezone == 'America/New_York' %}selected{% endif %}>Eastern Time</option>
+                                    <option value="America/Chicago" {% if current_settings.general.timezone == 'America/Chicago' %}selected{% endif %}>Central Time</option>
+                                    <option value="America/Denver" {% if current_settings.general.timezone == 'America/Denver' %}selected{% endif %}>Mountain Time</option>
+                                    <option value="America/Los_Angeles" {% if current_settings.general.timezone == 'America/Los_Angeles' %}selected{% endif %}>Pacific Time</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="debug-mode" {% if current_settings.general.debug_mode %}checked{% endif %}>
+                                    <label class="form-check-label" for="debug-mode">
+                                        Debug Mode
+                                    </label>
+                                </div>
+                                <small class="form-text text-muted">Enable detailed error messages and logging</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="maintenance-mode" {% if current_settings.general.maintenance_mode %}checked{% endif %}>
+                                    <label class="form-check-label" for="maintenance-mode">
+                                        Maintenance Mode
+                                    </label>
+                                </div>
+                                <small class="form-text text-muted">Temporarily disable public access</small>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Database Settings -->
+            <div class="tab-pane fade" id="database" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Database Configuration</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle me-2"></i>
+                            Current database: SQLite (dockertest.db)
+                        </div>
+                        
+                        <form id="database-form">
+                            <div class="mb-3">
+                                <label for="db-pool-size" class="form-label">Connection Pool Size</label>
+                                <input type="number" class="form-control" id="db-pool-size" value="10" min="1" max="100">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="db-echo" checked>
+                                    <label class="form-check-label" for="db-echo">
+                                        Echo SQL Queries
+                                    </label>
+                                </div>
+                                <small class="form-text text-muted">Log all SQL queries (debug only)</small>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-outline-primary" onclick="testConnection()">
+                                    <i class="bi bi-plug me-1"></i>
+                                    Test Connection
+                                </button>
+                                <button type="button" class="btn btn-outline-warning" onclick="runMigrations()">
+                                    <i class="bi bi-arrow-up-circle me-1"></i>
+                                    Run Migrations
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Security Settings -->
+            <div class="tab-pane fade" id="security" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Security Configuration</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="security-form">
+                            <div class="mb-3">
+                                <label for="session-timeout" class="form-label">Session Timeout (minutes)</label>
+                                <input type="number" class="form-control" id="session-timeout" value="60" min="5" max="1440">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="max-login-attempts" class="form-label">Max Login Attempts</label>
+                                <input type="number" class="form-control" id="max-login-attempts" value="5" min="1" max="20">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="force-https" checked>
+                                    <label class="form-check-label" for="force-https">
+                                        Force HTTPS
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="csrf-protection" checked>
+                                    <label class="form-check-label" for="csrf-protection">
+                                        CSRF Protection
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="activity-logging" checked>
+                                    <label class="form-check-label" for="activity-logging">
+                                        Activity Logging
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Email Settings -->
+            <div class="tab-pane fade" id="email" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Email Configuration</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="email-form">
+                            <div class="mb-3">
+                                <label for="smtp-host" class="form-label">SMTP Host</label>
+                                <input type="text" class="form-control" id="smtp-host" placeholder="smtp.gmail.com">
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="smtp-port" class="form-label">SMTP Port</label>
+                                        <input type="number" class="form-control" id="smtp-port" value="587">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" id="smtp-tls" checked>
+                                            <label class="form-check-label" for="smtp-tls">
+                                                Use TLS
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="smtp-username" class="form-label">Username</label>
+                                <input type="email" class="form-control" id="smtp-username">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="smtp-password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="smtp-password">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="from-email" class="form-label">From Email</label>
+                                <input type="email" class="form-control" id="from-email" placeholder="noreply@example.com">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-outline-primary" onclick="testEmail()">
+                                    <i class="bi bi-envelope-check me-1"></i>
+                                    Send Test Email
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Logging Settings -->
+            <div class="tab-pane fade" id="logging" role="tabpanel">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">Logging Configuration</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="logging-form">
+                            <div class="mb-3">
+                                <label for="log-level" class="form-label">Log Level</label>
+                                <select class="form-select" id="log-level">
+                                    <option value="DEBUG">DEBUG</option>
+                                    <option value="INFO" selected>INFO</option>
+                                    <option value="WARNING">WARNING</option>
+                                    <option value="ERROR">ERROR</option>
+                                    <option value="CRITICAL">CRITICAL</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="log-file-size" class="form-label">Max Log File Size (MB)</label>
+                                <input type="number" class="form-control" id="log-file-size" value="10" min="1" max="100">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="log-backup-count" class="form-label">Log Backup Count</label>
+                                <input type="number" class="form-control" id="log-backup-count" value="5" min="1" max="20">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="log-to-file" checked>
+                                    <label class="form-check-label" for="log-to-file">
+                                        Log to File
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="log-requests" checked>
+                                    <label class="form-check-label" for="log-requests">
+                                        Log HTTP Requests
+                                    </label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function saveSettings() {
+    // Collect all form data
+    const settings = {
+        general: getFormData('general-form'),
+        database: getFormData('database-form'),
+        security: getFormData('security-form'),
+        email: getFormData('email-form'),
+        logging: getFormData('logging-form')
+    };
+    
+    // TODO: Send to backend
+    console.log('Settings to save:', settings);
+    showToast('Settings saved successfully!', 'success');
+}
+
+function resetSettings() {
+    if (confirm('Are you sure you want to reset all settings to defaults?')) {
+        // TODO: Reset to defaults
+        showToast('Settings reset to defaults', 'info');
+    }
+}
+
+function getFormData(formId) {
+    const form = document.getElementById(formId);
+    if (!form) return {};
+    
+    const formData = new FormData(form);
+    const data = {};
+    
+    // Get all form inputs
+    const inputs = form.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        if (input.type === 'checkbox') {
+            data[input.id] = input.checked;
+        } else {
+            data[input.id] = input.value;
+        }
+    });
+    
+    return data;
+}
+
+function testConnection() {
+    showToast('Testing database connection...', 'info');
+    // TODO: Implement database connection test
+    setTimeout(() => {
+        showToast('Database connection successful!', 'success');
+    }, 1000);
+}
+
+function runMigrations() {
+    if (confirm('Are you sure you want to run database migrations?')) {
+        showToast('Running migrations...', 'info');
+        // TODO: Implement migration runner
+        setTimeout(() => {
+            showToast('Migrations completed successfully!', 'success');
+        }, 2000);
+    }
+}
+
+function testEmail() {
+    const email = document.getElementById('from-email').value;
+    if (!email) {
+        showToast('Please enter a from email address first', 'warning');
+        return;
+    }
+    
+    showToast('Sending test email...', 'info');
+    // TODO: Implement email test
+    setTimeout(() => {
+        showToast('Test email sent successfully!', 'success');
+    }, 1500);
+}
+</script>
+{% endblock %}

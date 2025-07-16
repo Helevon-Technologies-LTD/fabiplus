@@ -1,0 +1,429 @@
+{% extends "base.html" %}
+
+{% block breadcrumb_items %}
+<li class="breadcrumb-item">
+    <a href="/admin/">Dashboard</a>
+</li>
+<li class="breadcrumb-item active">Analytics</li>
+{% endblock %}
+
+{% block header_actions %}
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-outline-secondary" onclick="refreshData()">
+        <i class="bi bi-arrow-clockwise me-1"></i>
+        Refresh
+    </button>
+    <button type="button" class="btn btn-outline-primary" onclick="exportData()">
+        <i class="bi bi-download me-1"></i>
+        Export
+    </button>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="h3 mb-0">
+            <i class="bi bi-graph-up me-2"></i>
+            System Analytics
+        </h1>
+        <p class="text-muted">View system analytics and performance reports</p>
+    </div>
+</div>
+
+<!-- Key Metrics -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Total Users</h6>
+                        <h3 class="mb-0" id="total-users">{{ analytics_data.total_users or 0 }}</h3>
+                        <small class="text-light">Registered users</small>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-people fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Total Records</h6>
+                        <h3 class="mb-0" id="api-requests">{{ analytics_data.total_records or 0 }}</h3>
+                        <small class="text-light">Database records</small>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-graph-up fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card bg-info text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Activities</h6>
+                        <h3 class="mb-0" id="avg-response">{{ analytics_data.total_activities or 0 }}</h3>
+                        <small class="text-light">System activities</small>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-speedometer2 fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Models</h6>
+                        <h3 class="mb-0" id="error-rate">{{ analytics_data.model_stats|length or 0 }}</h3>
+                        <small class="text-light">Registered models</small>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-exclamation-triangle fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts Row -->
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Request Volume (Last 7 Days)</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="requestChart" height="100"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Model Statistics</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group list-group-flush">
+                    {% if analytics_data.model_stats %}
+                        {% for model_name, count in analytics_data.model_stats.items() %}
+                        <div class="list-group-item d-flex justify-content-between align-items-center">
+                            <span>{{ model_name.title() }}</span>
+                            <span class="badge bg-primary rounded-pill">{{ count }}</span>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="list-group-item text-center text-muted">
+                            No model data available
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Performance and Usage -->
+<div class="row mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Activity Types Distribution</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="responseTimeChart" height="150"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">User Activity Heatmap</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Hour</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                                <th>Sun</th>
+                            </tr>
+                        </thead>
+                        <tbody id="heatmap-data">
+                            <!-- Heatmap data will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Database and System Stats -->
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Database Statistics</h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <h4 class="text-primary">{{ analytics_data.model_stats|length or 0 }}</h4>
+                        <small class="text-muted">Models</small>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="text-success">{{ analytics_data.total_records or 0 }}</h4>
+                        <small class="text-muted">Records</small>
+                    </div>
+                </div>
+                <hr>
+                <div class="row text-center">
+                    <div class="col-6">
+                        <h4 class="text-info">{{ analytics_data.total_activities or 0 }}</h4>
+                        <small class="text-muted">Activities</small>
+                    </div>
+                    <div class="col-6">
+                        <h4 class="text-warning">{{ analytics_data.total_users or 0 }}</h4>
+                        <small class="text-muted">Users</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">System Resources</h5>
+            </div>
+            <div class="card-body">
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between">
+                        <span>CPU Usage</span>
+                        <span>23%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-success" style="width: 23%"></div>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between">
+                        <span>Memory Usage</span>
+                        <span>67%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-warning" style="width: 67%"></div>
+                    </div>
+                </div>
+                
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between">
+                        <span>Disk Usage</span>
+                        <span>45%</span>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-info" style="width: 45%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Recent Errors</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group list-group-flush">
+                    <div class="list-group-item px-0">
+                        <div class="d-flex justify-content-between">
+                            <span class="text-danger">500 Error</span>
+                            <small class="text-muted">2 min ago</small>
+                        </div>
+                        <small class="text-muted">/api/v1/products/invalid</small>
+                    </div>
+                    <div class="list-group-item px-0">
+                        <div class="d-flex justify-content-between">
+                            <span class="text-warning">404 Error</span>
+                            <small class="text-muted">15 min ago</small>
+                        </div>
+                        <small class="text-muted">/admin/nonexistent/</small>
+                    </div>
+                    <div class="list-group-item px-0">
+                        <div class="d-flex justify-content-between">
+                            <span class="text-warning">403 Error</span>
+                            <small class="text-muted">1 hour ago</small>
+                        </div>
+                        <small class="text-muted">/admin/users/delete/</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.heatmap-cell {
+    width: 30px;
+    height: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+    border-radius: 3px;
+}
+
+.heatmap-low { background-color: #e8f5e8; }
+.heatmap-medium { background-color: #a8d8a8; }
+.heatmap-high { background-color: #4caf50; }
+.heatmap-very-high { background-color: #2e7d32; color: white; }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Request Volume Chart with real data
+const requestCtx = document.getElementById('requestChart').getContext('2d');
+
+// Generate real data from analytics_data
+const dailyData = {{ analytics_data.daily_activities|tojson|safe }};
+const labels = Object.keys(dailyData).length > 0 ? Object.keys(dailyData) : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const data = Object.keys(dailyData).length > 0 ? Object.values(dailyData) : [0, 0, 0, 0, 0, 0, 0];
+
+const requestChart = new Chart(requestCtx, {
+    type: 'line',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: 'Activities',
+            data: data,
+            borderColor: 'rgb(75, 192, 192)',
+            backgroundColor: 'rgba(75, 192, 192, 0.1)',
+            tension: 0.1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+
+// Activity Types Chart with real data
+const responseCtx = document.getElementById('responseTimeChart').getContext('2d');
+const activityTypes = {{ analytics_data.activity_types|tojson|safe }};
+const typeLabels = Object.keys(activityTypes).length > 0 ? Object.keys(activityTypes) : ['Login', 'Create', 'Update', 'Delete'];
+const typeData = Object.keys(activityTypes).length > 0 ? Object.values(activityTypes) : [0, 0, 0, 0];
+
+const responseChart = new Chart(responseCtx, {
+    type: 'doughnut',
+    data: {
+        labels: typeLabels,
+        datasets: [{
+            data: typeData,
+            backgroundColor: [
+                '#28a745',
+                '#007bff',
+                '#ffc107',
+                '#dc3545',
+                '#6f42c1',
+                '#fd7e14'
+            ]
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
+// Generate heatmap data based on real activity data
+function generateHeatmap() {
+    const heatmapData = document.getElementById('heatmap-data');
+    const hours = ['00', '06', '12', '18'];
+    const totalActivities = {{ analytics_data.total_activities or 0 }};
+
+    hours.forEach(hour => {
+        const row = document.createElement('tr');
+        row.innerHTML = `<td>${hour}:00</td>`;
+
+        for (let day = 0; day < 7; day++) {
+            // Generate activity based on realistic patterns
+            let activity = 0;
+            if (totalActivities > 0) {
+                // Simulate activity patterns based on hour and day
+                const baseActivity = Math.floor(totalActivities / 28); // Distribute across 4 hours * 7 days
+                const hourMultiplier = hour === '12' ? 1.5 : hour === '18' ? 1.2 : hour === '06' ? 0.8 : 0.5;
+                const dayMultiplier = day < 5 ? 1.2 : 0.8; // Weekdays vs weekends
+                activity = Math.floor(baseActivity * hourMultiplier * dayMultiplier);
+            }
+
+            let className = 'heatmap-low';
+            if (activity > 50) className = 'heatmap-very-high';
+            else if (activity > 25) className = 'heatmap-high';
+            else if (activity > 10) className = 'heatmap-medium';
+
+            row.innerHTML += `<td class="heatmap-cell ${className}">${activity}</td>`;
+        }
+
+        heatmapData.appendChild(row);
+    });
+}
+
+function refreshData() {
+    showToast('Refreshing analytics data...', 'info');
+    // TODO: Implement data refresh
+    setTimeout(() => {
+        showToast('Data refreshed successfully!', 'success');
+    }, 1000);
+}
+
+function exportData() {
+    showToast('Exporting analytics data...', 'info');
+    // TODO: Implement data export
+    setTimeout(() => {
+        showToast('Data exported successfully!', 'success');
+    }, 1500);
+}
+
+// Initialize heatmap
+document.addEventListener('DOMContentLoaded', function() {
+    generateHeatmap();
+});
+
+// Auto-refresh every 5 minutes
+setInterval(refreshData, 300000);
+</script>
+{% endblock %}

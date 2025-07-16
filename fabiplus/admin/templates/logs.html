@@ -1,0 +1,578 @@
+{% extends "base.html" %}
+
+{% block breadcrumb_items %}
+<li class="breadcrumb-item">
+    <a href="/admin/">Dashboard</a>
+</li>
+<li class="breadcrumb-item active">Server Logs</li>
+{% endblock %}
+
+{% block header_actions %}
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-outline-secondary" onclick="clearLogs()">
+        <i class="bi bi-trash me-1"></i>
+        Clear
+    </button>
+    <button type="button" class="btn btn-outline-primary" onclick="downloadLogs()">
+        <i class="bi bi-download me-1"></i>
+        Download
+    </button>
+    <button type="button" class="btn btn-outline-success" id="connectBtn" onclick="toggleConnection()">
+        <i class="bi bi-play-circle me-1"></i>
+        Connect
+    </button>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="h3 mb-0">
+            <i class="bi bi-terminal me-2"></i>
+            Live Server Logs
+        </h1>
+        <p class="text-muted">Monitor server logs in real-time</p>
+    </div>
+</div>
+
+<!-- Connection Status -->
+<div class="row mb-3">
+    <div class="col-12">
+        <div class="alert alert-info d-flex align-items-center" id="connectionStatus">
+            <i class="bi bi-info-circle me-2"></i>
+            <span id="statusText">Disconnected - Click Connect to start live monitoring</span>
+        </div>
+    </div>
+</div>
+
+<!-- Log Controls -->
+<div class="row mb-3">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Log Level Filter</h6>
+                <div class="btn-group w-100" role="group">
+                    <input type="radio" class="btn-check" name="logLevel" id="level-all" value="" checked>
+                    <label class="btn btn-outline-secondary btn-sm" for="level-all">All</label>
+                    
+                    <input type="radio" class="btn-check" name="logLevel" id="level-debug" value="DEBUG">
+                    <label class="btn btn-outline-secondary btn-sm" for="level-debug">Debug</label>
+                    
+                    <input type="radio" class="btn-check" name="logLevel" id="level-info" value="INFO">
+                    <label class="btn btn-outline-primary btn-sm" for="level-info">Info</label>
+                    
+                    <input type="radio" class="btn-check" name="logLevel" id="level-warning" value="WARNING">
+                    <label class="btn btn-outline-warning btn-sm" for="level-warning">Warning</label>
+                    
+                    <input type="radio" class="btn-check" name="logLevel" id="level-error" value="ERROR">
+                    <label class="btn btn-outline-danger btn-sm" for="level-error">Error</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Search & Settings</h6>
+                <div class="input-group">
+                    <input type="text" class="form-control form-control-sm" id="searchInput" placeholder="Search logs...">
+                    <button class="btn btn-outline-secondary btn-sm" type="button" onclick="searchLogs()">
+                        <i class="bi bi-search"></i>
+                    </button>
+                </div>
+                <div class="form-check form-switch mt-2">
+                    <input class="form-check-input" type="checkbox" id="autoScroll" checked>
+                    <label class="form-check-label" for="autoScroll">Auto-scroll</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Log Display -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-file-text me-2"></i>
+                    Log Output
+                    <span class="badge bg-secondary ms-2" id="logCount">0 lines</span>
+                </h5>
+                <div class="btn-group btn-group-sm">
+                    <button type="button" class="btn btn-outline-secondary" onclick="pauseScrolling()">
+                        <i class="bi bi-pause" id="pauseIcon"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-secondary" onclick="toggleWordWrap()">
+                        <i class="bi bi-text-wrap" id="wrapIcon"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card-body p-0">
+                <div id="logContainer" class="log-container">
+                    <div id="logOutput" class="log-output">
+                        <div class="log-entry text-muted text-center py-4">
+                            <i class="bi bi-hourglass-split me-2"></i>
+                            Waiting for log data... Click Connect to start monitoring.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-footer">
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">
+                        <span id="connectionTime">Not connected</span>
+                    </small>
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-outline-secondary" onclick="scrollToTop()">
+                            <i class="bi bi-arrow-up"></i> Top
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="scrollToBottom()">
+                            <i class="bi bi-arrow-down"></i> Bottom
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.log-container {
+    height: 500px;
+    overflow-y: auto;
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.875rem;
+    line-height: 1.4;
+}
+
+.log-output {
+    padding: 1rem;
+    min-height: 100%;
+}
+
+.log-entry {
+    margin-bottom: 0.25rem;
+    padding: 0.25rem 0;
+    border-left: 3px solid transparent;
+    padding-left: 0.5rem;
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+
+.log-entry.wrap-text {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.log-entry.no-wrap {
+    white-space: nowrap;
+    overflow-x: auto;
+}
+
+.log-entry.level-DEBUG {
+    color: #9cdcfe;
+    border-left-color: #9cdcfe;
+}
+
+.log-entry.level-INFO {
+    color: #d4d4d4;
+    border-left-color: #4ec9b0;
+}
+
+.log-entry.level-WARNING {
+    color: #dcdcaa;
+    border-left-color: #dcdcaa;
+}
+
+.log-entry.level-ERROR {
+    color: #f48771;
+    border-left-color: #f48771;
+    background-color: rgba(244, 135, 113, 0.1);
+}
+
+.log-entry.level-CRITICAL {
+    color: #ff6b6b;
+    border-left-color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.2);
+    font-weight: bold;
+}
+
+.log-entry.highlighted {
+    background-color: rgba(255, 255, 0, 0.2);
+}
+
+.log-timestamp {
+    color: #808080;
+    font-size: 0.8rem;
+}
+
+.log-level {
+    font-weight: bold;
+    min-width: 60px;
+    display: inline-block;
+}
+
+.log-logger {
+    color: #569cd6;
+    font-size: 0.8rem;
+}
+
+.log-message {
+    color: inherit;
+}
+
+.connection-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.connection-indicator.connected {
+    background-color: #28a745;
+    animation: pulse 2s infinite;
+}
+
+.connection-indicator.disconnected {
+    background-color: #dc3545;
+}
+
+.connection-indicator.connecting {
+    background-color: #ffc107;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+
+.alert-success {
+    border-left: 4px solid #28a745;
+}
+
+.alert-warning {
+    border-left: 4px solid #ffc107;
+}
+
+.alert-danger {
+    border-left: 4px solid #dc3545;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let websocket = null;
+let isConnected = false;
+let isPaused = false;
+let autoScroll = true;
+let wordWrap = true;
+let logCount = 0;
+let connectionStartTime = null;
+let currentFilter = '';
+let searchTerm = '';
+
+// WebSocket connection management
+function toggleConnection() {
+    if (isConnected) {
+        disconnect();
+    } else {
+        connect();
+    }
+}
+
+function connect() {
+    if (websocket) {
+        websocket.close();
+    }
+    
+    updateConnectionStatus('connecting', 'Connecting to server...');
+    
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+
+    // Get admin token from cookies
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+
+    const adminToken = getCookie('admin_token');
+    const wsUrl = `${protocol}//${window.location.host}/admin/logs/live${adminToken ? '?admin_token=' + encodeURIComponent(adminToken) : ''}`;
+
+    websocket = new WebSocket(wsUrl);
+    
+    websocket.onopen = function(event) {
+        isConnected = true;
+        connectionStartTime = new Date();
+        updateConnectionStatus('connected', 'Connected - Receiving live logs');
+        updateConnectionButton();
+        clearLogs();
+        
+        // Send initial filter if set
+        if (currentFilter) {
+            sendFilter();
+        }
+    };
+    
+    websocket.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        if (data.type === 'log_entry') {
+            addLogEntry(data.data);
+        }
+    };
+    
+    websocket.onclose = function(event) {
+        isConnected = false;
+        updateConnectionStatus('disconnected', 'Disconnected from server');
+        updateConnectionButton();
+    };
+    
+    websocket.onerror = function(error) {
+        console.error('WebSocket error:', error);
+        updateConnectionStatus('disconnected', 'Connection error');
+        showToast('Failed to connect to log server', 'error');
+    };
+}
+
+function disconnect() {
+    if (websocket) {
+        websocket.close();
+        websocket = null;
+    }
+    isConnected = false;
+    updateConnectionStatus('disconnected', 'Disconnected');
+    updateConnectionButton();
+}
+
+function updateConnectionStatus(status, message) {
+    const statusElement = document.getElementById('connectionStatus');
+    const statusText = document.getElementById('statusText');
+    const indicator = document.querySelector('.connection-indicator') || document.createElement('span');
+    
+    indicator.className = `connection-indicator ${status}`;
+    statusText.textContent = message;
+    
+    // Update alert class
+    statusElement.className = 'alert d-flex align-items-center';
+    if (status === 'connected') {
+        statusElement.classList.add('alert-success');
+    } else if (status === 'connecting') {
+        statusElement.classList.add('alert-warning');
+    } else {
+        statusElement.classList.add('alert-danger');
+    }
+    
+    // Add indicator if not present
+    if (!document.querySelector('.connection-indicator')) {
+        statusElement.insertBefore(indicator, statusText);
+    }
+    
+    // Update connection time
+    updateConnectionTime();
+}
+
+function updateConnectionButton() {
+    const btn = document.getElementById('connectBtn');
+    const icon = btn.querySelector('i');
+    
+    if (isConnected) {
+        btn.innerHTML = '<i class="bi bi-stop-circle me-1"></i>Disconnect';
+        btn.className = 'btn btn-outline-danger';
+    } else {
+        btn.innerHTML = '<i class="bi bi-play-circle me-1"></i>Connect';
+        btn.className = 'btn btn-outline-success';
+    }
+}
+
+function updateConnectionTime() {
+    const timeElement = document.getElementById('connectionTime');
+    if (isConnected && connectionStartTime) {
+        const elapsed = Math.floor((new Date() - connectionStartTime) / 1000);
+        const minutes = Math.floor(elapsed / 60);
+        const seconds = elapsed % 60;
+        timeElement.textContent = `Connected for ${minutes}:${seconds.toString().padStart(2, '0')}`;
+    } else {
+        timeElement.textContent = 'Not connected';
+    }
+}
+
+// Log display management
+function addLogEntry(logData) {
+    if (isPaused) return;
+    
+    const logOutput = document.getElementById('logOutput');
+    const entry = document.createElement('div');
+    entry.className = `log-entry level-${logData.level} ${wordWrap ? 'wrap-text' : 'no-wrap'}`;
+    
+    // Check if entry matches search term
+    if (searchTerm && !logData.message.toLowerCase().includes(searchTerm.toLowerCase())) {
+        return;
+    }
+    
+    // Check if entry matches level filter
+    if (currentFilter && logData.level !== currentFilter) {
+        return;
+    }
+    
+    // Format log entry
+    const timestamp = new Date(logData.timestamp).toLocaleTimeString();
+    entry.innerHTML = `
+        <span class="log-timestamp">[${timestamp}]</span>
+        <span class="log-level">${logData.level}</span>
+        <span class="log-logger">${logData.logger}</span>
+        <span class="log-message">${escapeHtml(logData.message)}</span>
+    `;
+    
+    // Highlight search term
+    if (searchTerm) {
+        entry.classList.add('highlighted');
+    }
+    
+    logOutput.appendChild(entry);
+    logCount++;
+    
+    // Update log count
+    document.getElementById('logCount').textContent = `${logCount} lines`;
+    
+    // Auto-scroll if enabled
+    if (autoScroll) {
+        scrollToBottom();
+    }
+    
+    // Limit log entries to prevent memory issues
+    const maxEntries = 1000;
+    if (logOutput.children.length > maxEntries) {
+        logOutput.removeChild(logOutput.firstChild);
+        logCount--;
+    }
+}
+
+function clearLogs() {
+    document.getElementById('logOutput').innerHTML = '';
+    logCount = 0;
+    document.getElementById('logCount').textContent = '0 lines';
+}
+
+function scrollToTop() {
+    document.getElementById('logContainer').scrollTop = 0;
+}
+
+function scrollToBottom() {
+    const container = document.getElementById('logContainer');
+    container.scrollTop = container.scrollHeight;
+}
+
+function pauseScrolling() {
+    isPaused = !isPaused;
+    const icon = document.getElementById('pauseIcon');
+    icon.className = isPaused ? 'bi bi-play' : 'bi bi-pause';
+}
+
+function toggleWordWrap() {
+    wordWrap = !wordWrap;
+    const icon = document.getElementById('wrapIcon');
+    icon.className = wordWrap ? 'bi bi-text-wrap' : 'bi bi-text-left';
+    
+    // Update existing entries
+    document.querySelectorAll('.log-entry').forEach(entry => {
+        entry.className = entry.className.replace(/\b(wrap-text|no-wrap)\b/g, '');
+        entry.classList.add(wordWrap ? 'wrap-text' : 'no-wrap');
+    });
+}
+
+// Filter and search
+function sendFilter() {
+    if (websocket && isConnected) {
+        websocket.send(JSON.stringify({
+            type: 'filter',
+            level: currentFilter,
+            lines: 100
+        }));
+    }
+}
+
+function searchLogs() {
+    searchTerm = document.getElementById('searchInput').value;
+    // Re-apply current logs with search filter
+    // For simplicity, we'll just highlight existing entries
+    document.querySelectorAll('.log-entry').forEach(entry => {
+        entry.classList.remove('highlighted');
+        if (searchTerm && entry.textContent.toLowerCase().includes(searchTerm.toLowerCase())) {
+            entry.classList.add('highlighted');
+        }
+    });
+}
+
+function downloadLogs() {
+    const logOutput = document.getElementById('logOutput');
+    const logs = Array.from(logOutput.children).map(entry => entry.textContent).join('\n');
+    
+    const blob = new Blob([logs], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `server-logs-${new Date().toISOString().slice(0, 19)}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+
+// Event listeners
+document.querySelectorAll('input[name="logLevel"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        currentFilter = this.value;
+        if (isConnected) {
+            clearLogs();
+            sendFilter();
+        }
+    });
+});
+
+document.getElementById('autoScroll').addEventListener('change', function() {
+    autoScroll = this.checked;
+});
+
+document.getElementById('searchInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        searchLogs();
+    }
+});
+
+// Utility functions
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Update connection time every second
+setInterval(updateConnectionTime, 1000);
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+    updateConnectionStatus('disconnected', 'Disconnected - Click Connect to start live monitoring');
+});
+</script>
+{% endblock %}

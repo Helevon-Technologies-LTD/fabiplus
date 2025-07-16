@@ -1,0 +1,448 @@
+{% extends "base.html" %}
+
+{% block breadcrumb_items %}
+<li class="breadcrumb-item">
+    <a href="/admin/">Dashboard</a>
+</li>
+<li class="breadcrumb-item active">Activities</li>
+{% endblock %}
+
+{% block header_actions %}
+<div class="btn-group" role="group">
+    <button type="button" class="btn btn-outline-secondary" onclick="refreshActivities()">
+        <i class="bi bi-arrow-clockwise me-1"></i>
+        Refresh
+    </button>
+    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#filterModal">
+        <i class="bi bi-funnel me-1"></i>
+        Filter
+    </button>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="h3 mb-0">
+            <i class="bi bi-activity me-2"></i>
+            System Activities
+        </h1>
+        <p class="text-muted">Monitor user activities and system events</p>
+    </div>
+</div>
+
+<!-- Activity Statistics -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Total Activities</h6>
+                        <h3 class="mb-0" id="total-activities">{{ stats.total or 0 }}</h3>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-activity fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Today</h6>
+                        <h3 class="mb-0" id="today-activities">{{ stats.today or 0 }}</h3>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-calendar-day fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">High Priority</h6>
+                        <h3 class="mb-0" id="high-priority">{{ stats.high_priority or 0 }}</h3>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-exclamation-triangle fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-danger text-white">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="card-title">Errors</h6>
+                        <h3 class="mb-0" id="error-activities">{{ stats.errors or 0 }}</h3>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="bi bi-bug fs-1"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Activities Timeline -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-clock-history me-2"></i>
+                    Recent Activities
+                </h5>
+                <div class="btn-group btn-group-sm" role="group">
+                    <input type="radio" class="btn-check" name="timeFilter" id="filter-all" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="filter-all">All</label>
+                    
+                    <input type="radio" class="btn-check" name="timeFilter" id="filter-today" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="filter-today">Today</label>
+                    
+                    <input type="radio" class="btn-check" name="timeFilter" id="filter-week" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="filter-week">This Week</label>
+                </div>
+            </div>
+            
+            <div class="card-body p-0">
+                <div id="activities-container" class="activity-timeline">
+                    {% for activity in activities %}
+                    <div class="activity-item" data-level="{{ activity.level }}" data-type="{{ activity.activity_type }}">
+                        <div class="activity-icon">
+                            {% if activity.activity_type == 'create' %}
+                                <i class="bi bi-plus-circle text-success"></i>
+                            {% elif activity.activity_type == 'update' %}
+                                <i class="bi bi-pencil-square text-primary"></i>
+                            {% elif activity.activity_type == 'delete' %}
+                                <i class="bi bi-trash text-danger"></i>
+                            {% elif activity.activity_type == 'login' %}
+                                <i class="bi bi-box-arrow-in-right text-info"></i>
+                            {% elif activity.activity_type == 'logout' %}
+                                <i class="bi bi-box-arrow-right text-secondary"></i>
+                            {% elif activity.activity_type == 'error' %}
+                                <i class="bi bi-exclamation-triangle text-warning"></i>
+                            {% else %}
+                                <i class="bi bi-circle text-muted"></i>
+                            {% endif %}
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-header">
+                                <h6 class="activity-title mb-1">{{ activity.description }}</h6>
+                                <div class="activity-meta">
+                                    <span class="badge bg-{{ 'danger' if activity.level == 'critical' else 'warning' if activity.level == 'high' else 'primary' if activity.level == 'normal' else 'secondary' }}">
+                                        {{ activity.level|title }}
+                                    </span>
+                                    {% if activity.user_email %}
+                                    <span class="text-muted">by {{ activity.user_email }}</span>
+                                    {% endif %}
+                                    <span class="text-muted">{{ activity.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}</span>
+                                </div>
+                            </div>
+                            {% if activity.object_repr or activity.user_ip %}
+                            <div class="activity-details">
+                                {% if activity.object_repr %}
+                                <small class="text-muted">Object: {{ activity.object_repr }}</small><br>
+                                {% endif %}
+                                {% if activity.user_ip %}
+                                <small class="text-muted">IP: {{ activity.user_ip }}</small>
+                                {% endif %}
+                                {% if activity.response_time %}
+                                <small class="text-muted">Response: {{ "%.2f"|format(activity.response_time * 1000) }}ms</small>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                {% if not activities %}
+                <div class="text-center py-5">
+                    <i class="bi bi-inbox display-1 text-muted"></i>
+                    <h5 class="mt-3 text-muted">No Activities Found</h5>
+                    <p class="text-muted">No activities have been recorded yet.</p>
+                </div>
+                {% endif %}
+            </div>
+            
+            {% if activities %}
+            <div class="card-footer">
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">Showing {{ activities|length }} activities</small>
+                    <button type="button" class="btn btn-outline-primary btn-sm" onclick="loadMoreActivities()">
+                        <i class="bi bi-arrow-down me-1"></i>
+                        Load More
+                    </button>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Filter Modal -->
+<div class="modal fade" id="filterModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Filter Activities</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="filterForm">
+                    <div class="mb-3">
+                        <label for="activityType" class="form-label">Activity Type</label>
+                        <select class="form-select" id="activityType" name="activity_type">
+                            <option value="">All Types</option>
+                            <option value="create">Create</option>
+                            <option value="read">Read</option>
+                            <option value="update">Update</option>
+                            <option value="delete">Delete</option>
+                            <option value="login">Login</option>
+                            <option value="logout">Logout</option>
+                            <option value="admin_access">Admin Access</option>
+                            <option value="api_call">API Call</option>
+                            <option value="error">Error</option>
+                            <option value="system">System</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="activityLevel" class="form-label">Priority Level</label>
+                        <select class="form-select" id="activityLevel" name="level">
+                            <option value="">All Levels</option>
+                            <option value="low">Low</option>
+                            <option value="normal">Normal</option>
+                            <option value="high">High</option>
+                            <option value="critical">Critical</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="userFilter" class="form-label">User</label>
+                        <input type="text" class="form-control" id="userFilter" name="user_email" placeholder="Filter by user email">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="objectType" class="form-label">Object Type</label>
+                        <select class="form-select" id="objectType" name="object_type">
+                            <option value="">All Objects</option>
+                            {% for model_name in dashboard_data.models %}
+                            <option value="{{ model_name.name.lower() }}">{{ model_name.verbose_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="applyFilters()">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.activity-timeline {
+    max-height: 600px;
+    overflow-y: auto;
+}
+
+.activity-item {
+    display: flex;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    transition: background-color 0.2s;
+}
+
+.activity-item:hover {
+    background-color: #f8f9fa;
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.2rem;
+}
+
+.activity-content {
+    flex-grow: 1;
+}
+
+.activity-title {
+    font-weight: 600;
+    color: #495057;
+}
+
+.activity-meta {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.activity-details {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #e9ecef;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let currentFilters = {};
+let currentPage = 1;
+
+function refreshActivities() {
+    window.location.reload();
+}
+
+function applyFilters() {
+    const form = document.getElementById('filterForm');
+    const formData = new FormData(form);
+    
+    currentFilters = {};
+    for (let [key, value] of formData.entries()) {
+        if (value) {
+            currentFilters[key] = value;
+        }
+    }
+    
+    loadActivities(1);
+    bootstrap.Modal.getInstance(document.getElementById('filterModal')).hide();
+}
+
+function loadActivities(page = 1) {
+    const params = new URLSearchParams(currentFilters);
+    params.set('page', page);
+    
+    fetch(`/admin/activities/api/?${params}`)
+        .then(response => response.json())
+        .then(data => {
+            updateActivitiesDisplay(data.activities, page === 1);
+            currentPage = page;
+        })
+        .catch(error => {
+            console.error('Error loading activities:', error);
+            showToast('Error loading activities', 'error');
+        });
+}
+
+function loadMoreActivities() {
+    loadActivities(currentPage + 1);
+}
+
+function updateActivitiesDisplay(activities, replace = true) {
+    const container = document.getElementById('activities-container');
+    
+    if (replace) {
+        container.innerHTML = '';
+    }
+    
+    activities.forEach(activity => {
+        const activityElement = createActivityElement(activity);
+        container.appendChild(activityElement);
+    });
+}
+
+function createActivityElement(activity) {
+    const div = document.createElement('div');
+    div.className = 'activity-item';
+    div.setAttribute('data-level', activity.level);
+    div.setAttribute('data-type', activity.activity_type);
+    
+    const iconClass = getActivityIcon(activity.activity_type);
+    const levelBadge = getLevelBadge(activity.level);
+    
+    div.innerHTML = `
+        <div class="activity-icon">
+            <i class="${iconClass}"></i>
+        </div>
+        <div class="activity-content">
+            <div class="activity-header">
+                <h6 class="activity-title mb-1">${activity.description}</h6>
+                <div class="activity-meta">
+                    <span class="badge ${levelBadge}">${activity.level.charAt(0).toUpperCase() + activity.level.slice(1)}</span>
+                    ${activity.user_email ? `<span class="text-muted">by ${activity.user_email}</span>` : ''}
+                    <span class="text-muted">${new Date(activity.timestamp).toLocaleString()}</span>
+                </div>
+            </div>
+            ${activity.object_repr || activity.user_ip ? `
+            <div class="activity-details">
+                ${activity.object_repr ? `<small class="text-muted">Object: ${activity.object_repr}</small><br>` : ''}
+                ${activity.user_ip ? `<small class="text-muted">IP: ${activity.user_ip}</small>` : ''}
+                ${activity.response_time ? `<small class="text-muted">Response: ${(activity.response_time * 1000).toFixed(2)}ms</small>` : ''}
+            </div>
+            ` : ''}
+        </div>
+    `;
+    
+    return div;
+}
+
+function getActivityIcon(type) {
+    const icons = {
+        'create': 'bi bi-plus-circle text-success',
+        'update': 'bi bi-pencil-square text-primary',
+        'delete': 'bi bi-trash text-danger',
+        'login': 'bi bi-box-arrow-in-right text-info',
+        'logout': 'bi bi-box-arrow-right text-secondary',
+        'error': 'bi bi-exclamation-triangle text-warning',
+        'admin_access': 'bi bi-shield-check text-info',
+        'api_call': 'bi bi-code text-primary'
+    };
+    return icons[type] || 'bi bi-circle text-muted';
+}
+
+function getLevelBadge(level) {
+    const badges = {
+        'critical': 'bg-danger',
+        'high': 'bg-warning',
+        'normal': 'bg-primary',
+        'low': 'bg-secondary'
+    };
+    return badges[level] || 'bg-secondary';
+}
+
+// Time filter handlers
+document.querySelectorAll('input[name="timeFilter"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        if (this.checked) {
+            currentFilters.time_filter = this.id.replace('filter-', '');
+            loadActivities(1);
+        }
+    });
+});
+
+// Auto-refresh every 30 seconds
+setInterval(() => {
+    if (Object.keys(currentFilters).length === 0) {
+        loadActivities(1);
+    }
+}, 30000);
+</script>
+{% endblock %}

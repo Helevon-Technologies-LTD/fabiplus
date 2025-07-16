@@ -1,0 +1,201 @@
+/* FABI+ Admin Custom Styles */
+
+:root {
+    --fabi-primary: #0d6efd;
+    --fabi-secondary: #6c757d;
+    --fabi-success: #198754;
+    --fabi-danger: #dc3545;
+    --fabi-warning: #ffc107;
+    --fabi-info: #0dcaf0;
+    --fabi-light: #f8f9fa;
+    --fabi-dark: #212529;
+    --fabi-sidebar-bg: #343a40;
+    --fabi-sidebar-text: #ffffff;
+}
+
+/* Additional admin-specific styles */
+.admin-card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.2s;
+}
+
+.admin-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-1px);
+}
+
+.admin-table {
+    background: white;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.admin-table th {
+    background-color: var(--fabi-light);
+    border: none;
+    font-weight: 600;
+    color: var(--fabi-dark);
+    padding: 1rem;
+}
+
+.admin-table td {
+    padding: 0.75rem 1rem;
+    border-top: 1px solid #dee2e6;
+}
+
+.admin-form-section {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.admin-form-section h6 {
+    color: var(--fabi-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--fabi-light);
+}
+
+.admin-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+}
+
+.admin-stats-card {
+    background: linear-gradient(135deg, var(--fabi-primary) 0%, #0b5ed7 100%);
+    color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.2s;
+}
+
+.admin-stats-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(13, 110, 253, 0.3);
+}
+
+.admin-stats-card .stats-number {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.admin-stats-card .stats-label {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+/* Loading states */
+.admin-loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--fabi-secondary);
+}
+
+.admin-spinner {
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid var(--fabi-primary);
+    border-radius: 50%;
+    animation: admin-spin 1s linear infinite;
+}
+
+@keyframes admin-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Form enhancements */
+.admin-form-group {
+    margin-bottom: 1.5rem;
+}
+
+.admin-form-label {
+    font-weight: 600;
+    color: var(--fabi-dark);
+    margin-bottom: 0.5rem;
+}
+
+.admin-form-control {
+    border: 2px solid #e9ecef;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    transition: all 0.2s;
+}
+
+.admin-form-control:focus {
+    border-color: var(--fabi-primary);
+    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.admin-form-help {
+    font-size: 0.875rem;
+    color: var(--fabi-secondary);
+    margin-top: 0.25rem;
+}
+
+/* Button variations */
+.btn-admin-primary {
+    background: linear-gradient(135deg, var(--fabi-primary) 0%, #0b5ed7 100%);
+    border: none;
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+}
+
+.btn-admin-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
+    color: white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .admin-form-section {
+        padding: 1rem;
+    }
+    
+    .admin-stats-card {
+        padding: 1rem;
+    }
+    
+    .admin-stats-card .stats-number {
+        font-size: 1.5rem;
+    }
+}
+
+/* Dark mode support (future enhancement) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --fabi-light: #2d3748;
+        --fabi-dark: #f7fafc;
+    }
+}
+
+/* Print styles */
+@media print {
+    .admin-sidebar,
+    .admin-header,
+    .btn,
+    .admin-actions {
+        display: none !important;
+    }
+    
+    .admin-main {
+        margin-left: 0 !important;
+    }
+    
+    .admin-content {
+        padding: 0 !important;
+    }
+}

@@ -1,0 +1,393 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    # Run tests daily at 2 AM UTC
+    - cron: '0 2 * * *'
+
+env:
+  PYTHON_VERSION: '3.10'
+  POETRY_VERSION: '1.6.1'
+
+jobs:
+  test:
+    name: Test Suite
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11', '3.12']
+        
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test_fabiplus
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+          
+      redis:
+        image: redis:7
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: ${{ env.POETRY_VERSION }}
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+        
+    - name: Load cached venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v3
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ matrix.python-version }}-${{ hashFiles('**/poetry.lock') }}
+        
+    - name: Install dependencies
+      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      run: poetry install --no-interaction --no-root
+      
+    - name: Install project
+      run: poetry install --no-interaction
+      
+    - name: Set up test environment
+      run: |
+        cp .env.example .env
+        echo "DATABASE_URL=postgresql://postgres:postgres@localhost:5432/test_fabiplus" >> .env
+        echo "REDIS_URL=redis://localhost:6379/0" >> .env
+        echo "JWT_SECRET_KEY=test-secret-key-for-ci" >> .env
+        echo "ENVIRONMENT=testing" >> .env
+        
+    - name: Run tests with coverage
+      run: |
+        poetry run pytest \
+          --cov=fabiplus \
+          --cov-report=xml \
+          --cov-report=html \
+          --cov-report=term-missing \
+          --junitxml=pytest.xml \
+          -v
+          
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+
+  lint:
+    name: Code Quality
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: ${{ env.POETRY_VERSION }}
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+        
+    - name: Load cached venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v3
+      with:
+        path: .venv
+        key: venv-${{ runner.os }}-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/poetry.lock') }}
+        
+    - name: Install dependencies
+      if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+      run: poetry install --no-interaction --no-root
+      
+    - name: Install project
+      run: poetry install --no-interaction
+      
+    - name: Run Black (code formatting)
+      run: |
+        poetry run black --check --diff fabiplus/ tests/
+        if [ $? -ne 0 ]; then
+          echo "❌ Black formatting check failed. Run 'black fabiplus/ tests/' to fix."
+          exit 1
+        fi
+
+    - name: Run isort (import sorting)
+      run: |
+        poetry run isort --check-only --diff fabiplus/ tests/
+        if [ $? -ne 0 ]; then
+          echo "❌ isort check failed. Run 'isort fabiplus/ tests/' to fix."
+          exit 1
+        fi
+
+    - name: Run flake8 (linting)
+      run: |
+        poetry run flake8 fabiplus/ tests/
+        if [ $? -ne 0 ]; then
+          echo "❌ flake8 linting failed. Check the output above for issues."
+          exit 1
+        fi
+
+    - name: Run mypy (type checking)
+      run: |
+        poetry run mypy fabiplus/ || echo "⚠️ Type checking issues found (non-blocking)"
+      continue-on-error: true  # Type checking is not blocking for now
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+      
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: ${{ env.POETRY_VERSION }}
+        virtualenvs-create: true
+        virtualenvs-in-project: true
+        
+    - name: Install dependencies
+      run: poetry install --no-interaction
+      
+    - name: Run Bandit (security linting)
+      run: |
+        poetry run bandit -r fabiplus/ -f json -o bandit-report.json
+      continue-on-error: true
+      
+    - name: Run Safety (dependency vulnerability check)
+      run: |
+        poetry run safety check --json --output safety-report.json
+      continue-on-error: true
+      
+    - name: Run Semgrep (SAST)
+      uses: returntocorp/semgrep-action@v1
+      with:
+        config: >-
+          p/security-audit
+          p/secrets
+          p/python
+        generateSarif: "1"
+      env:
+        SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+        
+    - name: Upload Semgrep results to GitHub Security
+      uses: github/codeql-action/upload-sarif@v2
+      if: always()
+      with:
+        sarif_file: semgrep.sarif
+        
+    - name: Upload security artifacts
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: security-reports
+        path: |
+          bandit-report.json
+          safety-report.json
+          semgrep.sarif
+
+  dependency-review:
+    name: Dependency Review
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Dependency Review
+      uses: actions/dependency-review-action@v3
+      with:
+        fail-on-severity: moderate
+        allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC
+
+  build:
+    name: Build Package
+    runs-on: ubuntu-latest
+    needs: [test, lint]
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: ${{ env.POETRY_VERSION }}
+        
+    - name: Build package
+      run: poetry build
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: dist
+        path: dist/
+
+  integration-test:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: [build]
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: integration_test
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+          
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+        
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: dist
+        path: dist/
+        
+    - name: Install built package
+      run: |
+        pip install dist/*.whl
+        pip install pytest requests
+        
+    - name: Run integration tests
+      run: |
+        # Create a test project and run basic integration tests
+        fabiplus project startproject test_integration --orm sqlmodel
+        cd test_integration
+        
+        # Set up test environment
+        echo "DATABASE_URL=postgresql://postgres:postgres@localhost:5432/integration_test" > .env
+        echo "JWT_SECRET_KEY=integration-test-secret" >> .env
+        
+        # Run migrations
+        fabiplus db makemigrations
+        fabiplus db migrate
+        
+        # Create test user
+        fabiplus user create --username testuser --email test@example.com --password testpass123
+        
+        # Start server in background and test basic endpoints
+        fabiplus server run &
+        SERVER_PID=$!
+        sleep 10
+        
+        # Test basic endpoints
+        curl -f http://127.0.0.1:8000/docs || exit 1
+        curl -f http://127.0.0.1:8000/admin || exit 1
+        
+        # Clean up
+        kill $SERVER_PID
+
+  notify:
+    name: Notify Results
+    runs-on: ubuntu-latest
+    needs: [test, lint, security, build, integration-test]
+    if: always()
+    
+    steps:
+    - name: Notify success
+      if: ${{ needs.test.result == 'success' && needs.lint.result == 'success' && needs.security.result == 'success' }}
+      run: echo "✅ All checks passed!"
+      
+    - name: Notify failure
+      if: ${{ needs.test.result == 'failure' || needs.lint.result == 'failure' || needs.security.result == 'failure' }}
+      run: |
+        echo "❌ Some checks failed:"
+        echo "Tests: ${{ needs.test.result }}"
+        echo "Lint: ${{ needs.lint.result }}"
+        echo "Security: ${{ needs.security.result }}"
+        exit 1
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    needs: [test, lint, security, build, integration-test]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && needs.test.result == 'success'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ env.PYTHON_VERSION }}
+
+    - name: Install Poetry
+      uses: snok/install-poetry@v1
+      with:
+        version: ${{ env.POETRY_VERSION }}
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: dist
+        path: dist/
+
+    - name: Publish to PyPI
+      if: startsWith(github.ref, 'refs/tags/')
+      env:
+        POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
+      run: poetry publish --no-build

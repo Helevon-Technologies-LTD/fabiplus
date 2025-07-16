@@ -1,0 +1,81 @@
+[flake8]
+# Maximum line length to match Black
+max-line-length = 88
+
+# Select specific error codes to check
+select = 
+    E,   # pycodestyle errors
+    W,   # pycodestyle warnings
+    F,   # pyflakes
+    C,   # mccabe complexity
+    B,   # flake8-bugbear
+    I,   # isort
+
+# Ignore specific error codes that conflict with Black or are not needed
+ignore =
+    E203,
+    E501,
+    W503,
+    W504,
+    E231,
+    E701
+
+# Exclude directories and files
+exclude = 
+    .git,
+    __pycache__,
+    .pytest_cache,
+    .mypy_cache,
+    .tox,
+    .venv,
+    venv,
+    build,
+    dist,
+    migrations,
+    *.egg-info,
+    .eggs,
+    *.pyc,
+    *.pyo,
+    *.pyd,
+    .Python,
+    env,
+    pip-log.txt,
+    pip-delete-this-directory.txt,
+    .coverage,
+    .coverage.*,
+    htmlcov,
+    .DS_Store
+
+# Maximum complexity for mccabe
+max-complexity = 10
+
+# Show source code for each error
+show-source = True
+
+# Show pep8 violation statistics
+statistics = True
+
+# Count errors and warnings
+count = True
+
+# Per-file ignores (if needed)
+per-file-ignores =
+    tests/*:E501,C901,
+    fabiplus/cli/*:C901,
+    migrations/*:E501,F401,F403
+
+# Enable specific plugins
+enable-extensions = 
+    B,  # flake8-bugbear
+
+# Inline comments
+inline-quotes = double
+
+# Import order style (to work with isort)
+import-order-style = pep8
+
+# Application import names
+application-import-names = fabiplus
+
+# Docstring conventions
+docstring-convention = google

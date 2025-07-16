@@ -1,0 +1,318 @@
+{% extends "base.html" %}
+
+{% block breadcrumb_items %}
+<li class="breadcrumb-item">
+    <a href="/admin/">Dashboard</a>
+</li>
+<li class="breadcrumb-item active">{{ model_info.verbose_name_plural }}</li>
+{% endblock %}
+
+{% block header_actions %}
+<a href="/admin/{{ model_name }}/add/" class="btn btn-primary">
+    <i class="bi bi-plus me-1"></i>
+    Add {{ model_info.verbose_name }}
+</a>
+{% endblock %}
+
+{% block content %}
+<!-- Success/Error Messages -->
+<div id="message-container">
+    {% if request.query_params.get('success') %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="bi bi-check-circle me-2"></i>
+        {% if request.query_params.get('success') == 'created' %}
+            {{ model_info.verbose_name }} was created successfully!
+        {% elif request.query_params.get('success') == 'updated' %}
+            {{ model_info.verbose_name }} was updated successfully!
+        {% elif request.query_params.get('success') == 'deleted' %}
+            {{ model_info.verbose_name }} was deleted successfully!
+        {% else %}
+            Operation completed successfully!
+        {% endif %}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+
+    {% if request.query_params.get('error') %}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <i class="bi bi-exclamation-triangle me-2"></i>
+        {{ request.query_params.get('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+</div>
+
+<div class="row mb-4">
+    <div class="col-12">
+        <h1 class="h3 mb-0">
+            <i class="bi bi-table me-2"></i>
+            {{ model_info.verbose_name_plural }}
+        </h1>
+        <p class="text-muted">Manage {{ model_info.verbose_name_plural|lower }} in your system</p>
+    </div>
+</div>
+
+<!-- Search and Filters -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="get" class="row g-3" hx-get="{{ request.url.path }}" hx-target="#results-container" hx-trigger="submit, keyup delay:500ms from:input[name='search']">
+                    <div class="col-md-6">
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" class="form-control" name="search" placeholder="Search {{ model_info.verbose_name_plural|lower }}..." value="{{ search or '' }}">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <select class="form-select" name="size">
+                            <option value="10" {% if pagination.size == 10 %}selected{% endif %}>10 per page</option>
+                            <option value="20" {% if pagination.size == 20 %}selected{% endif %}>20 per page</option>
+                            <option value="50" {% if pagination.size == 50 %}selected{% endif %}>50 per page</option>
+                            <option value="100" {% if pagination.size == 100 %}selected{% endif %}>100 per page</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-outline-primary w-100">
+                            <i class="bi bi-funnel me-1"></i>
+                            Filter
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Results Container -->
+<div id="results-container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title mb-0">
+                            {{ results.total or 0 }} {{ model_info.verbose_name_plural }}
+                        </h5>
+                        {% if search %}
+                        <small class="text-muted">Filtered by: "{{ search }}"</small>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" title="Refresh">
+                            <i class="bi bi-arrow-clockwise"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm" title="Export">
+                            <i class="bi bi-download"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="card-body p-0">
+                    {% if results.results %}
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th width="40">
+                                        <input type="checkbox" class="form-check-input" id="select-all">
+                                    </th>
+                                    {% for field_info in model_info.fields %}
+                                    {% if field_info.name in ['id', 'name', 'title', 'username', 'email', 'created_at', 'updated_at', 'is_active'] %}
+                                    <th>
+                                        <a href="#" class="text-decoration-none text-dark">
+                                            {{ field_info.verbose_name or field_info.name|title }}
+                                            <i class="bi bi-chevron-expand text-muted"></i>
+                                        </a>
+                                    </th>
+                                    {% endif %}
+                                    {% endfor %}
+                                    <th width="120">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in results.results %}
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" class="form-check-input" name="selected_items" value="{{ item.id }}">
+                                    </td>
+                                    {% for field_info in model_info.fields %}
+                                    {% if field_info.name in ['id', 'name', 'title', 'username', 'email', 'created_at', 'updated_at', 'is_active'] %}
+                                    <td>
+                                        {% set field_value = item[field_info.name] %}
+                                        {% if field_info.name == 'id' %}
+                                            <a href="/admin/{{ model_name }}/{{ field_value }}/" class="text-decoration-none">
+                                                {{ field_value|string|truncate(8) }}
+                                            </a>
+                                        {% elif field_info.name in ['name', 'title', 'username'] %}
+                                            <a href="/admin/{{ model_name }}/{{ item.id }}/" class="text-decoration-none fw-medium">
+                                                {{ field_value or '-' }}
+                                            </a>
+                                        {% elif field_info.name == 'is_active' %}
+                                            {% if field_value %}
+                                                <span class="badge bg-success">Active</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary">Inactive</span>
+                                            {% endif %}
+                                        {% elif field_info.name in ['created_at', 'updated_at'] %}
+                                            <small class="text-muted">
+                                                {{ field_value.strftime('%Y-%m-%d %H:%M') if field_value else '-' }}
+                                            </small>
+                                        {% else %}
+                                            {{ field_value or '-' }}
+                                        {% endif %}
+                                    </td>
+                                    {% endif %}
+                                    {% endfor %}
+                                    <td>
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <a href="/admin/{{ model_name }}/{{ item.id }}/"
+                                               class="btn btn-outline-primary" title="Edit">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-outline-danger" title="Delete"
+                                                    hx-delete="/admin/{{ model_name }}/{{ item.id }}/"
+                                                    hx-confirm="Are you sure you want to delete this {{ model_info.verbose_name|lower }}?"
+                                                    hx-target="closest tr"
+                                                    hx-swap="outerHTML">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <div class="text-center py-5">
+                        <i class="bi bi-inbox display-1 text-muted"></i>
+                        <h5 class="mt-3 text-muted">No {{ model_info.verbose_name_plural }} Found</h5>
+                        {% if search %}
+                        <p class="text-muted">No results found for "{{ search }}". Try adjusting your search terms.</p>
+                        <a href="/admin/{{ model_name }}/" class="btn btn-outline-primary">
+                            Clear Search
+                        </a>
+                        {% else %}
+                        <p class="text-muted">Get started by creating your first {{ model_info.verbose_name|lower }}.</p>
+                        <a href="/admin/{{ model_name }}/add/" class="btn btn-primary">
+                            <i class="bi bi-plus me-1"></i>
+                            Add {{ model_info.verbose_name }}
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Pagination -->
+                {% if results.results and pagination.pages > 1 %}
+                <div class="card-footer">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center mb-0">
+                            {% if pagination.page > 1 %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ pagination.page - 1 }}&size={{ pagination.size }}{% if search %}&search={{ search }}{% endif %}">
+                                    <i class="bi bi-chevron-left"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                            
+                            {% for page_num in range(1, pagination.pages + 1) %}
+                            {% if page_num == pagination.page %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ page_num }}</span>
+                            </li>
+                            {% elif page_num <= 3 or page_num > pagination.pages - 3 or (page_num >= pagination.page - 1 and page_num <= pagination.page + 1) %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_num }}&size={{ pagination.size }}{% if search %}&search={{ search }}{% endif %}">
+                                    {{ page_num }}
+                                </a>
+                            </li>
+                            {% elif page_num == 4 or page_num == pagination.pages - 3 %}
+                            <li class="page-item disabled">
+                                <span class="page-link">...</span>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                            
+                            {% if pagination.page < pagination.pages %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ pagination.page + 1 }}&size={{ pagination.size }}{% if search %}&search={{ search }}{% endif %}">
+                                    <i class="bi bi-chevron-right"></i>
+                                </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                    
+                    <div class="text-center mt-2">
+                        <small class="text-muted">
+                            Showing {{ ((pagination.page - 1) * pagination.size) + 1 }} to 
+                            {{ [pagination.page * pagination.size, results.total]|min }} of 
+                            {{ results.total }} results
+                        </small>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bulk Actions Modal -->
+<div class="modal fade" id="bulkActionsModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Bulk Actions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>Select an action to perform on the selected items:</p>
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-danger">
+                        <i class="bi bi-trash me-2"></i>
+                        Delete Selected
+                    </button>
+                    <button type="button" class="btn btn-secondary">
+                        <i class="bi bi-download me-2"></i>
+                        Export Selected
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Select all checkbox functionality
+    const selectAllCheckbox = document.getElementById('select-all');
+    const itemCheckboxes = document.querySelectorAll('input[name="selected_items"]');
+    
+    if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', function() {
+            itemCheckboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+            updateBulkActionsVisibility();
+        });
+    }
+    
+    itemCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateBulkActionsVisibility);
+    });
+    
+    function updateBulkActionsVisibility() {
+        const selectedCount = document.querySelectorAll('input[name="selected_items"]:checked').length;
+        // Show/hide bulk actions based on selection
+        console.log(`${selectedCount} items selected`);
+    }
+});
+</script>
+{% endblock %}
