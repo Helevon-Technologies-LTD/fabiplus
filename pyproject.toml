@@ -38,7 +38,7 @@ pydantic-settings = "^2.1.0"
 fastapi = "^0.104.0"
 sqlmodel = "^0.0.14"
 sqlalchemy = "^2.0.0"
-alembic = "^1.13.0"
+alembic = "^1.16.4"
 
 # Optional ORM support for framework (not required for generated projects)
 tortoise-orm = {version = "^0.20.0", optional = true}
