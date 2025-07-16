@@ -72,7 +72,7 @@ coverage = "^7.3.0"
 
 [tool.poetry.group.docs.dependencies]
 mkdocs = "^1.5.0"
-mkdocs-material = "^9.4.0"
+mkdocs-material = "^9.6.15"
 
 [tool.poetry.extras]
 # ORM support
