@@ -2,7 +2,7 @@
 name = "fabiplus"
 version = "0.1.0"
 description = "A production-ready, modular, extensible API-only Python framework"
-authors = ["FABI+ Team <info@helevon.com>"]
+authors = ["Helevon Technology LTD <info@helevon.org>"]
 readme = "README.md"
 homepage = "https://github.com/fabiplus/fabiplus"
 repository = "https://github.com/fabiplus/fabiplus"

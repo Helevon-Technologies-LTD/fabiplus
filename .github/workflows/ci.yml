@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.9', '3.10', '3.11', '3.12']
+        python-version: ['3.10', '3.11', '3.12']
         
     services:
       postgres:
@@ -197,7 +197,7 @@ jobs:
       
     - name: Run Safety (dependency vulnerability check)
       run: |
-        poetry run safety check --json --output safety-report.json
+        poetry run safety scan --output json --save-as safety-report.json
       continue-on-error: true
       
     - name: Run Semgrep (SAST)
@@ -218,7 +218,7 @@ jobs:
         sarif_file: semgrep.sarif
         
     - name: Upload security artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: security-reports
@@ -230,17 +230,18 @@ jobs:
   dependency-review:
     name: Dependency Review
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request'
-    
+    if: github.event_name == 'pull_request' && github.repository_owner == 'helevon'
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
+
     - name: Dependency Review
-      uses: actions/dependency-review-action@v3
+      uses: actions/dependency-review-action@v4
       with:
         fail-on-severity: moderate
         allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC
+      continue-on-error: true  # Don't fail if dependency review is not available
 
   build:
     name: Build Package
@@ -265,7 +266,7 @@ jobs:
       run: poetry build
       
     - name: Upload build artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: dist
         path: dist/
@@ -299,7 +300,7 @@ jobs:
         python-version: ${{ env.PYTHON_VERSION }}
         
     - name: Download build artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: dist
         path: dist/
@@ -381,7 +382,7 @@ jobs:
         version: ${{ env.POETRY_VERSION }}
 
     - name: Download build artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: dist
         path: dist/
