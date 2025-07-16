@@ -66,7 +66,7 @@ flake8-bugbear = "^23.12.2"
 flake8-docstrings = "^1.7.0"
 mypy = "^1.7.0"
 pre-commit = "^3.6.0"
-bandit = "^1.7.5"
+bandit = "^1.8.6"
 safety = "^2.3.0"
 coverage = "^7.3.0"
 
