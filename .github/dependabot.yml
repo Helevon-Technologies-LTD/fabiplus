@@ -1,0 +1,14 @@
+version: 2
+updates:
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "helevon-team"
+    assignees:
+      - "helevon-team"
+    commit-message:
+      prefix: "deps"
+      include: "scope"
