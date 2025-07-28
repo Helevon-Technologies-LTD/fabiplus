@@ -222,6 +222,8 @@ def test_admin_endpoints_require_auth(client: TestClient):
 
 def test_api_endpoints_exist(client: TestClient):
     """Test that API endpoints are created for models"""
+    from fabiplus.conf.settings import settings
+
     # First, verify that the API routes are actually available
     # by checking the OpenAPI schema
     response = client.get("/openapi.json")
@@ -229,19 +231,20 @@ def test_api_endpoints_exist(client: TestClient):
     openapi_data = response.json()
 
     # Check if user endpoints exist in the OpenAPI schema
+    # Use the actual API_PREFIX from settings to construct expected paths
     paths = openapi_data.get("paths", {})
-    user_list_path = "/api/user/"
-    user_detail_path = "/api/user/{item_id}"
+    user_list_path = f"{settings.API_PREFIX}/user/"
+    user_detail_path = f"{settings.API_PREFIX}/user/{{item_id}}"
 
     assert (
         user_list_path in paths
-    ), f"User list endpoint not found in paths: {list(paths.keys())}"
+    ), f"User list endpoint not found in paths: {list(paths.keys())}. Expected: {user_list_path}"
     assert (
         user_detail_path in paths
-    ), f"User detail endpoint not found in paths: {list(paths.keys())}"
+    ), f"User detail endpoint not found in paths: {list(paths.keys())}. Expected: {user_detail_path}"
 
     # Test user endpoints - User model is a core model and requires authentication
-    response = client.get("/api/user/")
+    response = client.get(user_list_path)
     assert (
         response.status_code == 401
     ), f"Expected 401, got {response.status_code}. Response: {response.text}"
