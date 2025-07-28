@@ -5,7 +5,7 @@ Pydantic-based settings with .env support and custom overrides
 
 from typing import List, Optional
 
-from pydantic import Field
+from pydantic import Field, ConfigDict
 from pydantic_settings import BaseSettings
 
 
@@ -44,7 +44,27 @@ class FABIPlusSettings(BaseSettings):
         default=30, description="JWT token expiration"
     )
 
+    # JWT Settings (additional fields from .env.example)
+    JWT_SECRET_KEY: str = Field(
+        default="your-super-secret-jwt-key-change-this-in-production",
+        description="JWT secret key for token signing",
+    )
+    JWT_ALGORITHM: str = Field(default="HS256", description="JWT algorithm")
+    JWT_ACCESS_TOKEN_EXPIRE_MINUTES: int = Field(
+        default=30, description="JWT access token expiration in minutes"
+    )
+
+    # Security Feature Toggles
+    SECURITY_ENABLED: bool = Field(default=True, description="Enable security features")
+
+    # Rate Limiting Settings
+    RATE_LIMITING_ENABLED: bool = Field(
+        default=True, description="Enable rate limiting"
+    )
+    RATE_LIMIT_PER_MINUTE: int = Field(default=60, description="Rate limit per minute")
+
     # CORS Settings
+    CORS_ENABLED: bool = Field(default=True, description="Enable CORS")
     CORS_ORIGINS: List[str] = Field(default=["*"], description="Allowed CORS origins")
     CORS_CREDENTIALS: bool = Field(
         default=True, description="Allow credentials in CORS"
@@ -79,6 +99,8 @@ class FABIPlusSettings(BaseSettings):
     # API Settings
     API_PREFIX: str = Field(default="/api", description="API URL prefix")
     API_VERSION: str = Field(default="v1", description="API version")
+    DOCS_URL: str = Field(default="/docs", description="API documentation URL")
+    REDOC_URL: str = Field(default="/redoc", description="ReDoc documentation URL")
 
     # Pagination Settings
     DEFAULT_PAGE_SIZE: int = Field(
@@ -87,6 +109,9 @@ class FABIPlusSettings(BaseSettings):
     MAX_PAGE_SIZE: int = Field(default=100, description="Maximum pagination page size")
 
     # Caching Settings
+    CACHE_TYPE: str = Field(
+        default="memory", description="Cache type (memory, redis, file)"
+    )
     CACHE_BACKEND: str = Field(
         default="memory", description="Cache backend (memory, redis, file)"
     )
@@ -95,6 +120,7 @@ class FABIPlusSettings(BaseSettings):
 
     # Logging Settings
     LOG_LEVEL: str = Field(default="INFO", description="Logging level")
+    LOG_FILE: Optional[str] = Field(default=None, description="Log file path")
     LOG_FORMAT: str = Field(
         default="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
         description="Log format",
@@ -105,13 +131,21 @@ class FABIPlusSettings(BaseSettings):
         default=[], description="List of installed app module paths"
     )
 
-    # Caching Settings
-    CACHE_BACKEND: str = Field(
-        default="memory", description="Cache backend: 'memory' or 'redis'"
+    # Email Configuration
+    EMAIL_BACKEND: str = Field(default="console", description="Email backend type")
+    SMTP_HOST: str = Field(default="localhost", description="SMTP server host")
+    SMTP_PORT: int = Field(default=587, description="SMTP server port")
+    SMTP_USER: Optional[str] = Field(default=None, description="SMTP username")
+    SMTP_PASSWORD: Optional[str] = Field(default=None, description="SMTP password")
+    SMTP_USE_TLS: bool = Field(default=True, description="Use TLS for SMTP")
+
+    # File Upload Settings
+    MAX_UPLOAD_SIZE: int = Field(
+        default=10485760, description="Maximum upload size in bytes (10MB)"
     )
-    CACHE_TTL: int = Field(default=300, description="Default cache TTL in seconds")
-    REDIS_URL: Optional[str] = Field(
-        default=None, description="Redis connection URL for caching"
+    ALLOWED_EXTENSIONS: str = Field(
+        default="jpg,jpeg,png,gif,pdf,doc,docx",
+        description="Allowed file extensions (comma-separated)",
     )
 
     # Plugin Settings
@@ -126,10 +160,12 @@ class FABIPlusSettings(BaseSettings):
         env="FABIPLUS_SETTINGS",
     )
 
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
-        case_sensitive = True
+    model_config = ConfigDict(
+        env_file=".env",
+        env_file_encoding="utf-8",
+        case_sensitive=True,
+        extra="ignore",  # Allow extra fields from environment variables
+    )
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

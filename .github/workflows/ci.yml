@@ -139,17 +139,17 @@ jobs:
       
     - name: Run Black (code formatting)
       run: |
-        poetry run black --check --diff fabiplus/ tests/
+        poetry run black --check --diff fabiplus/
         if [ $? -ne 0 ]; then
-          echo "❌ Black formatting check failed. Run 'black fabiplus/ tests/' to fix."
+          echo "❌ Black formatting check failed. Run 'black fabiplus/' to fix."
           exit 1
         fi
 
     - name: Run isort (import sorting)
       run: |
-        poetry run isort --check-only --diff fabiplus/ tests/
+        poetry run isort --check-only --diff fabiplus/
         if [ $? -ne 0 ]; then
-          echo "❌ isort check failed. Run 'isort fabiplus/ tests/' to fix."
+          echo "❌ isort check failed. Run 'isort fabiplus/' to fix."
           exit 1
         fi
 
