@@ -1,17 +1,17 @@
 {
   "errors": [],
-  "generated_at": "2025-07-28T09:03:42Z",
+  "generated_at": "2025-07-28T13:04:27Z",
   "metrics": {
     "_totals": {
-      "CONFIDENCE.HIGH": 381,
+      "CONFIDENCE.HIGH": 380,
       "CONFIDENCE.LOW": 0,
-      "CONFIDENCE.MEDIUM": 3,
+      "CONFIDENCE.MEDIUM": 1,
       "CONFIDENCE.UNDEFINED": 0,
       "SEVERITY.HIGH": 5,
-      "SEVERITY.LOW": 377,
+      "SEVERITY.LOW": 374,
       "SEVERITY.MEDIUM": 2,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 16266,
+      "loc": 16343,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -141,7 +141,7 @@
       "SEVERITY.LOW": 3,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 643,
+      "loc": 629,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -232,7 +232,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 101,
+      "loc": 100,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -258,7 +258,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 370,
+      "loc": 371,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -271,7 +271,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 445,
+      "loc": 453,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -453,7 +453,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 208,
+      "loc": 209,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -518,7 +518,7 @@
       "SEVERITY.LOW": 15,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 408,
+      "loc": 416,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -557,7 +557,7 @@
       "SEVERITY.LOW": 3,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 130,
+      "loc": 133,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -570,7 +570,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 336,
+      "loc": 340,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -583,7 +583,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 333,
+      "loc": 336,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -596,7 +596,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 235,
+      "loc": 238,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -622,7 +622,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 1,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 301,
+      "loc": 302,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -700,7 +700,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 312,
+      "loc": 313,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -726,7 +726,7 @@
       "SEVERITY.LOW": 1,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 329,
+      "loc": 330,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -848,15 +848,15 @@
       "skipped_tests": 0
     },
     "fabiplus/tests/test_basic.py": {
-      "CONFIDENCE.HIGH": 29,
+      "CONFIDENCE.HIGH": 28,
       "CONFIDENCE.LOW": 0,
-      "CONFIDENCE.MEDIUM": 2,
+      "CONFIDENCE.MEDIUM": 0,
       "CONFIDENCE.UNDEFINED": 0,
       "SEVERITY.HIGH": 0,
-      "SEVERITY.LOW": 31,
+      "SEVERITY.LOW": 28,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 115,
+      "loc": 142,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -869,7 +869,7 @@
       "SEVERITY.LOW": 47,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 299,
+      "loc": 318,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -895,7 +895,7 @@
       "SEVERITY.LOW": 18,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 210,
+      "loc": 214,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -908,7 +908,7 @@
       "SEVERITY.LOW": 63,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 393,
+      "loc": 399,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -934,7 +934,7 @@
       "SEVERITY.LOW": 78,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 241,
+      "loc": 243,
       "nosec": 0,
       "skipped_tests": 0
     }
@@ -982,7 +982,7 @@
       "test_name": "try_except_pass"
     },
     {
-      "code": "172                 models_count = content.count(\"class \") - content.count(\"class Meta\")\n173         except Exception:\n174             pass\n175 \n",
+      "code": "158                 models_count = content.count(\"class \") - content.count(\"class Meta\")\n159         except Exception:\n160             pass\n161 \n",
       "col_offset": 8,
       "end_col_offset": 16,
       "filename": "fabiplus/cli/commands/app.py",
@@ -993,17 +993,17 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Try, Except, Pass detected.",
-      "line_number": 173,
+      "line_number": 159,
       "line_range": [
-        173,
-        174
+        159,
+        160
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b110_try_except_pass.html",
       "test_id": "B110",
       "test_name": "try_except_pass"
     },
     {
-      "code": "811                     return True\n812         except Exception:\n813             pass\n814 \n",
+      "code": "797                     return True\n798         except Exception:\n799             pass\n800 \n",
       "col_offset": 8,
       "end_col_offset": 16,
       "filename": "fabiplus/cli/commands/app.py",
@@ -1014,17 +1014,17 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Try, Except, Pass detected.",
-      "line_number": 812,
+      "line_number": 798,
       "line_range": [
-        812,
-        813
+        798,
+        799
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b110_try_except_pass.html",
       "test_id": "B110",
       "test_name": "try_except_pass"
     },
     {
-      "code": "863 \n864                 except Exception:\n865                     continue\n866 \n",
+      "code": "849 \n850                 except Exception:\n851                     continue\n852 \n",
       "col_offset": 16,
       "end_col_offset": 28,
       "filename": "fabiplus/cli/commands/app.py",
@@ -1035,10 +1035,10 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Try, Except, Continue detected.",
-      "line_number": 864,
+      "line_number": 850,
       "line_range": [
-        864,
-        865
+        850,
+        851
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b112_try_except_continue.html",
       "test_id": "B112",
@@ -1478,7 +1478,7 @@
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "417                 # Run aerich init-db first\n418                 init_result = subprocess.run(\n419                     [\"aerich\", \"init-db\"],\n420                     capture_output=True,\n421                     text=True,\n422                     cwd=Path.cwd(),\n423                 )\n424 \n",
+      "code": "429                 # Run aerich init-db first\n430                 init_result = subprocess.run(\n431                     [\"aerich\", \"init-db\"],\n432                     capture_output=True,\n433                     text=True,\n434                     cwd=Path.cwd(),\n435                 )\n436 \n",
       "col_offset": 30,
       "end_col_offset": 17,
       "filename": "fabiplus/core/migrations.py",
@@ -1489,21 +1489,21 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 418,
+      "line_number": 430,
       "line_range": [
-        418,
-        419,
-        420,
-        421,
-        422,
-        423
+        430,
+        431,
+        432,
+        433,
+        434,
+        435
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "417                 # Run aerich init-db first\n418                 init_result = subprocess.run(\n419                     [\"aerich\", \"init-db\"],\n420                     capture_output=True,\n421                     text=True,\n422                     cwd=Path.cwd(),\n423                 )\n424 \n",
+      "code": "429                 # Run aerich init-db first\n430                 init_result = subprocess.run(\n431                     [\"aerich\", \"init-db\"],\n432                     capture_output=True,\n433                     text=True,\n434                     cwd=Path.cwd(),\n435                 )\n436 \n",
       "col_offset": 30,
       "end_col_offset": 17,
       "filename": "fabiplus/core/migrations.py",
@@ -1514,21 +1514,21 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 418,
+      "line_number": 430,
       "line_range": [
-        418,
-        419,
-        420,
-        421,
-        422,
-        423
+        430,
+        431,
+        432,
+        433,
+        434,
+        435
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "436 \n437             result = subprocess.run(cmd, capture_output=True, text=True, cwd=Path.cwd())\n438 \n",
+      "code": "448 \n449             result = subprocess.run(cmd, capture_output=True, text=True, cwd=Path.cwd())\n450 \n",
       "col_offset": 21,
       "end_col_offset": 88,
       "filename": "fabiplus/core/migrations.py",
@@ -1539,16 +1539,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 437,
+      "line_number": 449,
       "line_range": [
-        437
+        449
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "470             # Run aerich upgrade command\n471             result = subprocess.run(\n472                 [\"aerich\", \"upgrade\"], capture_output=True, text=True, cwd=Path.cwd()\n473             )\n474 \n",
+      "code": "482             # Run aerich upgrade command\n483             result = subprocess.run(\n484                 [\"aerich\", \"upgrade\"], capture_output=True, text=True, cwd=Path.cwd()\n485             )\n486 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "fabiplus/core/migrations.py",
@@ -1559,18 +1559,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 471,
+      "line_number": 483,
       "line_range": [
-        471,
-        472,
-        473
+        483,
+        484,
+        485
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "470             # Run aerich upgrade command\n471             result = subprocess.run(\n472                 [\"aerich\", \"upgrade\"], capture_output=True, text=True, cwd=Path.cwd()\n473             )\n474 \n",
+      "code": "482             # Run aerich upgrade command\n483             result = subprocess.run(\n484                 [\"aerich\", \"upgrade\"], capture_output=True, text=True, cwd=Path.cwd()\n485             )\n486 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "fabiplus/core/migrations.py",
@@ -1581,18 +1581,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 471,
+      "line_number": 483,
       "line_range": [
-        471,
-        472,
-        473
+        483,
+        484,
+        485
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "510 \n511             result = subprocess.run(cmd, capture_output=True, text=True, cwd=Path.cwd())\n512 \n",
+      "code": "522 \n523             result = subprocess.run(cmd, capture_output=True, text=True, cwd=Path.cwd())\n524 \n",
       "col_offset": 21,
       "end_col_offset": 88,
       "filename": "fabiplus/core/migrations.py",
@@ -1603,16 +1603,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 511,
+      "line_number": 523,
       "line_range": [
-        511
+        523
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "550             # Run aerich history command\n551             result = subprocess.run(\n552                 [\"aerich\", \"history\"], capture_output=True, text=True, cwd=Path.cwd()\n553             )\n554 \n",
+      "code": "562             # Run aerich history command\n563             result = subprocess.run(\n564                 [\"aerich\", \"history\"], capture_output=True, text=True, cwd=Path.cwd()\n565             )\n566 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "fabiplus/core/migrations.py",
@@ -1623,18 +1623,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 551,
+      "line_number": 563,
       "line_range": [
-        551,
-        552,
-        553
+        563,
+        564,
+        565
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "550             # Run aerich history command\n551             result = subprocess.run(\n552                 [\"aerich\", \"history\"], capture_output=True, text=True, cwd=Path.cwd()\n553             )\n554 \n",
+      "code": "562             # Run aerich history command\n563             result = subprocess.run(\n564                 [\"aerich\", \"history\"], capture_output=True, text=True, cwd=Path.cwd()\n565             )\n566 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "fabiplus/core/migrations.py",
@@ -1645,18 +1645,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 551,
+      "line_number": 563,
       "line_range": [
-        551,
-        552,
-        553
+        563,
+        564,
+        565
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "586             # Run aerich heads command\n587             result = subprocess.run(\n588                 [\"aerich\", \"heads\"], capture_output=True, text=True, cwd=Path.cwd()\n589             )\n590 \n",
+      "code": "598             # Run aerich heads command\n599             result = subprocess.run(\n600                 [\"aerich\", \"heads\"], capture_output=True, text=True, cwd=Path.cwd()\n601             )\n602 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "fabiplus/core/migrations.py",
@@ -1667,18 +1667,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 587,
+      "line_number": 599,
       "line_range": [
-        587,
-        588,
-        589
+        599,
+        600,
+        601
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "586             # Run aerich heads command\n587             result = subprocess.run(\n588                 [\"aerich\", \"heads\"], capture_output=True, text=True, cwd=Path.cwd()\n589             )\n590 \n",
+      "code": "598             # Run aerich heads command\n599             result = subprocess.run(\n600                 [\"aerich\", \"heads\"], capture_output=True, text=True, cwd=Path.cwd()\n601             )\n602 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "fabiplus/core/migrations.py",
@@ -1689,18 +1689,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 587,
+      "line_number": 599,
       "line_range": [
-        587,
-        588,
-        589
+        599,
+        600,
+        601
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "622             # Run aerich status command\n623             result = subprocess.run(\n624                 [\"aerich\", \"status\"], capture_output=True, text=True, cwd=Path.cwd()\n625             )\n626 \n",
+      "code": "634             # Run aerich status command\n635             result = subprocess.run(\n636                 [\"aerich\", \"status\"], capture_output=True, text=True, cwd=Path.cwd()\n637             )\n638 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "fabiplus/core/migrations.py",
@@ -1711,18 +1711,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Starting a process with a partial executable path",
-      "line_number": 623,
+      "line_number": 635,
       "line_range": [
-        623,
-        624,
-        625
+        635,
+        636,
+        637
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b607_start_process_with_partial_path.html",
       "test_id": "B607",
       "test_name": "start_process_with_partial_path"
     },
     {
-      "code": "622             # Run aerich status command\n623             result = subprocess.run(\n624                 [\"aerich\", \"status\"], capture_output=True, text=True, cwd=Path.cwd()\n625             )\n626 \n",
+      "code": "634             # Run aerich status command\n635             result = subprocess.run(\n636                 [\"aerich\", \"status\"], capture_output=True, text=True, cwd=Path.cwd()\n637             )\n638 \n",
       "col_offset": 21,
       "end_col_offset": 13,
       "filename": "fabiplus/core/migrations.py",
@@ -1733,18 +1733,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 623,
+      "line_number": 635,
       "line_range": [
-        623,
-        624,
-        625
+        635,
+        636,
+        637
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "153             # Basic validation\n154             assert temp_instance.name\n155             assert temp_instance.dependencies\n",
+      "code": "156             # Basic validation\n157             assert temp_instance.name\n158             assert temp_instance.dependencies\n",
       "col_offset": 12,
       "end_col_offset": 37,
       "filename": "fabiplus/core/orm/base.py",
@@ -1755,16 +1755,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 154,
+      "line_number": 157,
       "line_range": [
-        154
+        157
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "154             assert temp_instance.name\n155             assert temp_instance.dependencies\n156             assert temp_instance.get_field_type_mapping()\n",
+      "code": "157             assert temp_instance.name\n158             assert temp_instance.dependencies\n159             assert temp_instance.get_field_type_mapping()\n",
       "col_offset": 12,
       "end_col_offset": 45,
       "filename": "fabiplus/core/orm/base.py",
@@ -1775,16 +1775,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 155,
+      "line_number": 158,
       "line_range": [
-        155
+        158
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "155             assert temp_instance.dependencies\n156             assert temp_instance.get_field_type_mapping()\n157 \n",
+      "code": "158             assert temp_instance.dependencies\n159             assert temp_instance.get_field_type_mapping()\n160 \n",
       "col_offset": 12,
       "end_col_offset": 57,
       "filename": "fabiplus/core/orm/base.py",
@@ -1795,16 +1795,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 156,
+      "line_number": 159,
       "line_range": [
-        156
+        159
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "304             # Evaluate condition\n305             result = eval(self.condition, safe_globals, {})\n306             return bool(result)\n",
+      "code": "307             # Evaluate condition\n308             result = eval(self.condition, safe_globals, {})\n309             return bool(result)\n",
       "col_offset": 21,
       "end_col_offset": 59,
       "filename": "fabiplus/core/permissions/base.py",
@@ -1815,16 +1815,16 @@
       },
       "issue_severity": "MEDIUM",
       "issue_text": "Use of possibly insecure function - consider using safer ast.literal_eval.",
-      "line_number": 305,
+      "line_number": 308,
       "line_range": [
-        305
+        308
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_calls.html#b307-eval",
       "test_id": "B307",
       "test_name": "blacklist"
     },
     {
-      "code": "403                 # Load from file\n404                 env = Environment(loader=FileSystemLoader(self.template_dir))\n405                 template = env.get_template(self.template_name)\n",
+      "code": "404                 # Load from file\n405                 env = Environment(loader=FileSystemLoader(self.template_dir))\n406                 template = env.get_template(self.template_name)\n",
       "col_offset": 22,
       "end_col_offset": 77,
       "filename": "fabiplus/core/responses/formats.py",
@@ -1835,9 +1835,9 @@
       },
       "issue_severity": "HIGH",
       "issue_text": "By default, jinja2 sets autoescape to False. Consider using autoescape=True or use the select_autoescape function to mitigate XSS vulnerabilities.",
-      "line_number": 404,
+      "line_number": 405,
       "line_range": [
-        404
+        405
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b701_jinja2_autoescape_false.html",
       "test_id": "B701",
@@ -1886,211 +1886,9 @@
       "test_name": "try_except_pass"
     },
     {
-      "code": "49     response = client.get(\"/\")\n50     assert response.status_code == 200\n51     data = response.json()\n",
+      "code": "73     response = client.get(\"/\")\n74     assert response.status_code == 200\n75     data = response.json()\n",
       "col_offset": 4,
       "end_col_offset": 38,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 50,
-      "line_range": [
-        50
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "51     data = response.json()\n52     assert \"message\" in data\n53     assert \"version\" in data\n",
-      "col_offset": 4,
-      "end_col_offset": 28,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 52,
-      "line_range": [
-        52
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "52     assert \"message\" in data\n53     assert \"version\" in data\n54 \n",
-      "col_offset": 4,
-      "end_col_offset": 28,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 53,
-      "line_range": [
-        53
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "58     response = client.get(\"/health\")\n59     assert response.status_code == 200\n60     data = response.json()\n",
-      "col_offset": 4,
-      "end_col_offset": 38,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 59,
-      "line_range": [
-        59
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "60     data = response.json()\n61     assert data[\"status\"] == \"healthy\"\n62 \n",
-      "col_offset": 4,
-      "end_col_offset": 38,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 61,
-      "line_range": [
-        61
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "65     \"\"\"Test user creation\"\"\"\n66     user = auth_backend.create_user(\n67         username=\"testuser\", email=\"test@example.com\", password=\"testpassword123\"\n68     )\n69 \n",
-      "col_offset": 11,
-      "end_col_offset": 5,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "MEDIUM",
-      "issue_cwe": {
-        "id": 259,
-        "link": "https://cwe.mitre.org/data/definitions/259.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Possible hardcoded password: 'testpassword123'",
-      "line_number": 66,
-      "line_range": [
-        66,
-        67,
-        68
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b106_hardcoded_password_funcarg.html",
-      "test_id": "B106",
-      "test_name": "hardcoded_password_funcarg"
-    },
-    {
-      "code": "69 \n70     assert user.username == \"testuser\"\n71     assert user.email == \"test@example.com\"\n",
-      "col_offset": 4,
-      "end_col_offset": 38,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 70,
-      "line_range": [
-        70
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "70     assert user.username == \"testuser\"\n71     assert user.email == \"test@example.com\"\n72     assert user.is_active is True\n",
-      "col_offset": 4,
-      "end_col_offset": 43,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 71,
-      "line_range": [
-        71
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "71     assert user.email == \"test@example.com\"\n72     assert user.is_active is True\n73     assert user.is_staff is False\n",
-      "col_offset": 4,
-      "end_col_offset": 33,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 72,
-      "line_range": [
-        72
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "72     assert user.is_active is True\n73     assert user.is_staff is False\n74     assert user.is_superuser is False\n",
-      "col_offset": 4,
-      "end_col_offset": 33,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 73,
-      "line_range": [
-        73
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "73     assert user.is_staff is False\n74     assert user.is_superuser is False\n75 \n",
-      "col_offset": 4,
-      "end_col_offset": 37,
       "filename": "fabiplus/tests/test_basic.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2108,31 +1906,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "79     # Create user\n80     user = auth_backend.create_user(\n81         username=\"authtest\", email=\"authtest@example.com\", password=\"testpassword123\"\n82     )\n83 \n",
-      "col_offset": 11,
-      "end_col_offset": 5,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "MEDIUM",
-      "issue_cwe": {
-        "id": 259,
-        "link": "https://cwe.mitre.org/data/definitions/259.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Possible hardcoded password: 'testpassword123'",
-      "line_number": 80,
-      "line_range": [
-        80,
-        81,
-        82
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b106_hardcoded_password_funcarg.html",
-      "test_id": "B106",
-      "test_name": "hardcoded_password_funcarg"
-    },
-    {
-      "code": "85     authenticated_user = auth_backend.authenticate_user(\"authtest\", \"testpassword123\")\n86     assert authenticated_user is not None\n87     assert authenticated_user.username == \"authtest\"\n",
+      "code": "75     data = response.json()\n76     assert \"message\" in data\n77     assert \"version\" in data\n",
       "col_offset": 4,
-      "end_col_offset": 41,
+      "end_col_offset": 28,
       "filename": "fabiplus/tests/test_basic.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2141,18 +1917,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 86,
+      "line_number": 76,
       "line_range": [
-        86
+        76
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "86     assert authenticated_user is not None\n87     assert authenticated_user.username == \"authtest\"\n88 \n",
+      "code": "76     assert \"message\" in data\n77     assert \"version\" in data\n78 \n",
       "col_offset": 4,
-      "end_col_offset": 52,
+      "end_col_offset": 28,
       "filename": "fabiplus/tests/test_basic.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2161,18 +1937,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 87,
+      "line_number": 77,
       "line_range": [
-        87
+        77
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "90     failed_auth = auth_backend.authenticate_user(\"authtest\", \"wrongpassword\")\n91     assert failed_auth is None\n92 \n",
+      "code": "82     response = client.get(\"/health\")\n83     assert response.status_code == 200\n84     data = response.json()\n",
       "col_offset": 4,
-      "end_col_offset": 30,
+      "end_col_offset": 38,
       "filename": "fabiplus/tests/test_basic.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2181,18 +1957,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 91,
+      "line_number": 83,
       "line_range": [
-        91
+        83
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "99     token = auth_backend.create_access_token(test_data)\n100     assert isinstance(token, str)\n101     assert len(token) > 0\n",
+      "code": "84     data = response.json()\n85     assert data[\"status\"] == \"healthy\"\n86 \n",
       "col_offset": 4,
-      "end_col_offset": 33,
+      "end_col_offset": 38,
       "filename": "fabiplus/tests/test_basic.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2201,38 +1977,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 100,
+      "line_number": 85,
       "line_range": [
-        100
+        85
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "100     assert isinstance(token, str)\n101     assert len(token) > 0\n102 \n",
+      "code": "104 \n105     assert user.username == \"testuser\"\n106     assert user.email == \"test@example.com\"\n",
       "col_offset": 4,
-      "end_col_offset": 25,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 101,
-      "line_range": [
-        101
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "104     decoded_data = auth_backend.decode_access_token(token)\n105     assert decoded_data[\"sub\"] == \"test-user-id\"\n106     assert decoded_data[\"username\"] == \"testuser\"\n",
-      "col_offset": 4,
-      "end_col_offset": 48,
+      "end_col_offset": 38,
       "filename": "fabiplus/tests/test_basic.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2250,9 +2006,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "105     assert decoded_data[\"sub\"] == \"test-user-id\"\n106     assert decoded_data[\"username\"] == \"testuser\"\n107 \n",
+      "code": "105     assert user.username == \"testuser\"\n106     assert user.email == \"test@example.com\"\n107     assert user.is_active is True\n",
       "col_offset": 4,
-      "end_col_offset": 49,
+      "end_col_offset": 43,
       "filename": "fabiplus/tests/test_basic.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2270,27 +2026,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "125 \n126     assert response.status_code == 200\n127     data = response.json()\n",
-      "col_offset": 4,
-      "end_col_offset": 38,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 126,
-      "line_range": [
-        126
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "127     data = response.json()\n128     assert \"access_token\" in data\n129     assert data[\"token_type\"] == \"bearer\"\n",
+      "code": "106     assert user.email == \"test@example.com\"\n107     assert user.is_active is True\n108     assert user.is_staff is False\n",
       "col_offset": 4,
       "end_col_offset": 33,
       "filename": "fabiplus/tests/test_basic.py",
@@ -2301,18 +2037,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 128,
+      "line_number": 107,
       "line_range": [
-        128
+        107
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "128     assert \"access_token\" in data\n129     assert data[\"token_type\"] == \"bearer\"\n130     assert \"user\" in data\n",
+      "code": "107     assert user.is_active is True\n108     assert user.is_staff is False\n109     assert user.is_superuser is False\n",
       "col_offset": 4,
-      "end_col_offset": 41,
+      "end_col_offset": 33,
       "filename": "fabiplus/tests/test_basic.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2321,18 +2057,38 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 129,
+      "line_number": 108,
       "line_range": [
-        129
+        108
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "129     assert data[\"token_type\"] == \"bearer\"\n130     assert \"user\" in data\n131 \n",
+      "code": "108     assert user.is_staff is False\n109     assert user.is_superuser is False\n110 \n",
       "col_offset": 4,
-      "end_col_offset": 25,
+      "end_col_offset": 37,
+      "filename": "fabiplus/tests/test_basic.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 109,
+      "line_range": [
+        109
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "129     # Test password verification\n130     assert auth_backend.verify_password(\"testpassword123\", user.hashed_password)\n131     assert not auth_backend.verify_password(\"wrongpassword\", user.hashed_password)\n",
+      "col_offset": 4,
+      "end_col_offset": 80,
       "filename": "fabiplus/tests/test_basic.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2350,9 +2106,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "138     models = ModelRegistry.get_all_models()\n139     assert \"user\" in models\n140     assert models[\"user\"] == User\n",
+      "code": "130     assert auth_backend.verify_password(\"testpassword123\", user.hashed_password)\n131     assert not auth_backend.verify_password(\"wrongpassword\", user.hashed_password)\n132 \n",
       "col_offset": 4,
-      "end_col_offset": 27,
+      "end_col_offset": 82,
       "filename": "fabiplus/tests/test_basic.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2361,16 +2117,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 139,
+      "line_number": 131,
       "line_range": [
-        139
+        131
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "139     assert \"user\" in models\n140     assert models[\"user\"] == User\n141 \n",
+      "code": "139     token = auth_backend.create_access_token(test_data)\n140     assert isinstance(token, str)\n141     assert len(token) > 0\n",
       "col_offset": 4,
       "end_col_offset": 33,
       "filename": "fabiplus/tests/test_basic.py",
@@ -2390,9 +2146,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "143     user_model = ModelRegistry.get_model(\"user\")\n144     assert user_model == User\n145 \n",
+      "code": "140     assert isinstance(token, str)\n141     assert len(token) > 0\n142 \n",
       "col_offset": 4,
-      "end_col_offset": 29,
+      "end_col_offset": 25,
       "filename": "fabiplus/tests/test_basic.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2401,18 +2157,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 144,
+      "line_number": 141,
       "line_range": [
-        144
+        141
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "147     model_names = ModelRegistry.get_model_names()\n148     assert \"user\" in model_names\n149 \n",
+      "code": "144     decoded_data = auth_backend.decode_access_token(token)\n145     assert decoded_data[\"sub\"] == \"test-user-id\"\n146     assert decoded_data[\"username\"] == \"testuser\"\n",
       "col_offset": 4,
-      "end_col_offset": 32,
+      "end_col_offset": 48,
       "filename": "fabiplus/tests/test_basic.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2421,78 +2177,38 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 148,
+      "line_number": 145,
       "line_range": [
-        148
+        145
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "153     response = client.get(\"/admin/\")\n154     assert response.status_code == 401\n155 \n",
+      "code": "145     assert decoded_data[\"sub\"] == \"test-user-id\"\n146     assert decoded_data[\"username\"] == \"testuser\"\n147 \n",
+      "col_offset": 4,
+      "end_col_offset": 49,
+      "filename": "fabiplus/tests/test_basic.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 146,
+      "line_range": [
+        146
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "165 \n166     assert response.status_code == 200\n167     data = response.json()\n",
       "col_offset": 4,
       "end_col_offset": 38,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 154,
-      "line_range": [
-        154
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "161     # Should return 200 with empty results (no auth required for listing)\n162     assert response.status_code == 200\n163 \n",
-      "col_offset": 4,
-      "end_col_offset": 38,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 162,
-      "line_range": [
-        162
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "164     data = response.json()\n165     assert \"count\" in data\n166     assert \"results\" in data\n",
-      "col_offset": 4,
-      "end_col_offset": 26,
-      "filename": "fabiplus/tests/test_basic.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 165,
-      "line_range": [
-        165
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "165     assert \"count\" in data\n166     assert \"results\" in data\n167 \n",
-      "col_offset": 4,
-      "end_col_offset": 28,
       "filename": "fabiplus/tests/test_basic.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2504,6 +2220,226 @@
       "line_number": 166,
       "line_range": [
         166
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "167     data = response.json()\n168     assert \"access_token\" in data\n169     assert data[\"token_type\"] == \"bearer\"\n",
+      "col_offset": 4,
+      "end_col_offset": 33,
+      "filename": "fabiplus/tests/test_basic.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 168,
+      "line_range": [
+        168
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "168     assert \"access_token\" in data\n169     assert data[\"token_type\"] == \"bearer\"\n170     assert \"user\" in data\n",
+      "col_offset": 4,
+      "end_col_offset": 41,
+      "filename": "fabiplus/tests/test_basic.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 169,
+      "line_range": [
+        169
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "169     assert data[\"token_type\"] == \"bearer\"\n170     assert \"user\" in data\n171 \n",
+      "col_offset": 4,
+      "end_col_offset": 25,
+      "filename": "fabiplus/tests/test_basic.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 170,
+      "line_range": [
+        170
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "178     models = ModelRegistry.get_all_models()\n179     assert \"user\" in models\n180     assert models[\"user\"] == User\n",
+      "col_offset": 4,
+      "end_col_offset": 27,
+      "filename": "fabiplus/tests/test_basic.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 179,
+      "line_range": [
+        179
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "179     assert \"user\" in models\n180     assert models[\"user\"] == User\n181 \n",
+      "col_offset": 4,
+      "end_col_offset": 33,
+      "filename": "fabiplus/tests/test_basic.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 180,
+      "line_range": [
+        180
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "183     user_model = ModelRegistry.get_model(\"user\")\n184     assert user_model == User\n185 \n",
+      "col_offset": 4,
+      "end_col_offset": 29,
+      "filename": "fabiplus/tests/test_basic.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 184,
+      "line_range": [
+        184
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "187     model_names = ModelRegistry.get_model_names()\n188     assert \"user\" in model_names\n189 \n",
+      "col_offset": 4,
+      "end_col_offset": 32,
+      "filename": "fabiplus/tests/test_basic.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 188,
+      "line_range": [
+        188
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "194     response = client.get(\"/admin/api/\")\n195     assert response.status_code == 401\n196 \n",
+      "col_offset": 4,
+      "end_col_offset": 38,
+      "filename": "fabiplus/tests/test_basic.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 195,
+      "line_range": [
+        195
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "201     response = client.get(\"/api/user/\")\n202     assert response.status_code == 401\n203 \n",
+      "col_offset": 4,
+      "end_col_offset": 38,
+      "filename": "fabiplus/tests/test_basic.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 202,
+      "line_range": [
+        202
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "205     data = response.json()\n206     assert \"detail\" in data\n207     assert data[\"detail\"] == \"Not authenticated\"\n",
+      "col_offset": 4,
+      "end_col_offset": 27,
+      "filename": "fabiplus/tests/test_basic.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 206,
+      "line_range": [
+        206
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "206     assert \"detail\" in data\n207     assert data[\"detail\"] == \"Not authenticated\"\n208 \n",
+      "col_offset": 4,
+      "end_col_offset": 48,
+      "filename": "fabiplus/tests/test_basic.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 207,
+      "line_range": [
+        207
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
@@ -2530,7 +2466,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "69 \n70             assert result.exit_code == 0\n71             mock_template.assert_called_once_with(\n",
+      "code": "74 \n75             assert result.exit_code == 0\n76             mock_template.assert_called_once_with(\n",
       "col_offset": 12,
       "end_col_offset": 40,
       "filename": "fabiplus/tests/test_cli_templates.py",
@@ -2541,16 +2477,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 70,
+      "line_number": 75,
       "line_range": [
-        70
+        75
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "87 \n88             assert result.exit_code == 0\n89             mock_template.assert_called_once_with(\n",
+      "code": "97 \n98             assert result.exit_code == 0\n99             mock_template.assert_called_once_with(\n",
       "col_offset": 12,
       "end_col_offset": 40,
       "filename": "fabiplus/tests/test_cli_templates.py",
@@ -2561,158 +2497,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 88,
+      "line_number": 98,
       "line_range": [
-        88
+        98
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "105 \n106             assert result.exit_code == 0\n107             mock_instance.create_project.assert_called_with(\n",
+      "code": "120 \n121             assert result.exit_code == 0\n122             mock_instance.create_project.assert_called_with(\n",
       "col_offset": 12,
       "end_col_offset": 40,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 106,
-      "line_range": [
-        106
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "114 \n115         assert result.exit_code == 0\n116         assert \"Available Project Templates:\" in result.stdout\n",
-      "col_offset": 8,
-      "end_col_offset": 36,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 115,
-      "line_range": [
-        115
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "115         assert result.exit_code == 0\n116         assert \"Available Project Templates:\" in result.stdout\n117         assert \"default\" in result.stdout\n",
-      "col_offset": 8,
-      "end_col_offset": 62,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 116,
-      "line_range": [
-        116
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "116         assert \"Available Project Templates:\" in result.stdout\n117         assert \"default\" in result.stdout\n118         assert \"minimal\" in result.stdout\n",
-      "col_offset": 8,
-      "end_col_offset": 41,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 117,
-      "line_range": [
-        117
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "117         assert \"default\" in result.stdout\n118         assert \"minimal\" in result.stdout\n119         assert \"full\" in result.stdout\n",
-      "col_offset": 8,
-      "end_col_offset": 41,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 118,
-      "line_range": [
-        118
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "118         assert \"minimal\" in result.stdout\n119         assert \"full\" in result.stdout\n120         assert \"microservice\" in result.stdout\n",
-      "col_offset": 8,
-      "end_col_offset": 38,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 119,
-      "line_range": [
-        119
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "119         assert \"full\" in result.stdout\n120         assert \"microservice\" in result.stdout\n121         assert \"monolith\" in result.stdout\n",
-      "col_offset": 8,
-      "end_col_offset": 46,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 120,
-      "line_range": [
-        120
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "120         assert \"microservice\" in result.stdout\n121         assert \"monolith\" in result.stdout\n122 \n",
-      "col_offset": 8,
-      "end_col_offset": 42,
       "filename": "fabiplus/tests/test_cli_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2730,9 +2526,69 @@
       "test_name": "assert_used"
     },
     {
-      "code": "132 \n133             assert result.exit_code == 0\n134             mock_instance.init_existing_project.assert_called_once()\n",
-      "col_offset": 12,
-      "end_col_offset": 40,
+      "code": "129 \n130         assert result.exit_code == 0\n131         assert \"Available Project Templates:\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 36,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 130,
+      "line_range": [
+        130
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "130         assert result.exit_code == 0\n131         assert \"Available Project Templates:\" in result.stdout\n132         assert \"default\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 62,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 131,
+      "line_range": [
+        131
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "131         assert \"Available Project Templates:\" in result.stdout\n132         assert \"default\" in result.stdout\n133         assert \"minimal\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 41,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 132,
+      "line_range": [
+        132
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "132         assert \"default\" in result.stdout\n133         assert \"minimal\" in result.stdout\n134         assert \"full\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 41,
       "filename": "fabiplus/tests/test_cli_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -2750,227 +2606,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "148 \n149             assert result.exit_code == 1\n150             assert \"Error creating project\" in result.stdout\n",
-      "col_offset": 12,
-      "end_col_offset": 40,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 149,
-      "line_range": [
-        149
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "149             assert result.exit_code == 1\n150             assert \"Error creating project\" in result.stdout\n151 \n",
-      "col_offset": 12,
-      "end_col_offset": 60,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 150,
-      "line_range": [
-        150
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "181 \n182             assert result.exit_code == 0\n183             mock_template.assert_called_once_with(app_name, \"default\")\n",
-      "col_offset": 12,
-      "end_col_offset": 40,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 182,
-      "line_range": [
-        182
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "202 \n203             assert result.exit_code == 0\n204             mock_template.assert_called_once_with(app_name, template_type)\n",
-      "col_offset": 12,
-      "end_col_offset": 40,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 203,
-      "line_range": [
-        203
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "218 \n219             assert result.exit_code == 0\n220             mock_instance.create_app.assert_called_with(\n",
-      "col_offset": 12,
-      "end_col_offset": 40,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 219,
-      "line_range": [
-        219
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "239 \n240             assert result.exit_code == 0\n241             mock_instance.create_app.assert_called_with(\n",
-      "col_offset": 12,
-      "end_col_offset": 40,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 240,
-      "line_range": [
-        240
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "248 \n249         assert result.exit_code == 0\n250         assert \"Available App Templates:\" in result.stdout\n",
-      "col_offset": 8,
-      "end_col_offset": 36,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 249,
-      "line_range": [
-        249
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "249         assert result.exit_code == 0\n250         assert \"Available App Templates:\" in result.stdout\n251         assert \"default\" in result.stdout\n",
-      "col_offset": 8,
-      "end_col_offset": 58,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 250,
-      "line_range": [
-        250
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "250         assert \"Available App Templates:\" in result.stdout\n251         assert \"default\" in result.stdout\n252         assert \"minimal\" in result.stdout\n",
-      "col_offset": 8,
-      "end_col_offset": 41,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 251,
-      "line_range": [
-        251
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "251         assert \"default\" in result.stdout\n252         assert \"minimal\" in result.stdout\n253         assert \"api\" in result.stdout\n",
-      "col_offset": 8,
-      "end_col_offset": 41,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 252,
-      "line_range": [
-        252
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "252         assert \"minimal\" in result.stdout\n253         assert \"api\" in result.stdout\n254         assert \"crud\" in result.stdout\n",
-      "col_offset": 8,
-      "end_col_offset": 37,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 253,
-      "line_range": [
-        253
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "253         assert \"api\" in result.stdout\n254         assert \"crud\" in result.stdout\n255         assert \"readonly\" in result.stdout\n",
+      "code": "133         assert \"minimal\" in result.stdout\n134         assert \"full\" in result.stdout\n135         assert \"microservice\" in result.stdout\n",
       "col_offset": 8,
       "end_col_offset": 38,
       "filename": "fabiplus/tests/test_cli_templates.py",
@@ -2981,16 +2617,36 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 254,
+      "line_number": 134,
       "line_range": [
-        254
+        134
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "254         assert \"crud\" in result.stdout\n255         assert \"readonly\" in result.stdout\n256         assert \"auth\" in result.stdout\n",
+      "code": "134         assert \"full\" in result.stdout\n135         assert \"microservice\" in result.stdout\n136         assert \"monolith\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 46,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 135,
+      "line_range": [
+        135
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "135         assert \"microservice\" in result.stdout\n136         assert \"monolith\" in result.stdout\n137 \n",
       "col_offset": 8,
       "end_col_offset": 42,
       "filename": "fabiplus/tests/test_cli_templates.py",
@@ -3001,78 +2657,318 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 255,
+      "line_number": 136,
       "line_range": [
-        255
+        136
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "255         assert \"readonly\" in result.stdout\n256         assert \"auth\" in result.stdout\n257         assert \"blog\" in result.stdout\n",
-      "col_offset": 8,
-      "end_col_offset": 38,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 256,
-      "line_range": [
-        256
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "256         assert \"auth\" in result.stdout\n257         assert \"blog\" in result.stdout\n258         assert \"ecommerce\" in result.stdout\n",
-      "col_offset": 8,
-      "end_col_offset": 38,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 257,
-      "line_range": [
-        257
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "257         assert \"blog\" in result.stdout\n258         assert \"ecommerce\" in result.stdout\n259 \n",
-      "col_offset": 8,
-      "end_col_offset": 43,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 258,
-      "line_range": [
-        258
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "275 \n276             assert result.exit_code == 0\n277             # Check that the model was added to the file\n",
+      "code": "147 \n148             assert result.exit_code == 0\n149             mock_instance.init_existing_project.assert_called_once()\n",
       "col_offset": 12,
       "end_col_offset": 40,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 148,
+      "line_range": [
+        148
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "163 \n164             assert result.exit_code == 1\n165             assert \"Error creating project\" in result.stdout\n",
+      "col_offset": 12,
+      "end_col_offset": 40,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 164,
+      "line_range": [
+        164
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "164             assert result.exit_code == 1\n165             assert \"Error creating project\" in result.stdout\n166 \n",
+      "col_offset": 12,
+      "end_col_offset": 60,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 165,
+      "line_range": [
+        165
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "196 \n197             assert result.exit_code == 0\n198             mock_template.assert_called_once_with(\n",
+      "col_offset": 12,
+      "end_col_offset": 40,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 197,
+      "line_range": [
+        197
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "219 \n220             assert result.exit_code == 0\n221             mock_template.assert_called_once_with(\n",
+      "col_offset": 12,
+      "end_col_offset": 40,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 220,
+      "line_range": [
+        220
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "237 \n238             assert result.exit_code == 0\n239             mock_instance.create_app.assert_called_with(\n",
+      "col_offset": 12,
+      "end_col_offset": 40,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 238,
+      "line_range": [
+        238
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "258 \n259             assert result.exit_code == 0\n260             mock_instance.create_app.assert_called_with(\n",
+      "col_offset": 12,
+      "end_col_offset": 40,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 259,
+      "line_range": [
+        259
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "267 \n268         assert result.exit_code == 0\n269         assert \"Available App Templates:\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 36,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 268,
+      "line_range": [
+        268
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "268         assert result.exit_code == 0\n269         assert \"Available App Templates:\" in result.stdout\n270         assert \"default\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 58,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 269,
+      "line_range": [
+        269
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "269         assert \"Available App Templates:\" in result.stdout\n270         assert \"default\" in result.stdout\n271         assert \"minimal\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 41,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 270,
+      "line_range": [
+        270
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "270         assert \"default\" in result.stdout\n271         assert \"minimal\" in result.stdout\n272         assert \"api\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 41,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 271,
+      "line_range": [
+        271
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "271         assert \"minimal\" in result.stdout\n272         assert \"api\" in result.stdout\n273         assert \"crud\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 37,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 272,
+      "line_range": [
+        272
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "272         assert \"api\" in result.stdout\n273         assert \"crud\" in result.stdout\n274         assert \"readonly\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 38,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 273,
+      "line_range": [
+        273
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "273         assert \"crud\" in result.stdout\n274         assert \"readonly\" in result.stdout\n275         assert \"auth\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 42,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 274,
+      "line_range": [
+        274
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "274         assert \"readonly\" in result.stdout\n275         assert \"auth\" in result.stdout\n276         assert \"blog\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 38,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 275,
+      "line_range": [
+        275
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "275         assert \"auth\" in result.stdout\n276         assert \"blog\" in result.stdout\n277         assert \"ecommerce\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 38,
       "filename": "fabiplus/tests/test_cli_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -3090,9 +2986,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "278             models_content = (apps_dir / \"models.py\").read_text()\n279             assert f\"class {model_name}\" in models_content\n280 \n",
-      "col_offset": 12,
-      "end_col_offset": 58,
+      "code": "276         assert \"blog\" in result.stdout\n277         assert \"ecommerce\" in result.stdout\n278 \n",
+      "col_offset": 8,
+      "end_col_offset": 43,
       "filename": "fabiplus/tests/test_cli_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -3101,18 +2997,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 279,
+      "line_number": 277,
       "line_range": [
-        279
+        277
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "294 \n295         assert result.exit_code == 0\n296         assert not app_dir.exists()\n",
-      "col_offset": 8,
-      "end_col_offset": 36,
+      "code": "294 \n295             assert result.exit_code == 0\n296             # Check that the model was added to the file\n",
+      "col_offset": 12,
+      "end_col_offset": 40,
       "filename": "fabiplus/tests/test_cli_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -3130,9 +3026,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "295         assert result.exit_code == 0\n296         assert not app_dir.exists()\n297 \n",
-      "col_offset": 8,
-      "end_col_offset": 35,
+      "code": "297             models_content = (apps_dir / \"models.py\").read_text()\n298             assert f\"class {model_name}\" in models_content\n299 \n",
+      "col_offset": 12,
+      "end_col_offset": 58,
       "filename": "fabiplus/tests/test_cli_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -3141,16 +3037,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 296,
+      "line_number": 298,
       "line_range": [
-        296
+        298
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "315 \n316         assert result.exit_code == 0\n317         assert \"app1\" in result.stdout\n",
+      "code": "313 \n314         assert result.exit_code == 0\n315         assert not app_dir.exists()\n",
       "col_offset": 8,
       "end_col_offset": 36,
       "filename": "fabiplus/tests/test_cli_templates.py",
@@ -3161,18 +3057,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 316,
+      "line_number": 314,
       "line_range": [
-        316
+        314
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "316         assert result.exit_code == 0\n317         assert \"app1\" in result.stdout\n318         assert \"app2\" in result.stdout\n",
+      "code": "314         assert result.exit_code == 0\n315         assert not app_dir.exists()\n316 \n",
       "col_offset": 8,
-      "end_col_offset": 38,
+      "end_col_offset": 35,
       "filename": "fabiplus/tests/test_cli_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -3181,38 +3077,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 317,
+      "line_number": 315,
       "line_range": [
-        317
+        315
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "317         assert \"app1\" in result.stdout\n318         assert \"app2\" in result.stdout\n319 \n",
+      "code": "334 \n335         assert result.exit_code == 0\n336         assert \"app1\" in result.stdout\n",
       "col_offset": 8,
-      "end_col_offset": 38,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 318,
-      "line_range": [
-        318
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "334 \n335             assert result.exit_code == 1\n336             assert \"Error creating app\" in result.stdout\n",
-      "col_offset": 12,
-      "end_col_offset": 40,
+      "end_col_offset": 36,
       "filename": "fabiplus/tests/test_cli_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -3230,9 +3106,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "335             assert result.exit_code == 1\n336             assert \"Error creating app\" in result.stdout\n337 \n",
-      "col_offset": 12,
-      "end_col_offset": 56,
+      "code": "335         assert result.exit_code == 0\n336         assert \"app1\" in result.stdout\n337         assert \"app2\" in result.stdout\n",
+      "col_offset": 8,
+      "end_col_offset": 38,
       "filename": "fabiplus/tests/test_cli_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -3250,7 +3126,67 @@
       "test_name": "assert_used"
     },
     {
-      "code": "361 \n362         assert result.exit_code == 0\n363 \n",
+      "code": "336         assert \"app1\" in result.stdout\n337         assert \"app2\" in result.stdout\n338 \n",
+      "col_offset": 8,
+      "end_col_offset": 38,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 337,
+      "line_range": [
+        337
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "353 \n354             assert result.exit_code == 1\n355             assert \"Error creating app\" in result.stdout\n",
+      "col_offset": 12,
+      "end_col_offset": 40,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 354,
+      "line_range": [
+        354
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "354             assert result.exit_code == 1\n355             assert \"Error creating app\" in result.stdout\n356 \n",
+      "col_offset": 12,
+      "end_col_offset": 56,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 355,
+      "line_range": [
+        355
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "380 \n381         assert result.exit_code == 0\n382 \n",
       "col_offset": 8,
       "end_col_offset": 36,
       "filename": "fabiplus/tests/test_cli_templates.py",
@@ -3261,16 +3197,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 362,
+      "line_number": 381,
       "line_range": [
-        362
+        381
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "364         project_dir = self.temp_dir / project_name\n365         assert project_dir.exists()\n366         assert (project_dir / \"pyproject.toml\").exists()\n",
+      "code": "383         project_dir = self.temp_dir / project_name\n384         assert project_dir.exists()\n385         assert (project_dir / \"pyproject.toml\").exists()\n",
       "col_offset": 8,
       "end_col_offset": 35,
       "filename": "fabiplus/tests/test_cli_templates.py",
@@ -3281,16 +3217,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 365,
+      "line_number": 384,
       "line_range": [
-        365
+        384
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "365         assert project_dir.exists()\n366         assert (project_dir / \"pyproject.toml\").exists()\n367         assert (project_dir / \"manage.py\").exists()\n",
+      "code": "384         assert project_dir.exists()\n385         assert (project_dir / \"pyproject.toml\").exists()\n386         assert (project_dir / \"manage.py\").exists()\n",
       "col_offset": 8,
       "end_col_offset": 56,
       "filename": "fabiplus/tests/test_cli_templates.py",
@@ -3301,78 +3237,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 366,
+      "line_number": 385,
       "line_range": [
-        366
+        385
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "366         assert (project_dir / \"pyproject.toml\").exists()\n367         assert (project_dir / \"manage.py\").exists()\n368         assert (project_dir / project_name / \"settings.py\").exists()\n",
+      "code": "385         assert (project_dir / \"pyproject.toml\").exists()\n386         assert (project_dir / \"manage.py\").exists()\n387         assert (project_dir / project_name / \"settings.py\").exists()\n",
       "col_offset": 8,
       "end_col_offset": 51,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 367,
-      "line_range": [
-        367
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "367         assert (project_dir / \"manage.py\").exists()\n368         assert (project_dir / project_name / \"settings.py\").exists()\n369 \n",
-      "col_offset": 8,
-      "end_col_offset": 68,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 368,
-      "line_range": [
-        368
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "379 \n380         assert result.exit_code == 0\n381 \n",
-      "col_offset": 8,
-      "end_col_offset": 36,
-      "filename": "fabiplus/tests/test_cli_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 380,
-      "line_range": [
-        380
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "385         pyproject_content = (project_dir / \"pyproject.toml\").read_text()\n386         assert f'name = \"{project_name}\"' in pyproject_content\n387         # Check for FastAPI and other dependencies instead of fabiplus\n",
-      "col_offset": 8,
-      "end_col_offset": 62,
       "filename": "fabiplus/tests/test_cli_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -3390,7 +3266,67 @@
       "test_name": "assert_used"
     },
     {
-      "code": "387         # Check for FastAPI and other dependencies instead of fabiplus\n388         assert \"fastapi\" in pyproject_content\n389 \n",
+      "code": "386         assert (project_dir / \"manage.py\").exists()\n387         assert (project_dir / project_name / \"settings.py\").exists()\n388 \n",
+      "col_offset": 8,
+      "end_col_offset": 68,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 387,
+      "line_range": [
+        387
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "398 \n399         assert result.exit_code == 0\n400 \n",
+      "col_offset": 8,
+      "end_col_offset": 36,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 399,
+      "line_range": [
+        399
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "404         pyproject_content = (project_dir / \"pyproject.toml\").read_text()\n405         assert f'name = \"{project_name}\"' in pyproject_content\n406         # Check for FastAPI and other dependencies instead of fabiplus\n",
+      "col_offset": 8,
+      "end_col_offset": 62,
+      "filename": "fabiplus/tests/test_cli_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 405,
+      "line_range": [
+        405
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "406         # Check for FastAPI and other dependencies instead of fabiplus\n407         assert \"fastapi\" in pyproject_content\n408 \n",
       "col_offset": 8,
       "end_col_offset": 45,
       "filename": "fabiplus/tests/test_cli_templates.py",
@@ -3401,16 +3337,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 388,
+      "line_number": 407,
       "line_range": [
-        388
+        407
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "391         settings_content = (project_dir / project_name / \"settings.py\").read_text()\n392         assert \"from fabiplus.conf.settings import *\" in settings_content\n393         assert f'APP_NAME = \"{project_name.title()} API\"' in settings_content\n",
+      "code": "410         settings_content = (project_dir / project_name / \"settings.py\").read_text()\n411         assert \"from fabiplus.conf.settings import *\" in settings_content\n412         assert f'APP_NAME = \"{project_name.title()} API\"' in settings_content\n",
       "col_offset": 8,
       "end_col_offset": 73,
       "filename": "fabiplus/tests/test_cli_templates.py",
@@ -3421,16 +3357,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 392,
+      "line_number": 411,
       "line_range": [
-        392
+        411
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "392         assert \"from fabiplus.conf.settings import *\" in settings_content\n393         assert f'APP_NAME = \"{project_name.title()} API\"' in settings_content\n394 \n",
+      "code": "411         assert \"from fabiplus.conf.settings import *\" in settings_content\n412         assert f'APP_NAME = \"{project_name.title()} API\"' in settings_content\n413 \n",
       "col_offset": 8,
       "end_col_offset": 77,
       "filename": "fabiplus/tests/test_cli_templates.py",
@@ -3441,9 +3377,9 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 393,
+      "line_number": 412,
       "line_range": [
-        393
+        412
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
@@ -4430,29 +4366,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "28         backends = ORMRegistry.list_backends()\n29         assert isinstance(backends, list)\n30         assert len(backends) > 0\n",
+      "code": "29         backends = ORMRegistry.list_backends()\n30         assert isinstance(backends, list)\n31         assert len(backends) == 2  # Currently supports SQLModel and SQLAlchemy\n",
       "col_offset": 8,
       "end_col_offset": 41,
-      "filename": "fabiplus/tests/test_orm_choice.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 29,
-      "line_range": [
-        29
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "29         assert isinstance(backends, list)\n30         assert len(backends) > 0\n31         assert \"sqlmodel\" in backends\n",
-      "col_offset": 8,
-      "end_col_offset": 32,
       "filename": "fabiplus/tests/test_orm_choice.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -4470,9 +4386,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "30         assert len(backends) > 0\n31         assert \"sqlmodel\" in backends\n32         assert \"sqlalchemy\" in backends\n",
+      "code": "30         assert isinstance(backends, list)\n31         assert len(backends) == 2  # Currently supports SQLModel and SQLAlchemy\n32         assert \"sqlmodel\" in backends\n",
       "col_offset": 8,
-      "end_col_offset": 37,
+      "end_col_offset": 33,
       "filename": "fabiplus/tests/test_orm_choice.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -4490,9 +4406,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "31         assert \"sqlmodel\" in backends\n32         assert \"sqlalchemy\" in backends\n33         assert \"tortoise\" in backends\n",
+      "code": "31         assert len(backends) == 2  # Currently supports SQLModel and SQLAlchemy\n32         assert \"sqlmodel\" in backends\n33         assert \"sqlalchemy\" in backends\n",
       "col_offset": 8,
-      "end_col_offset": 39,
+      "end_col_offset": 37,
       "filename": "fabiplus/tests/test_orm_choice.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -4510,9 +4426,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "32         assert \"sqlalchemy\" in backends\n33         assert \"tortoise\" in backends\n34 \n",
+      "code": "32         assert \"sqlmodel\" in backends\n33         assert \"sqlalchemy\" in backends\n34         # Note: Tortoise ORM support is planned as a future feature\n",
       "col_offset": 8,
-      "end_col_offset": 37,
+      "end_col_offset": 39,
       "filename": "fabiplus/tests/test_orm_choice.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -4530,7 +4446,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "40         sqlmodel_backend = ORMRegistry.get_backend(\"sqlmodel\")\n41         assert sqlmodel_backend is not None\n42 \n",
+      "code": "41         sqlmodel_backend = ORMRegistry.get_backend(\"sqlmodel\")\n42         assert sqlmodel_backend is not None\n43 \n",
       "col_offset": 8,
       "end_col_offset": 43,
       "filename": "fabiplus/tests/test_orm_choice.py",
@@ -4541,16 +4457,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 41,
+      "line_number": 42,
       "line_range": [
-        41
+        42
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "43         sqlalchemy_backend = ORMRegistry.get_backend(\"sqlalchemy\")\n44         assert sqlalchemy_backend is not None\n45 \n",
+      "code": "44         sqlalchemy_backend = ORMRegistry.get_backend(\"sqlalchemy\")\n45         assert sqlalchemy_backend is not None\n46 \n",
       "col_offset": 8,
       "end_col_offset": 45,
       "filename": "fabiplus/tests/test_orm_choice.py",
@@ -4561,76 +4477,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 44,
+      "line_number": 45,
       "line_range": [
-        44
+        45
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "46         tortoise_backend = ORMRegistry.get_backend(\"tortoise\")\n47         assert tortoise_backend is not None\n48 \n",
-      "col_offset": 8,
-      "end_col_offset": 43,
-      "filename": "fabiplus/tests/test_orm_choice.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 47,
-      "line_range": [
-        47
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "53         # Test valid backends\n54         assert ORMRegistry.validate_backend(\"sqlmodel\") is True\n55         assert ORMRegistry.validate_backend(\"sqlalchemy\") is True\n",
-      "col_offset": 8,
-      "end_col_offset": 63,
-      "filename": "fabiplus/tests/test_orm_choice.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 54,
-      "line_range": [
-        54
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "54         assert ORMRegistry.validate_backend(\"sqlmodel\") is True\n55         assert ORMRegistry.validate_backend(\"sqlalchemy\") is True\n56         assert ORMRegistry.validate_backend(\"tortoise\") is True\n",
-      "col_offset": 8,
-      "end_col_offset": 65,
-      "filename": "fabiplus/tests/test_orm_choice.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 55,
-      "line_range": [
-        55
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "55         assert ORMRegistry.validate_backend(\"sqlalchemy\") is True\n56         assert ORMRegistry.validate_backend(\"tortoise\") is True\n57 \n",
+      "code": "55         # Test valid backends\n56         assert ORMRegistry.validate_backend(\"sqlmodel\") is True\n57         assert ORMRegistry.validate_backend(\"sqlalchemy\") is True\n",
       "col_offset": 8,
       "end_col_offset": 63,
       "filename": "fabiplus/tests/test_orm_choice.py",
@@ -4650,7 +4506,47 @@
       "test_name": "assert_used"
     },
     {
-      "code": "58         # Test invalid backend\n59         assert ORMRegistry.validate_backend(\"nonexistent\") is False\n60 \n",
+      "code": "56         assert ORMRegistry.validate_backend(\"sqlmodel\") is True\n57         assert ORMRegistry.validate_backend(\"sqlalchemy\") is True\n58 \n",
+      "col_offset": 8,
+      "end_col_offset": 65,
+      "filename": "fabiplus/tests/test_orm_choice.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 57,
+      "line_range": [
+        57
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "59         # Test invalid backends\n60         assert ORMRegistry.validate_backend(\"tortoise\") is False  # Not yet implemented\n61         assert ORMRegistry.validate_backend(\"nonexistent\") is False\n",
+      "col_offset": 8,
+      "end_col_offset": 64,
+      "filename": "fabiplus/tests/test_orm_choice.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 60,
+      "line_range": [
+        60
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "60         assert ORMRegistry.validate_backend(\"tortoise\") is False  # Not yet implemented\n61         assert ORMRegistry.validate_backend(\"nonexistent\") is False\n62 \n",
       "col_offset": 8,
       "end_col_offset": 67,
       "filename": "fabiplus/tests/test_orm_choice.py",
@@ -4661,58 +4557,18 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 59,
+      "line_number": 61,
       "line_range": [
-        59
+        61
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "66         info = ORMRegistry.get_backend_info(\"sqlmodel\")\n67         assert info[\"name\"] == \"sqlmodel\"\n68         assert \"dependencies\" in info\n",
+      "code": "68         info = ORMRegistry.get_backend_info(\"sqlmodel\")\n69         assert info[\"name\"] == \"sqlmodel\"\n70         assert \"dependencies\" in info\n",
       "col_offset": 8,
       "end_col_offset": 41,
-      "filename": "fabiplus/tests/test_orm_choice.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 67,
-      "line_range": [
-        67
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "67         assert info[\"name\"] == \"sqlmodel\"\n68         assert \"dependencies\" in info\n69         assert \"supports_async\" in info\n",
-      "col_offset": 8,
-      "end_col_offset": 37,
-      "filename": "fabiplus/tests/test_orm_choice.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 68,
-      "line_range": [
-        68
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "68         assert \"dependencies\" in info\n69         assert \"supports_async\" in info\n70         assert info[\"supports_async\"] is True\n",
-      "col_offset": 8,
-      "end_col_offset": 39,
       "filename": "fabiplus/tests/test_orm_choice.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -4730,9 +4586,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "69         assert \"supports_async\" in info\n70         assert info[\"supports_async\"] is True\n71 \n",
+      "code": "69         assert info[\"name\"] == \"sqlmodel\"\n70         assert \"dependencies\" in info\n71         assert \"supports_async\" in info\n",
       "col_offset": 8,
-      "end_col_offset": 45,
+      "end_col_offset": 37,
       "filename": "fabiplus/tests/test_orm_choice.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -4750,9 +4606,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "73         info = ORMRegistry.get_backend_info(\"tortoise\")\n74         assert info[\"name\"] == \"tortoise\"\n75         assert info[\"supports_async\"] is True\n",
+      "code": "70         assert \"dependencies\" in info\n71         assert \"supports_async\" in info\n72         assert info[\"supports_async\"] is True\n",
       "col_offset": 8,
-      "end_col_offset": 41,
+      "end_col_offset": 39,
       "filename": "fabiplus/tests/test_orm_choice.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -4761,16 +4617,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 74,
+      "line_number": 71,
       "line_range": [
-        74
+        71
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "74         assert info[\"name\"] == \"tortoise\"\n75         assert info[\"supports_async\"] is True\n76 \n",
+      "code": "71         assert \"supports_async\" in info\n72         assert info[\"supports_async\"] is True\n73 \n",
       "col_offset": 8,
       "end_col_offset": 45,
       "filename": "fabiplus/tests/test_orm_choice.py",
@@ -4781,9 +4637,89 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 75,
+      "line_number": 72,
       "line_range": [
-        75
+        72
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "75         info = ORMRegistry.get_backend_info(\"sqlalchemy\")\n76         assert info[\"name\"] == \"sqlalchemy\"\n77         assert \"dependencies\" in info\n",
+      "col_offset": 8,
+      "end_col_offset": 43,
+      "filename": "fabiplus/tests/test_orm_choice.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 76,
+      "line_range": [
+        76
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "76         assert info[\"name\"] == \"sqlalchemy\"\n77         assert \"dependencies\" in info\n78         assert \"supports_async\" in info\n",
+      "col_offset": 8,
+      "end_col_offset": 37,
+      "filename": "fabiplus/tests/test_orm_choice.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 77,
+      "line_range": [
+        77
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "77         assert \"dependencies\" in info\n78         assert \"supports_async\" in info\n79         assert info[\"supports_async\"] is True\n",
+      "col_offset": 8,
+      "end_col_offset": 39,
+      "filename": "fabiplus/tests/test_orm_choice.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 78,
+      "line_range": [
+        78
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "78         assert \"supports_async\" in info\n79         assert info[\"supports_async\"] is True\n80 \n",
+      "col_offset": 8,
+      "end_col_offset": 45,
+      "filename": "fabiplus/tests/test_orm_choice.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 79,
+      "line_range": [
+        79
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
@@ -5694,7 +5630,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "367             result = checker.check_permission(self.user, read_perm)\n368             assert result is True\n369 \n",
+      "code": "370             result = await checker.check_permission(self.user, read_perm)\n371             assert result is True\n372 \n",
       "col_offset": 12,
       "end_col_offset": 33,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5705,16 +5641,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 368,
+      "line_number": 371,
       "line_range": [
-        368
+        371
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "375         # Test that it routes to appropriate sub-checkers\n376         assert isinstance(checker.model_checker, ModelPermissionChecker)\n377         assert isinstance(checker.field_checker, FieldPermissionChecker)\n",
+      "code": "378         # Test that it routes to appropriate sub-checkers\n379         assert isinstance(checker.model_checker, ModelPermissionChecker)\n380         assert isinstance(checker.field_checker, FieldPermissionChecker)\n",
       "col_offset": 8,
       "end_col_offset": 72,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5725,16 +5661,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 376,
+      "line_number": 379,
       "line_range": [
-        376
+        379
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "376         assert isinstance(checker.model_checker, ModelPermissionChecker)\n377         assert isinstance(checker.field_checker, FieldPermissionChecker)\n378         assert isinstance(checker.row_checker, RowPermissionChecker)\n",
+      "code": "379         assert isinstance(checker.model_checker, ModelPermissionChecker)\n380         assert isinstance(checker.field_checker, FieldPermissionChecker)\n381         assert isinstance(checker.row_checker, RowPermissionChecker)\n",
       "col_offset": 8,
       "end_col_offset": 72,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5745,16 +5681,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 377,
+      "line_number": 380,
       "line_range": [
-        377
+        380
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "377         assert isinstance(checker.field_checker, FieldPermissionChecker)\n378         assert isinstance(checker.row_checker, RowPermissionChecker)\n379 \n",
+      "code": "380         assert isinstance(checker.field_checker, FieldPermissionChecker)\n381         assert isinstance(checker.row_checker, RowPermissionChecker)\n382 \n",
       "col_offset": 8,
       "end_col_offset": 68,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5765,16 +5701,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 378,
+      "line_number": 381,
       "line_range": [
-        378
+        381
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "406             # For now, just verify the decorator structure\n407             assert callable(test_endpoint)\n408 \n",
+      "code": "409             # For now, just verify the decorator structure\n410             assert callable(test_endpoint)\n411 \n",
       "col_offset": 12,
       "end_col_offset": 42,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5785,16 +5721,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 407,
+      "line_number": 410,
       "line_range": [
-        407
+        410
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "415 \n416         assert callable(test_endpoint)\n417 \n",
+      "code": "418 \n419         assert callable(test_endpoint)\n420 \n",
       "col_offset": 8,
       "end_col_offset": 38,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5805,16 +5741,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 416,
+      "line_number": 419,
       "line_range": [
-        416
+        419
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "424 \n425         assert callable(test_endpoint)\n426 \n",
+      "code": "427 \n428         assert callable(test_endpoint)\n429 \n",
       "col_offset": 8,
       "end_col_offset": 38,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5825,16 +5761,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 425,
+      "line_number": 428,
       "line_range": [
-        425
+        428
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "479             result = checker.check_permission(self.user, model_permission)\n480             assert result is True\n481 \n",
+      "code": "485             result = await checker.check_permission(self.user, model_permission)\n486             assert result is True\n487 \n",
       "col_offset": 12,
       "end_col_offset": 33,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5845,16 +5781,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 480,
+      "line_number": 486,
       "line_range": [
-        480
+        486
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "493         # Admin should have all permissions\n494         assert admin_perm.has_permission(PermissionAction.READ) is True\n495         assert admin_perm.has_permission(PermissionAction.UPDATE) is True\n",
+      "code": "499         # Admin should have all permissions\n500         assert admin_perm.has_permission(PermissionAction.READ) is True\n501         assert admin_perm.has_permission(PermissionAction.UPDATE) is True\n",
       "col_offset": 8,
       "end_col_offset": 71,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5865,16 +5801,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 494,
+      "line_number": 500,
       "line_range": [
-        494
+        500
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "494         assert admin_perm.has_permission(PermissionAction.READ) is True\n495         assert admin_perm.has_permission(PermissionAction.UPDATE) is True\n496         assert admin_perm.has_permission(PermissionAction.DELETE) is True\n",
+      "code": "500         assert admin_perm.has_permission(PermissionAction.READ) is True\n501         assert admin_perm.has_permission(PermissionAction.UPDATE) is True\n502         assert admin_perm.has_permission(PermissionAction.DELETE) is True\n",
       "col_offset": 8,
       "end_col_offset": 73,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5885,16 +5821,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 495,
+      "line_number": 501,
       "line_range": [
-        495
+        501
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "495         assert admin_perm.has_permission(PermissionAction.UPDATE) is True\n496         assert admin_perm.has_permission(PermissionAction.DELETE) is True\n497         assert admin_perm.has_permission(PermissionAction.CREATE) is True\n",
+      "code": "501         assert admin_perm.has_permission(PermissionAction.UPDATE) is True\n502         assert admin_perm.has_permission(PermissionAction.DELETE) is True\n503         assert admin_perm.has_permission(PermissionAction.CREATE) is True\n",
       "col_offset": 8,
       "end_col_offset": 73,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5905,16 +5841,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 496,
+      "line_number": 502,
       "line_range": [
-        496
+        502
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "496         assert admin_perm.has_permission(PermissionAction.DELETE) is True\n497         assert admin_perm.has_permission(PermissionAction.CREATE) is True\n498 \n",
+      "code": "502         assert admin_perm.has_permission(PermissionAction.DELETE) is True\n503         assert admin_perm.has_permission(PermissionAction.CREATE) is True\n504 \n",
       "col_offset": 8,
       "end_col_offset": 73,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5925,16 +5861,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 497,
+      "line_number": 503,
       "line_range": [
-        497
+        503
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "512         # Owner should have all permissions regardless of explicit settings\n513         assert row_perm.has_permission(PermissionAction.READ) is True\n514         assert row_perm.has_permission(PermissionAction.UPDATE) is True\n",
+      "code": "518         # Owner should have all permissions regardless of explicit settings\n519         assert row_perm.has_permission(PermissionAction.READ) is True\n520         assert row_perm.has_permission(PermissionAction.UPDATE) is True\n",
       "col_offset": 8,
       "end_col_offset": 69,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5945,16 +5881,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 513,
+      "line_number": 519,
       "line_range": [
-        513
+        519
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "513         assert row_perm.has_permission(PermissionAction.READ) is True\n514         assert row_perm.has_permission(PermissionAction.UPDATE) is True\n515         assert row_perm.has_permission(PermissionAction.DELETE) is True\n",
+      "code": "519         assert row_perm.has_permission(PermissionAction.READ) is True\n520         assert row_perm.has_permission(PermissionAction.UPDATE) is True\n521         assert row_perm.has_permission(PermissionAction.DELETE) is True\n",
       "col_offset": 8,
       "end_col_offset": 71,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5965,16 +5901,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 514,
+      "line_number": 520,
       "line_range": [
-        514
+        520
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "514         assert row_perm.has_permission(PermissionAction.UPDATE) is True\n515         assert row_perm.has_permission(PermissionAction.DELETE) is True\n516 \n",
+      "code": "520         assert row_perm.has_permission(PermissionAction.UPDATE) is True\n521         assert row_perm.has_permission(PermissionAction.DELETE) is True\n522 \n",
       "col_offset": 8,
       "end_col_offset": 71,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -5985,16 +5921,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 515,
+      "line_number": 521,
       "line_range": [
-        515
+        521
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "537         # Test lookup performance\n538         assert perm_set.has_permission(\"read\", \"Model_5\") is True\n539         assert perm_set.has_permission(\"write\", \"Model_5\") is False\n",
+      "code": "543         # Test lookup performance\n544         assert perm_set.has_permission(\"read\", \"Model_5\") is True\n545         assert perm_set.has_permission(\"write\", \"Model_5\") is False\n",
       "col_offset": 8,
       "end_col_offset": 65,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -6005,16 +5941,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 538,
+      "line_number": 544,
       "line_range": [
-        538
+        544
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "538         assert perm_set.has_permission(\"read\", \"Model_5\") is True\n539         assert perm_set.has_permission(\"write\", \"Model_5\") is False\n540 \n",
+      "code": "544         assert perm_set.has_permission(\"read\", \"Model_5\") is True\n545         assert perm_set.has_permission(\"write\", \"Model_5\") is False\n546 \n",
       "col_offset": 8,
       "end_col_offset": 67,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -6025,16 +5961,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 539,
+      "line_number": 545,
       "line_range": [
-        539
+        545
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "541         # Should be fast even with many permissions\n542         assert len(perm_set) == 1000\n543 \n",
+      "code": "547         # Should be fast even with many permissions\n548         assert len(perm_set) == 1000\n549 \n",
       "col_offset": 8,
       "end_col_offset": 36,
       "filename": "fabiplus/tests/test_permissions_system.py",
@@ -6045,9 +5981,9 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 542,
+      "line_number": 548,
       "line_range": [
-        542
+        548
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
@@ -6897,7 +6833,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "368         response = self.client.get(\"/export-csv\")\n369         assert response.status_code == 200\n370         assert response.headers[\"content-type\"] == \"text/csv\"\n",
+      "code": "368         response = self.client.get(\"/export-csv\")\n369         assert response.status_code == 200\n370         assert response.headers[\"content-type\"] == \"text/csv; charset=utf-8\"\n",
       "col_offset": 8,
       "end_col_offset": 42,
       "filename": "fabiplus/tests/test_response_system.py",
@@ -6917,9 +6853,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "369         assert response.status_code == 200\n370         assert response.headers[\"content-type\"] == \"text/csv\"\n371         assert \"users.csv\" in response.headers[\"content-disposition\"]\n",
+      "code": "369         assert response.status_code == 200\n370         assert response.headers[\"content-type\"] == \"text/csv; charset=utf-8\"\n371         assert \"users.csv\" in response.headers[\"content-disposition\"]\n",
       "col_offset": 8,
-      "end_col_offset": 61,
+      "end_col_offset": 76,
       "filename": "fabiplus/tests/test_response_system.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -6937,7 +6873,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "370         assert response.headers[\"content-type\"] == \"text/csv\"\n371         assert \"users.csv\" in response.headers[\"content-disposition\"]\n372 \n",
+      "code": "370         assert response.headers[\"content-type\"] == \"text/csv; charset=utf-8\"\n371         assert \"users.csv\" in response.headers[\"content-disposition\"]\n372 \n",
       "col_offset": 8,
       "end_col_offset": 69,
       "filename": "fabiplus/tests/test_response_system.py",
@@ -7861,49 +7797,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "176         # Verify project structure\n177         assert project_dir.exists()\n178         assert (project_dir / self.project_name).exists()\n",
+      "code": "178         # Verify project structure\n179         assert project_dir.exists()\n180         assert (project_dir / self.project_name).exists()\n",
       "col_offset": 8,
       "end_col_offset": 35,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 177,
-      "line_range": [
-        177
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "177         assert project_dir.exists()\n178         assert (project_dir / self.project_name).exists()\n179         assert (project_dir / \"apps\").exists()\n",
-      "col_offset": 8,
-      "end_col_offset": 57,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 178,
-      "line_range": [
-        178
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "178         assert (project_dir / self.project_name).exists()\n179         assert (project_dir / \"apps\").exists()\n180         assert (project_dir / \"tests\").exists()\n",
-      "col_offset": 8,
-      "end_col_offset": 46,
       "filename": "fabiplus/tests/test_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -7921,9 +7817,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "179         assert (project_dir / \"apps\").exists()\n180         assert (project_dir / \"tests\").exists()\n181 \n",
+      "code": "179         assert project_dir.exists()\n180         assert (project_dir / self.project_name).exists()\n181         assert (project_dir / \"apps\").exists()\n",
       "col_offset": 8,
-      "end_col_offset": 47,
+      "end_col_offset": 57,
       "filename": "fabiplus/tests/test_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -7941,49 +7837,49 @@
       "test_name": "assert_used"
     },
     {
-      "code": "182         # Verify files\n183         assert (project_dir / \"pyproject.toml\").exists()\n184         assert (project_dir / \"manage.py\").exists()\n",
+      "code": "180         assert (project_dir / self.project_name).exists()\n181         assert (project_dir / \"apps\").exists()\n182         assert (project_dir / \"tests\").exists()\n",
+      "col_offset": 8,
+      "end_col_offset": 46,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 181,
+      "line_range": [
+        181
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "181         assert (project_dir / \"apps\").exists()\n182         assert (project_dir / \"tests\").exists()\n183 \n",
+      "col_offset": 8,
+      "end_col_offset": 47,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 182,
+      "line_range": [
+        182
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "184         # Verify files\n185         assert (project_dir / \"pyproject.toml\").exists()\n186         assert (project_dir / \"manage.py\").exists()\n",
       "col_offset": 8,
       "end_col_offset": 56,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 183,
-      "line_range": [
-        183
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "183         assert (project_dir / \"pyproject.toml\").exists()\n184         assert (project_dir / \"manage.py\").exists()\n185         assert (project_dir / \"Dockerfile\").exists()  # Docker enabled\n",
-      "col_offset": 8,
-      "end_col_offset": 51,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 184,
-      "line_range": [
-        184
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "184         assert (project_dir / \"manage.py\").exists()\n185         assert (project_dir / \"Dockerfile\").exists()  # Docker enabled\n186 \n",
-      "col_offset": 8,
-      "end_col_offset": 52,
       "filename": "fabiplus/tests/test_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -8001,87 +7897,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "200         # Verify old content is removed and new project created\n201         assert not (project_dir / \"existing_file.txt\").exists()\n202         assert (project_dir / \"pyproject.toml\").exists()\n",
-      "col_offset": 8,
-      "end_col_offset": 63,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 201,
-      "line_range": [
-        201
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "201         assert not (project_dir / \"existing_file.txt\").exists()\n202         assert (project_dir / \"pyproject.toml\").exists()\n203 \n",
-      "col_offset": 8,
-      "end_col_offset": 56,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 202,
-      "line_range": [
-        202
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "215         # Verify existing files are preserved\n216         assert (project_dir / \"existing.txt\").exists()\n217 \n",
-      "col_offset": 8,
-      "end_col_offset": 54,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 216,
-      "line_range": [
-        216
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "218         # Verify FABI+ files are added\n219         assert (project_dir / \"pyproject.toml\").exists()\n220         assert (project_dir / \"manage.py\").exists()\n",
-      "col_offset": 8,
-      "end_col_offset": 56,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 219,
-      "line_range": [
-        219
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "219         assert (project_dir / \"pyproject.toml\").exists()\n220         assert (project_dir / \"manage.py\").exists()\n221 \n",
+      "code": "185         assert (project_dir / \"pyproject.toml\").exists()\n186         assert (project_dir / \"manage.py\").exists()\n187         assert (project_dir / \"Dockerfile\").exists()  # Docker enabled\n",
       "col_offset": 8,
       "end_col_offset": 51,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8092,58 +7908,138 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 220,
+      "line_number": 186,
       "line_range": [
-        220
+        186
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "239 \n240         assert template.app_name == self.app_name\n241         assert template.template_type == \"default\"\n",
+      "code": "186         assert (project_dir / \"manage.py\").exists()\n187         assert (project_dir / \"Dockerfile\").exists()  # Docker enabled\n188 \n",
+      "col_offset": 8,
+      "end_col_offset": 52,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 187,
+      "line_range": [
+        187
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "202         # Verify old content is removed and new project created\n203         assert not (project_dir / \"existing_file.txt\").exists()\n204         assert (project_dir / \"pyproject.toml\").exists()\n",
+      "col_offset": 8,
+      "end_col_offset": 63,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 203,
+      "line_range": [
+        203
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "203         assert not (project_dir / \"existing_file.txt\").exists()\n204         assert (project_dir / \"pyproject.toml\").exists()\n205 \n",
+      "col_offset": 8,
+      "end_col_offset": 56,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 204,
+      "line_range": [
+        204
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "217         # Verify existing files are preserved\n218         assert (project_dir / \"existing.txt\").exists()\n219 \n",
+      "col_offset": 8,
+      "end_col_offset": 54,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 218,
+      "line_range": [
+        218
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "220         # Verify FABI+ files are added\n221         assert (project_dir / \"pyproject.toml\").exists()\n222         assert (project_dir / \"manage.py\").exists()\n",
+      "col_offset": 8,
+      "end_col_offset": 56,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 221,
+      "line_range": [
+        221
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "221         assert (project_dir / \"pyproject.toml\").exists()\n222         assert (project_dir / \"manage.py\").exists()\n223 \n",
+      "col_offset": 8,
+      "end_col_offset": 51,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 222,
+      "line_range": [
+        222
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "241 \n242         assert template.app_name == self.app_name\n243         assert template.template_type == \"default\"\n",
       "col_offset": 8,
       "end_col_offset": 49,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 240,
-      "line_range": [
-        240
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "240         assert template.app_name == self.app_name\n241         assert template.template_type == \"default\"\n242         assert template.jinja_env is not None\n",
-      "col_offset": 8,
-      "end_col_offset": 50,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 241,
-      "line_range": [
-        241
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "241         assert template.template_type == \"default\"\n242         assert template.jinja_env is not None\n243 \n",
-      "col_offset": 8,
-      "end_col_offset": 45,
       "filename": "fabiplus/tests/test_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -8161,49 +8057,49 @@
       "test_name": "assert_used"
     },
     {
-      "code": "248 \n249         assert context[\"app_name\"] == self.app_name\n250         assert context[\"app_name_title\"] == self.app_name.title()\n",
+      "code": "242         assert template.app_name == self.app_name\n243         assert template.template_type == \"default\"\n244         assert template.jinja_env is not None\n",
+      "col_offset": 8,
+      "end_col_offset": 50,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 243,
+      "line_range": [
+        243
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "243         assert template.template_type == \"default\"\n244         assert template.jinja_env is not None\n245 \n",
+      "col_offset": 8,
+      "end_col_offset": 45,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 244,
+      "line_range": [
+        244
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "250 \n251         assert context[\"app_name\"] == self.app_name\n252         assert context[\"app_name_title\"] == self.app_name.title()\n",
       "col_offset": 8,
       "end_col_offset": 51,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 249,
-      "line_range": [
-        249
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "249         assert context[\"app_name\"] == self.app_name\n250         assert context[\"app_name_title\"] == self.app_name.title()\n251         assert context[\"app_name_upper\"] == self.app_name.upper()\n",
-      "col_offset": 8,
-      "end_col_offset": 65,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 250,
-      "line_range": [
-        250
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "250         assert context[\"app_name_title\"] == self.app_name.title()\n251         assert context[\"app_name_upper\"] == self.app_name.upper()\n252         assert context[\"template_type\"] == \"default\"\n",
-      "col_offset": 8,
-      "end_col_offset": 65,
       "filename": "fabiplus/tests/test_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -8221,9 +8117,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "251         assert context[\"app_name_upper\"] == self.app_name.upper()\n252         assert context[\"template_type\"] == \"default\"\n253         assert \"created_date\" in context\n",
+      "code": "251         assert context[\"app_name\"] == self.app_name\n252         assert context[\"app_name_title\"] == self.app_name.title()\n253         assert context[\"app_name_upper\"] == self.app_name.upper()\n",
       "col_offset": 8,
-      "end_col_offset": 52,
+      "end_col_offset": 65,
       "filename": "fabiplus/tests/test_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -8241,9 +8137,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "252         assert context[\"template_type\"] == \"default\"\n253         assert \"created_date\" in context\n254         assert \"created_year\" in context\n",
+      "code": "252         assert context[\"app_name_title\"] == self.app_name.title()\n253         assert context[\"app_name_upper\"] == self.app_name.upper()\n254         assert context[\"template_type\"] == \"default\"\n",
       "col_offset": 8,
-      "end_col_offset": 40,
+      "end_col_offset": 65,
       "filename": "fabiplus/tests/test_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -8261,9 +8157,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "253         assert \"created_date\" in context\n254         assert \"created_year\" in context\n255 \n",
+      "code": "253         assert context[\"app_name_upper\"] == self.app_name.upper()\n254         assert context[\"template_type\"] == \"default\"\n255         assert \"created_date\" in context\n",
       "col_offset": 8,
-      "end_col_offset": 40,
+      "end_col_offset": 52,
       "filename": "fabiplus/tests/test_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -8281,49 +8177,49 @@
       "test_name": "assert_used"
     },
     {
-      "code": "263         # Check all app files exist\n264         assert (app_dir / \"__init__.py\").exists()\n265         assert (app_dir / \"models.py\").exists()\n",
+      "code": "254         assert context[\"template_type\"] == \"default\"\n255         assert \"created_date\" in context\n256         assert \"created_year\" in context\n",
+      "col_offset": 8,
+      "end_col_offset": 40,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 255,
+      "line_range": [
+        255
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "255         assert \"created_date\" in context\n256         assert \"created_year\" in context\n257 \n",
+      "col_offset": 8,
+      "end_col_offset": 40,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 256,
+      "line_range": [
+        256
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "265         # Check all app files exist\n266         assert (app_dir / \"__init__.py\").exists()\n267         assert (app_dir / \"models.py\").exists()\n",
       "col_offset": 8,
       "end_col_offset": 49,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 264,
-      "line_range": [
-        264
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "264         assert (app_dir / \"__init__.py\").exists()\n265         assert (app_dir / \"models.py\").exists()\n266         assert (app_dir / \"views.py\").exists()\n",
-      "col_offset": 8,
-      "end_col_offset": 47,
-      "filename": "fabiplus/tests/test_templates.py",
-      "issue_confidence": "HIGH",
-      "issue_cwe": {
-        "id": 703,
-        "link": "https://cwe.mitre.org/data/definitions/703.html"
-      },
-      "issue_severity": "LOW",
-      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 265,
-      "line_range": [
-        265
-      ],
-      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
-      "test_id": "B101",
-      "test_name": "assert_used"
-    },
-    {
-      "code": "265         assert (app_dir / \"models.py\").exists()\n266         assert (app_dir / \"views.py\").exists()\n267         assert (app_dir / \"admin.py\").exists()\n",
-      "col_offset": 8,
-      "end_col_offset": 46,
       "filename": "fabiplus/tests/test_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -8341,9 +8237,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "266         assert (app_dir / \"views.py\").exists()\n267         assert (app_dir / \"admin.py\").exists()\n268         assert (app_dir / \"serializers.py\").exists()\n",
+      "code": "266         assert (app_dir / \"__init__.py\").exists()\n267         assert (app_dir / \"models.py\").exists()\n268         assert (app_dir / \"views.py\").exists()\n",
       "col_offset": 8,
-      "end_col_offset": 46,
+      "end_col_offset": 47,
       "filename": "fabiplus/tests/test_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -8361,9 +8257,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "267         assert (app_dir / \"admin.py\").exists()\n268         assert (app_dir / \"serializers.py\").exists()\n269         assert (app_dir / \"urls.py\").exists()\n",
+      "code": "267         assert (app_dir / \"models.py\").exists()\n268         assert (app_dir / \"views.py\").exists()\n269         assert (app_dir / \"admin.py\").exists()\n",
       "col_offset": 8,
-      "end_col_offset": 52,
+      "end_col_offset": 46,
       "filename": "fabiplus/tests/test_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -8381,9 +8277,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "268         assert (app_dir / \"serializers.py\").exists()\n269         assert (app_dir / \"urls.py\").exists()\n270         assert (app_dir / \"tests.py\").exists()\n",
+      "code": "268         assert (app_dir / \"views.py\").exists()\n269         assert (app_dir / \"admin.py\").exists()\n270         assert (app_dir / \"serializers.py\").exists()\n",
       "col_offset": 8,
-      "end_col_offset": 45,
+      "end_col_offset": 46,
       "filename": "fabiplus/tests/test_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -8401,9 +8297,9 @@
       "test_name": "assert_used"
     },
     {
-      "code": "269         assert (app_dir / \"urls.py\").exists()\n270         assert (app_dir / \"tests.py\").exists()\n271         assert (app_dir / \"apps.py\").exists()\n",
+      "code": "269         assert (app_dir / \"admin.py\").exists()\n270         assert (app_dir / \"serializers.py\").exists()\n271         assert (app_dir / \"urls.py\").exists()\n",
       "col_offset": 8,
-      "end_col_offset": 46,
+      "end_col_offset": 52,
       "filename": "fabiplus/tests/test_templates.py",
       "issue_confidence": "HIGH",
       "issue_cwe": {
@@ -8421,7 +8317,7 @@
       "test_name": "assert_used"
     },
     {
-      "code": "270         assert (app_dir / \"tests.py\").exists()\n271         assert (app_dir / \"apps.py\").exists()\n272 \n",
+      "code": "270         assert (app_dir / \"serializers.py\").exists()\n271         assert (app_dir / \"urls.py\").exists()\n272         assert (app_dir / \"tests.py\").exists()\n",
       "col_offset": 8,
       "end_col_offset": 45,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8441,7 +8337,47 @@
       "test_name": "assert_used"
     },
     {
-      "code": "281         models_content = (app_dir / \"models.py\").read_text()\n282         assert f\"{self.app_name.title()} Models\" in models_content\n283         assert (\n",
+      "code": "271         assert (app_dir / \"urls.py\").exists()\n272         assert (app_dir / \"tests.py\").exists()\n273         assert (app_dir / \"apps.py\").exists()\n",
+      "col_offset": 8,
+      "end_col_offset": 46,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 272,
+      "line_range": [
+        272
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "272         assert (app_dir / \"tests.py\").exists()\n273         assert (app_dir / \"apps.py\").exists()\n274 \n",
+      "col_offset": 8,
+      "end_col_offset": 45,
+      "filename": "fabiplus/tests/test_templates.py",
+      "issue_confidence": "HIGH",
+      "issue_cwe": {
+        "id": 703,
+        "link": "https://cwe.mitre.org/data/definitions/703.html"
+      },
+      "issue_severity": "LOW",
+      "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
+      "line_number": 273,
+      "line_range": [
+        273
+      ],
+      "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
+      "test_id": "B101",
+      "test_name": "assert_used"
+    },
+    {
+      "code": "283         models_content = (app_dir / \"models.py\").read_text()\n284         assert f\"{self.app_name.title()} Models\" in models_content\n285         assert (\n",
       "col_offset": 8,
       "end_col_offset": 66,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8452,16 +8388,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 282,
+      "line_number": 284,
       "line_range": [
-        282
+        284
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "282         assert f\"{self.app_name.title()} Models\" in models_content\n283         assert (\n284             \"from fabiplus.core.models import BaseModel, register_model\"\n285             in models_content\n286         )\n287 \n",
+      "code": "284         assert f\"{self.app_name.title()} Models\" in models_content\n285         assert (\n286             \"from fabiplus.core.models import BaseModel, register_model\"\n287             in models_content\n288         )\n289 \n",
       "col_offset": 8,
       "end_col_offset": 9,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8472,19 +8408,19 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 283,
+      "line_number": 285,
       "line_range": [
-        283,
-        284,
         285,
-        286
+        286,
+        287,
+        288
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "289         views_content = (app_dir / \"views.py\").read_text()\n290         assert f\"{self.app_name.title()} Views\" in views_content\n291         assert (\n",
+      "code": "291         views_content = (app_dir / \"views.py\").read_text()\n292         assert f\"{self.app_name.title()} Views\" in views_content\n293         assert (\n",
       "col_offset": 8,
       "end_col_offset": 64,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8495,16 +8431,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 290,
+      "line_number": 292,
       "line_range": [
-        290
+        292
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "290         assert f\"{self.app_name.title()} Views\" in views_content\n291         assert (\n292             f'router = APIRouter(prefix=\"/{self.app_name}\", tags=[\"{self.app_name.title()}\"])'\n293             in views_content\n294         )\n295 \n",
+      "code": "292         assert f\"{self.app_name.title()} Views\" in views_content\n293         assert (\n294             f'router = APIRouter(prefix=\"/{self.app_name}\", tags=[\"{self.app_name.title()}\"])'\n295             in views_content\n296         )\n297 \n",
       "col_offset": 8,
       "end_col_offset": 9,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8515,19 +8451,19 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 291,
+      "line_number": 293,
       "line_range": [
-        291,
-        292,
         293,
-        294
+        294,
+        295,
+        296
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "297         apps_content = (app_dir / \"apps.py\").read_text()\n298         assert f'name = \"{self.app_name}\"' in apps_content\n299         assert f'verbose_name = \"{self.app_name.title()}\"' in apps_content\n",
+      "code": "299         apps_content = (app_dir / \"apps.py\").read_text()\n300         assert f'name = \"{self.app_name}\"' in apps_content\n301         assert f'verbose_name = \"{self.app_name.title()}\"' in apps_content\n",
       "col_offset": 8,
       "end_col_offset": 58,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8538,16 +8474,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 298,
+      "line_number": 300,
       "line_range": [
-        298
+        300
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "298         assert f'name = \"{self.app_name}\"' in apps_content\n299         assert f'verbose_name = \"{self.app_name.title()}\"' in apps_content\n300 \n",
+      "code": "300         assert f'name = \"{self.app_name}\"' in apps_content\n301         assert f'verbose_name = \"{self.app_name.title()}\"' in apps_content\n302 \n",
       "col_offset": 8,
       "end_col_offset": 74,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8558,16 +8494,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 299,
+      "line_number": 301,
       "line_range": [
-        299
+        301
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "313         # Verify old content is removed and new app created\n314         assert not (app_dir / \"existing_file.txt\").exists()\n315         assert (app_dir / \"models.py\").exists()\n",
+      "code": "315         # Verify old content is removed and new app created\n316         assert not (app_dir / \"existing_file.txt\").exists()\n317         assert (app_dir / \"models.py\").exists()\n",
       "col_offset": 8,
       "end_col_offset": 59,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8578,16 +8514,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 314,
+      "line_number": 316,
       "line_range": [
-        314
+        316
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "314         assert not (app_dir / \"existing_file.txt\").exists()\n315         assert (app_dir / \"models.py\").exists()\n316 \n",
+      "code": "316         assert not (app_dir / \"existing_file.txt\").exists()\n317         assert (app_dir / \"models.py\").exists()\n318 \n",
       "col_offset": 8,
       "end_col_offset": 47,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8598,16 +8534,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 315,
+      "line_number": 317,
       "line_range": [
-        315
+        317
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "337         models_content = (app_dir / \"models.py\").read_text()\n338         assert \"class TestModel(BaseModel, table=True):\" in models_content\n339         assert \"@register_model\" in models_content\n",
+      "code": "339         models_content = (app_dir / \"models.py\").read_text()\n340         assert \"class TestModel(BaseModel, table=True):\" in models_content\n341         assert \"@register_model\" in models_content\n",
       "col_offset": 8,
       "end_col_offset": 74,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8618,16 +8554,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 338,
+      "line_number": 340,
       "line_range": [
-        338
+        340
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "338         assert \"class TestModel(BaseModel, table=True):\" in models_content\n339         assert \"@register_model\" in models_content\n340 \n",
+      "code": "340         assert \"class TestModel(BaseModel, table=True):\" in models_content\n341         assert \"@register_model\" in models_content\n342 \n",
       "col_offset": 8,
       "end_col_offset": 50,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8638,16 +8574,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 339,
+      "line_number": 341,
       "line_range": [
-        339
+        341
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "342         admin_content = (app_dir / \"admin.py\").read_text()\n343         assert \"class TestModelAdmin(AdminView):\" in admin_content\n344         assert \"model = TestModel\" in admin_content\n",
+      "code": "344         admin_content = (app_dir / \"admin.py\").read_text()\n345         assert \"class TestModelAdmin(AdminView):\" in admin_content\n346         assert \"model = TestModel\" in admin_content\n",
       "col_offset": 8,
       "end_col_offset": 66,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8658,16 +8594,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 343,
+      "line_number": 345,
       "line_range": [
-        343
+        345
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",
       "test_name": "assert_used"
     },
     {
-      "code": "343         assert \"class TestModelAdmin(AdminView):\" in admin_content\n344         assert \"model = TestModel\" in admin_content\n345 \n",
+      "code": "345         assert \"class TestModelAdmin(AdminView):\" in admin_content\n346         assert \"model = TestModel\" in admin_content\n347 \n",
       "col_offset": 8,
       "end_col_offset": 51,
       "filename": "fabiplus/tests/test_templates.py",
@@ -8678,9 +8614,9 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.",
-      "line_number": 344,
+      "line_number": 346,
       "line_range": [
-        344
+        346
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b101_assert_used.html",
       "test_id": "B101",

@@ -16,8 +16,8 @@ from fabiplus.core.models import ModelRegistry, User
 def session_fixture():
     """Create test database session"""
     # Import all models to ensure they're registered
-    from fabiplus.core.user_model import User
     from fabiplus.core.activity import Activity
+    from fabiplus.core.user_model import User
 
     engine = create_engine(
         "sqlite://",
@@ -42,6 +42,7 @@ def client_fixture(session: Session):
 
     # Override the ModelRegistry engine before creating the app
     from fabiplus.core.models import ModelRegistry
+
     original_engine = ModelRegistry._engine
     ModelRegistry._engine = session.bind
 
@@ -53,6 +54,7 @@ def client_fixture(session: Session):
     # Manually trigger API route generation since lifespan events might not run in tests
     try:
         from fabiplus.api.auto import get_api_router
+
         api_router = get_api_router()
         app.include_router(api_router)
     except Exception as e:
@@ -94,7 +96,7 @@ def test_create_user(session: Session):
         hashed_password=auth_backend.hash_password("testpassword123"),
         is_active=True,
         is_staff=False,
-        is_superuser=False
+        is_superuser=False,
     )
     session.add(user)
     session.commit()
@@ -118,7 +120,7 @@ def test_authenticate_user(session: Session):
         hashed_password=auth_backend.hash_password("testpassword123"),
         is_active=True,
         is_staff=False,
-        is_superuser=False
+        is_superuser=False,
     )
     session.add(user)
     session.commit()

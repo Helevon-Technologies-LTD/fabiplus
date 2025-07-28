@@ -2,11 +2,12 @@
 Custom format responses for different file types
 """
 
+import asyncio
 import io
 import zipfile
 from datetime import datetime
 from pathlib import Path
-from typing import Any, BinaryIO, Dict, List, Optional, Union
+from typing import Any, AsyncGenerator, BinaryIO, Callable, Dict, List, Optional, Union
 
 from fastapi.responses import Response, StreamingResponse
 from starlette.background import BackgroundTask
@@ -22,8 +23,8 @@ class ExcelResponse(StreamingResponse):
         sheet_names: Optional[List[str]] = None,
         include_index: bool = False,
         background: Optional[BackgroundTask] = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.data = data
         self.filename = filename
         self.sheet_names = sheet_names
@@ -40,7 +41,7 @@ class ExcelResponse(StreamingResponse):
             **kwargs,
         )
 
-    async def _generate_excel(self):
+    async def _generate_excel(self) -> AsyncGenerator[bytes, None]:
         """Generate Excel file content"""
         try:
             from io import BytesIO
@@ -95,8 +96,8 @@ class PDFResponse(StreamingResponse):
         orientation: str = "portrait",
         page_size: str = "A4",
         background: Optional[BackgroundTask] = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.content = content
         self.filename = filename
         self.template = template
@@ -114,7 +115,7 @@ class PDFResponse(StreamingResponse):
             **kwargs,
         )
 
-    async def _generate_pdf(self):
+    async def _generate_pdf(self) -> AsyncGenerator[bytes, None]:
         """Generate PDF content"""
         try:
             from io import BytesIO
@@ -183,8 +184,8 @@ class ImageResponse(Response):
         height: int = 600,
         format: str = "PNG",
         filename: Optional[str] = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.data = data
         self.chart_type = chart_type
         self.width = width
@@ -261,8 +262,8 @@ class ZipResponse(StreamingResponse):
         filename: str = "archive.zip",
         compression: int = zipfile.ZIP_DEFLATED,
         background: Optional[BackgroundTask] = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.files = files
         self.filename = filename
         self.compression = compression
@@ -278,7 +279,7 @@ class ZipResponse(StreamingResponse):
             **kwargs,
         )
 
-    async def _generate_zip(self):
+    async def _generate_zip(self) -> AsyncGenerator[bytes, None]:
         """Generate ZIP file content"""
         buffer = io.BytesIO()
 
@@ -313,12 +314,12 @@ class CustomFormatResponse(StreamingResponse):
     def __init__(
         self,
         data: Any,
-        formatter: callable,
+        formatter: Callable[[Any], bytes],
         content_type: str,
         filename: Optional[str] = None,
         background: Optional[BackgroundTask] = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.data = data
         self.formatter = formatter
 
@@ -334,7 +335,7 @@ class CustomFormatResponse(StreamingResponse):
             **kwargs,
         )
 
-    async def _generate_content(self):
+    async def _generate_content(self) -> AsyncGenerator[bytes, None]:
         """Generate content using custom formatter"""
         try:
             if asyncio.iscoroutinefunction(self.formatter):
@@ -376,8 +377,8 @@ class TemplatedResponse(StreamingResponse):
         filename: Optional[str] = None,
         template_dir: Optional[str] = None,
         background: Optional[BackgroundTask] = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.template_name = template_name
         self.context = context
         self.template_dir = template_dir
@@ -394,7 +395,7 @@ class TemplatedResponse(StreamingResponse):
             **kwargs,
         )
 
-    async def _render_template(self):
+    async def _render_template(self) -> AsyncGenerator[bytes, None]:
         """Render template with context"""
         try:
             from jinja2 import Environment, FileSystemLoader, Template

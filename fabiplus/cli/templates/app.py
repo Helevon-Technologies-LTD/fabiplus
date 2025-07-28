@@ -5,7 +5,7 @@ Creates Django-style app structure with models, views, admin, and tests
 
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from jinja2 import BaseLoader, Environment
 
@@ -18,13 +18,14 @@ class AppTemplate:
         app_name: str,
         template_type: str = "default",
         orm_backend: str = "sqlmodel",
-    ):
+    ) -> None:
         self.app_name = app_name
         self.template_type = template_type
         self.orm_backend = orm_backend
         self.jinja_env = Environment(loader=BaseLoader())
 
         # Initialize ORM backend
+        self.orm_instance: Optional[Any] = None
         try:
             from fabiplus.core.orm import ORMRegistry
 
@@ -34,7 +35,7 @@ class AppTemplate:
             # Fallback to default if ORM not available
             self.orm_instance = None
 
-    def create_app(self, app_dir: Path, force: bool = False):
+    def create_app(self, app_dir: Path, force: bool = False) -> None:
         """Create a new FABI+ app"""
 
         if app_dir.exists() and force:
@@ -55,7 +56,7 @@ class AppTemplate:
         generate_admin: bool = True,
         generate_views: bool = True,
         generate_tests: bool = True,
-    ):
+    ) -> None:
         """Generate model code and related files"""
 
         context = self._get_template_context()
@@ -80,7 +81,7 @@ class AppTemplate:
         if generate_tests:
             self._append_to_tests(app_dir, context)
 
-    def _create_app_files(self, app_dir: Path):
+    def _create_app_files(self, app_dir: Path) -> None:
         """Create app files"""
 
         context = self._get_template_context()
@@ -514,7 +515,7 @@ class {{ app_name_title }}Config(AppConfig):
 default_app_config = "{{ app_name }}.apps.{{ app_name_title }}Config"
 '''
 
-    def _append_to_models(self, app_dir: Path, context: Dict[str, Any]):
+    def _append_to_models(self, app_dir: Path, context: Dict[str, Any]) -> None:
         """Append model code to models.py"""
         models_file = app_dir / "models.py"
 
@@ -542,7 +543,7 @@ class {{ model_name }}(BaseModel, table=True):
         with open(models_file, "a") as f:
             f.write(rendered_model)
 
-    def _append_to_admin(self, app_dir: Path, context: Dict[str, Any]):
+    def _append_to_admin(self, app_dir: Path, context: Dict[str, Any]) -> None:
         """Append admin code to admin.py"""
         admin_file = app_dir / "admin.py"
 
@@ -562,7 +563,7 @@ admin_views["{{ model_name_lower }}"] = {{ model_name }}Admin
         with open(admin_file, "a") as f:
             f.write(rendered_admin)
 
-    def _append_to_views(self, app_dir: Path, context: Dict[str, Any]):
+    def _append_to_views(self, app_dir: Path, context: Dict[str, Any]) -> None:
         """Append view code to views.py"""
         views_file = app_dir / "views.py"
 
@@ -585,7 +586,7 @@ async def list_{{ model_name_lower }}():
         with open(views_file, "a") as f:
             f.write(rendered_view)
 
-    def _append_to_tests(self, app_dir: Path, context: Dict[str, Any]):
+    def _append_to_tests(self, app_dir: Path, context: Dict[str, Any]) -> None:
         """Append test code to tests.py"""
         tests_file = app_dir / "tests.py"
 

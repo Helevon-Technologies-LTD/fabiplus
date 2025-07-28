@@ -4,7 +4,7 @@ Pure SQLAlchemy implementation without SQLModel
 """
 
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from .base import BaseORMBackend, register_orm_backend
 
@@ -43,7 +43,10 @@ class SQLAlchemyBackend(BaseORMBackend):
         }
 
     def generate_model_code(
-        self, model_name: str, fields: List[Tuple[str, str]], app_name: str = None
+        self,
+        model_name: str,
+        fields: List[Tuple[str, str]],
+        app_name: Optional[str] = None,
     ) -> str:
         """Generate SQLAlchemy model code"""
 
@@ -335,6 +338,7 @@ Create Date: ${create_date}
 """
 from alembic import op
 import sqlalchemy as sa
+import sqlmodel  # Required for core models that use SQLModel types
 import fabiplus
 import fabiplus.core.user_model
 ${imports if imports else ""}

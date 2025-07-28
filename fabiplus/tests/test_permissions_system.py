@@ -363,7 +363,9 @@ class TestPermissionCheckers:
 
         # This would be async in real implementation
         # For testing, we'll mock the async behavior
-        with patch.object(checker, "check_permission", new_callable=AsyncMock) as mock_check:
+        with patch.object(
+            checker, "check_permission", new_callable=AsyncMock
+        ) as mock_check:
             mock_check.return_value = True
             result = await checker.check_permission(self.user, read_perm)
             assert result is True
@@ -467,7 +469,9 @@ class TestPermissionIntegration:
         checker = CompositePermissionChecker(self.session)
 
         # Mock the async methods for testing
-        with patch.object(checker, "check_permission", new_callable=AsyncMock) as mock_check:
+        with patch.object(
+            checker, "check_permission", new_callable=AsyncMock
+        ) as mock_check:
             mock_check.return_value = True
 
             # Test model permission

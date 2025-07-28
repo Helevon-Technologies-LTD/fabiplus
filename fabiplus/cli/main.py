@@ -30,7 +30,6 @@ cli = typer.Typer(
     name="fabiplus",
     help="FABI+ Framework - Production-ready API-only Python framework",
     add_completion=False,
-    rich_markup_mode="rich",
 )
 
 # Add command groups
@@ -44,7 +43,7 @@ cli.add_typer(dev.app, name="dev", help="Development tools")
 
 
 @cli.command()
-def version():
+def version() -> None:
     """Show FABI+ version information"""
     try:
         import fabiplus
@@ -58,7 +57,7 @@ def version():
 
 
 @cli.command()
-def info():
+def info() -> None:
     """Show system and framework information"""
     import platform
     import sys
@@ -85,7 +84,7 @@ def info():
 
 
 @cli.command()
-def quickstart():
+def quickstart() -> None:
     """Quick start guide for FABI+"""
     guide_text = """
 [bold green]🚀 FABI+ Quick Start Guide[/bold green]
@@ -119,7 +118,7 @@ def quickstart():
     console.print(Panel(guide_text, title="Quick Start", border_style="green"))
 
 
-def main():
+def main() -> None:
     """Main CLI entry point"""
     try:
         cli()

@@ -7,7 +7,6 @@ import uuid
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-
 from sqlalchemy import Text
 from sqlmodel import JSON, Column, Field, Relationship, SQLModel
 
@@ -20,7 +19,10 @@ class MediaFolder(SQLModel, table=True):
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
     name: str = Field(max_length=255, description="Folder name")
     slug: Optional[str] = Field(
-        default=None, max_length=255, unique=True, description="URL-friendly folder name"
+        default=None,
+        max_length=255,
+        unique=True,
+        description="URL-friendly folder name",
     )
     description: Optional[str] = Field(default="", description="Folder description")
     parent_id: Optional[uuid.UUID] = Field(
@@ -65,6 +67,7 @@ class MediaFolder(SQLModel, table=True):
         # Auto-generate slug if not provided
         if not data.get("slug") and data.get("name"):
             import re
+
             slug = re.sub(r"[^a-zA-Z0-9\-_]", "-", data["name"].lower())
             slug = re.sub(r"-+", "-", slug).strip("-")
             data["slug"] = slug

@@ -348,37 +348,49 @@ else:
             f.write(content)
 
     def _update_script_template(self, script_mako: Path):
-        """Update script.py.mako template to include required imports"""
-        content = '''"""${message}
+        """Update script.py.mako template to include required imports based on ORM backend"""
 
-Revision ID: ${up_revision}
-Revises: ${down_revision | comma,n}
-Create Date: ${create_date}
+        # Generate backend-specific imports
+        # Note: Even SQLAlchemy backend needs sqlmodel import because core models use SQLModel
+        if self.orm_backend == "sqlmodel":
+            orm_imports = "import sqlmodel"
+        elif self.orm_backend == "sqlalchemy":
+            orm_imports = (
+                "import sqlmodel  # Required for core models that use SQLModel types"
+            )
+        else:  # tortoise
+            orm_imports = "# Tortoise ORM backend - no additional ORM imports needed"
+
+        content = f'''"""${{message}}
+
+Revision ID: ${{up_revision}}
+Revises: ${{down_revision | comma,n}}
+Create Date: ${{create_date}}
 
 """
 from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
-import sqlmodel
+{orm_imports}
 import fabiplus.core.user_model
-${imports if imports else ""}
+${{imports if imports else ""}}
 
 # revision identifiers, used by Alembic.
-revision: str = ${repr(up_revision)}
-down_revision: Union[str, None] = ${repr(down_revision)}
-branch_labels: Union[str, Sequence[str], None] = ${repr(branch_labels)}
-depends_on: Union[str, Sequence[str], None] = ${repr(depends_on)}
+revision: str = ${{repr(up_revision)}}
+down_revision: Union[str, None] = ${{repr(down_revision)}}
+branch_labels: Union[str, Sequence[str], None] = ${{repr(branch_labels)}}
+depends_on: Union[str, Sequence[str], None] = ${{repr(depends_on)}}
 
 
 def upgrade() -> None:
     """Upgrade schema."""
-    ${upgrades if upgrades else "pass"}
+    ${{upgrades if upgrades else "pass"}}
 
 
 def downgrade() -> None:
     """Downgrade schema."""
-    ${downgrades if downgrades else "pass"}
+    ${{downgrades if downgrades else "pass"}}
 '''
 
         with open(script_mako, "w") as f:

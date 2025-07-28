@@ -47,7 +47,7 @@ class TestProjectCLI:
                 include_docker=False,
                 orm_backend="sqlmodel",
                 auth_backend="oauth2",
-                show_admin_routes=False
+                show_admin_routes=False,
             )
             mock_instance.create_project.assert_called_once()
 
@@ -79,7 +79,7 @@ class TestProjectCLI:
                 include_docker=False,
                 orm_backend="sqlmodel",
                 auth_backend="oauth2",
-                show_admin_routes=False
+                show_admin_routes=False,
             )
 
     def test_startproject_command_with_docker(self):
@@ -102,7 +102,7 @@ class TestProjectCLI:
                 include_docker=True,
                 orm_backend="sqlmodel",
                 auth_backend="oauth2",
-                show_admin_routes=False
+                show_admin_routes=False,
             )
 
     def test_startproject_command_with_force(self):
@@ -195,7 +195,9 @@ class TestAppCLI:
                     result = self.runner.invoke(app_app, ["startapp", app_name])
 
             assert result.exit_code == 0
-            mock_template.assert_called_once_with(app_name, "default", orm_backend="sqlmodel")
+            mock_template.assert_called_once_with(
+                app_name, "default", orm_backend="sqlmodel"
+            )
             mock_instance.create_app.assert_called_once()
 
     def test_startapp_command_with_template(self):
@@ -216,7 +218,9 @@ class TestAppCLI:
                     )
 
             assert result.exit_code == 0
-            mock_template.assert_called_once_with(app_name, template_type, orm_backend="sqlmodel")
+            mock_template.assert_called_once_with(
+                app_name, template_type, orm_backend="sqlmodel"
+            )
 
     def test_startapp_command_with_directory(self):
         """Test startapp command with custom directory"""

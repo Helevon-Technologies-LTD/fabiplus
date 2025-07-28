@@ -4,7 +4,7 @@ Default ORM implementation using SQLModel + SQLAlchemy
 """
 
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from .base import BaseORMBackend, register_orm_backend
 
@@ -44,7 +44,10 @@ class SQLModelBackend(BaseORMBackend):
         }
 
     def generate_model_code(
-        self, model_name: str, fields: List[Tuple[str, str]], app_name: str = None
+        self,
+        model_name: str,
+        fields: List[Tuple[str, str]],
+        app_name: Optional[str] = None,
     ) -> str:
         """Generate SQLModel model code"""
 

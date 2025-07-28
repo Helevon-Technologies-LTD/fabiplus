@@ -16,23 +16,7 @@ from ..templates import AppTemplate
 console = Console()
 app = typer.Typer()
 
-# Module-level CLI argument/option instances to avoid B008 warnings
-NameArg = typer.Argument(..., help="App name")
-AppNameArg = typer.Argument(..., help="App name")
-ModelNameArg = typer.Argument(..., help="Model name")
-RemoveNameArg = typer.Argument(..., help="App name to remove")
-DeleteNameArg = typer.Argument(..., help="App name to delete")
-DirectoryOpt = typer.Option(None, "--directory", "-d", help="Target directory")
-TemplateOpt = typer.Option("default", "--template", "-t", help="App template")
-ForceOpt = typer.Option(False, "--force", "-f", help="Overwrite existing app")
-RemoveForceOpt = typer.Option(
-    False, "--force", "-f", help="Force removal without confirmation"
-)
-FieldsOpt = typer.Option(
-    "", "--fields", "-f", help="Model fields (name:type,name:type)"
-)
-ViewsOpt = typer.Option(True, "--views/--no-views", help="Generate API views")
-TestsOpt = typer.Option(True, "--tests/--no-tests", help="Generate test cases")
+# Note: Removed module-level CLI argument/option instances to fix Typer compatibility issues
 
 
 @app.command("startapp")
@@ -45,7 +29,7 @@ def start_app(
         "default", "--template", "-t", help="App template to use"
     ),
     force: bool = typer.Option(False, "--force", "-f", help="Overwrite existing app"),
-):
+) -> None:
     """
     Create a new FABI+ app with models, views, and admin
 
@@ -99,7 +83,9 @@ def start_app(
             orm_backend = _detect_project_orm_backend()
 
             # Create app structure
-            template_engine = AppTemplate(name, template, orm_backend=orm_backend)
+            template_engine = AppTemplate(
+                name, template or "default", orm_backend=orm_backend
+            )
             template_engine.create_app(app_dir, force=force)
 
             progress.update(task, description="App created successfully!")

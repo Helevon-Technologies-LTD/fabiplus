@@ -2,16 +2,16 @@
     "report_meta": {
         "scan_target": "environment",
         "scanned": [
-            "/home/danielaiyelu/Desktop/Helevon/new_fabi/venv/lib/python3.10/site-packages",
-            "/home/danielaiyelu/Desktop/Helevon/new_fabi/venv/lib/python3.10/site-packages/setuptools/_vendor"
+            "/home/danielaiyelu/Desktop/Helevon/new_fabi/venv/lib/python3.10/site-packages/setuptools/_vendor",
+            "/home/danielaiyelu/Desktop/Helevon/new_fabi/venv/lib/python3.10/site-packages"
         ],
         "policy_file": null,
         "policy_file_source": "local",
         "api_key": false,
         "local_database_path": null,
         "safety_version": "2.3.4",
-        "timestamp": "2025-07-28 11:03:44",
-        "packages_found": 147,
+        "timestamp": "2025-07-28 15:04:30",
+        "packages_found": 152,
         "vulnerabilities_found": 9,
         "vulnerabilities_ignored": 0,
         "remediations_recommended": 0,
@@ -30,9 +30,9 @@
             "safety_source": "cli"
         },
         "git": {
-            "branch": "main",
+            "branch": "develop",
             "tag": "",
-            "commit": "f3996a8c557c67b990454c8338d57750316fa3cf",
+            "commit": "ac92664c6827397c02f1b9ea044ce73cec09dffd",
             "dirty": true,
             "origin": "https://github.com/Helevon-Technologies-LTD/fabiplus.git"
         },
@@ -272,6 +272,10 @@
             "name": "mergedeep",
             "version": "1.3.4"
         },
+        "migrationtest": {
+            "name": "migrationtest",
+            "version": "0.1.0"
+        },
         "mkdocs": {
             "name": "mkdocs",
             "version": "1.6.1"
@@ -304,6 +308,10 @@
             "name": "nodeenv",
             "version": "1.9.1"
         },
+        "numpy": {
+            "name": "numpy",
+            "version": "2.2.6"
+        },
         "orjson": {
             "name": "orjson",
             "version": "3.11.1"
@@ -315,6 +323,10 @@
         "paginate": {
             "name": "paginate",
             "version": "0.5.7"
+        },
+        "pandas-stubs": {
+            "name": "pandas-stubs",
+            "version": "2.3.0.250703"
         },
         "passlib": {
             "name": "passlib",
@@ -484,9 +496,9 @@
             "name": "setuptools",
             "version": "80.9.0"
         },
-        "shellingham": {
-            "name": "shellingham",
-            "version": "1.5.4"
+        "simpletest": {
+            "name": "simpletest",
+            "version": "0.1.0"
         },
         "six": {
             "name": "six",
@@ -538,7 +550,15 @@
         },
         "typer": {
             "name": "typer",
-            "version": "0.12.3"
+            "version": "0.11.1"
+        },
+        "types-pytz": {
+            "name": "types-pytz",
+            "version": "2025.2.0.20250516"
+        },
+        "types-reportlab": {
+            "name": "types-reportlab",
+            "version": "4.4.1.20250602"
         },
         "typing-extensions": {
             "name": "typing-extensions",
