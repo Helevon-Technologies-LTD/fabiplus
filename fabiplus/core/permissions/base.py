@@ -89,11 +89,14 @@ class Permission(BaseModel):
         if self.resource and resource and self.resource != resource:
             return False
 
-        # Check conditions
+        # Check conditions - all conditions must be satisfied
         for condition_key, condition_value in self.conditions.items():
-            if condition_key in kwargs:
-                if kwargs[condition_key] != condition_value:
-                    return False
+            if condition_key not in kwargs:
+                # Required condition is missing
+                return False
+            if kwargs[condition_key] != condition_value:
+                # Condition value doesn't match
+                return False
 
         return True
 

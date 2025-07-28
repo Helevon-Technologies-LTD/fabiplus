@@ -549,7 +549,12 @@ admin_router = create_admin_router()
 # Create main admin router that includes both UI and API
 main_admin_router = APIRouter()
 
-# Include UI router at /admin/ if enabled
+# Include API router at /admin/api/ FIRST (more specific routes should come first)
+main_admin_router.include_router(
+    admin_router, tags=["admin-api"], include_in_schema=settings.ADMIN_ROUTES_IN_DOCS
+)
+
+# Include UI router at /admin/ if enabled (broader routes should come after specific ones)
 if settings.ADMIN_UI_ENABLED:
     try:
         from .ui import ui_router
@@ -562,8 +567,3 @@ if settings.ADMIN_UI_ENABLED:
         )
     except ImportError:
         pass  # UI router not available
-
-# Include API router at /admin/api/
-main_admin_router.include_router(
-    admin_router, tags=["admin-api"], include_in_schema=settings.ADMIN_ROUTES_IN_DOCS
-)

@@ -161,7 +161,7 @@ class TestProjectTemplate:
         template._create_main_app(project_dir)
 
         # Verify AppTemplate was called correctly
-        mock_app_template.assert_called_once_with("core", "minimal")
+        mock_app_template.assert_called_once_with("core", "minimal", orm_backend="sqlmodel")
         mock_instance.create_app.assert_called_once()
 
     def test_create_project_full_workflow(self):

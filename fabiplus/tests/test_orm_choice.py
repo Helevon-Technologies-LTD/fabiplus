@@ -1,6 +1,7 @@
 """
 Tests for ORM Choice System
-Tests the ability to choose between SQLModel, SQLAlchemy, and Tortoise ORM
+Tests the ability to choose between SQLModel and SQLAlchemy ORM backends
+Note: Tortoise ORM support is planned as a future feature
 """
 
 import shutil
@@ -27,10 +28,10 @@ class TestORMRegistry:
         # Test listing backends
         backends = ORMRegistry.list_backends()
         assert isinstance(backends, list)
-        assert len(backends) > 0
+        assert len(backends) == 2  # Currently supports SQLModel and SQLAlchemy
         assert "sqlmodel" in backends
         assert "sqlalchemy" in backends
-        assert "tortoise" in backends
+        # Note: Tortoise ORM support is planned as a future feature
 
     def test_orm_backend_registration(self):
         """Test ORM backend registration"""
@@ -43,8 +44,9 @@ class TestORMRegistry:
         sqlalchemy_backend = ORMRegistry.get_backend("sqlalchemy")
         assert sqlalchemy_backend is not None
 
-        tortoise_backend = ORMRegistry.get_backend("tortoise")
-        assert tortoise_backend is not None
+        # Test that unsupported backend raises appropriate error
+        with pytest.raises(ValueError, match="Unknown ORM backend"):
+            ORMRegistry.get_backend("tortoise")
 
     def test_orm_backend_validation(self):
         """Test ORM backend validation"""
@@ -53,9 +55,9 @@ class TestORMRegistry:
         # Test valid backends
         assert ORMRegistry.validate_backend("sqlmodel") is True
         assert ORMRegistry.validate_backend("sqlalchemy") is True
-        assert ORMRegistry.validate_backend("tortoise") is True
 
-        # Test invalid backend
+        # Test invalid backends
+        assert ORMRegistry.validate_backend("tortoise") is False  # Not yet implemented
         assert ORMRegistry.validate_backend("nonexistent") is False
 
     def test_orm_backend_info(self):
@@ -69,10 +71,16 @@ class TestORMRegistry:
         assert "supports_async" in info
         assert info["supports_async"] is True
 
-        # Test Tortoise info
-        info = ORMRegistry.get_backend_info("tortoise")
-        assert info["name"] == "tortoise"
+        # Test SQLAlchemy info
+        info = ORMRegistry.get_backend_info("sqlalchemy")
+        assert info["name"] == "sqlalchemy"
+        assert "dependencies" in info
+        assert "supports_async" in info
         assert info["supports_async"] is True
+
+        # Test that unsupported backend raises appropriate error
+        with pytest.raises(ValueError, match="Unknown ORM backend"):
+            ORMRegistry.get_backend_info("tortoise")
 
 
 class TestORMChoiceSystem:

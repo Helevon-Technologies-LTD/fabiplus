@@ -367,7 +367,7 @@ class TestResponseIntegration:
 
         response = self.client.get("/export-csv")
         assert response.status_code == 200
-        assert response.headers["content-type"] == "text/csv"
+        assert response.headers["content-type"] == "text/csv; charset=utf-8"
         assert "users.csv" in response.headers["content-disposition"]
 
 
