@@ -10,7 +10,7 @@
         "api_key": false,
         "local_database_path": null,
         "safety_version": "2.3.4",
-        "timestamp": "2025-07-28 15:04:30",
+        "timestamp": "2025-07-28 16:15:42",
         "packages_found": 152,
         "vulnerabilities_found": 9,
         "vulnerabilities_ignored": 0,
@@ -32,7 +32,7 @@
         "git": {
             "branch": "develop",
             "tag": "",
-            "commit": "ac92664c6827397c02f1b9ea044ce73cec09dffd",
+            "commit": "ed5a096721823d1cf840734d8ff1eee950e69fea",
             "dirty": true,
             "origin": "https://github.com/Helevon-Technologies-LTD/fabiplus.git"
         },
@@ -342,7 +342,7 @@
         },
         "pillow": {
             "name": "pillow",
-            "version": "11.2.1"
+            "version": "11.3.0"
         },
         "pip": {
             "name": "pip",
@@ -518,7 +518,7 @@
         },
         "sqlmodel": {
             "name": "sqlmodel",
-            "version": "0.0.14"
+            "version": "0.0.24"
         },
         "starlette": {
             "name": "starlette",

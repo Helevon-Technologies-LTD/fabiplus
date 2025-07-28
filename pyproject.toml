@@ -43,6 +43,10 @@ typer = ">=0.9.0,<0.12.0"
 rich = ">=13.0.0"
 python-dotenv = ">=1.0.0"
 sqlmodel = ">=0.0.14"
+# Media system dependencies
+pillow = ">=10.0.0"
+python-magic = ">=0.4.27"
+pypdf = ">=4.0.0"
 # Optional dependencies for extras
 psycopg2-binary = {version = ">=2.9.0", optional = true}
 pymysql = {version = ">=1.1.0", optional = true}

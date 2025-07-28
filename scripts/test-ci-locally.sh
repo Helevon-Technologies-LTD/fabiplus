@@ -50,6 +50,61 @@ echo -e "${GREEN}✅ Poetry found: $(poetry --version)${NC}"
 # Install dependencies
 echo -e "${YELLOW}📦 Installing dependencies...${NC}"
 poetry install --no-interaction
+
+# Verify critical dependencies (especially media system)
+echo -e "${YELLOW}🔍 Verifying critical dependencies...${NC}"
+
+# Test PIL/Pillow
+poetry run python -c "
+try:
+    from PIL import Image
+    print('✅ PIL/Pillow: Available')
+except ImportError as e:
+    print('❌ PIL/Pillow: Missing -', e)
+    exit(1)
+" || {
+    echo -e "${RED}❌ PIL/Pillow dependency missing. Check pyproject.toml${NC}"
+    exit 1
+}
+
+# Test python-magic
+poetry run python -c "
+try:
+    import magic
+    print('✅ python-magic: Available')
+except ImportError as e:
+    print('❌ python-magic: Missing -', e)
+    exit(1)
+" || {
+    echo -e "${RED}❌ python-magic dependency missing. Check pyproject.toml${NC}"
+    exit 1
+}
+
+# Test pypdf
+poetry run python -c "
+try:
+    import pypdf
+    print('✅ pypdf: Available')
+except ImportError as e:
+    print('❌ pypdf: Missing -', e)
+    exit(1)
+" || {
+    echo -e "${RED}❌ pypdf dependency missing. Check pyproject.toml${NC}"
+    exit 1
+}
+
+# Test SQLModel
+poetry run python -c "
+try:
+    from sqlmodel import select
+    print('✅ SQLModel: Available')
+except ImportError as e:
+    print('❌ SQLModel: Missing -', e)
+    exit(1)
+" || {
+    echo -e "${RED}❌ SQLModel dependency missing. Check pyproject.toml${NC}"
+    exit 1
+}
 print_status $? "Dependencies installation"
 
 # Run code formatting checks

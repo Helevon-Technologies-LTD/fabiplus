@@ -7,7 +7,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Set
 
 import magic
-import PyPDF2
+import pypdf
 from fastapi import HTTPException, UploadFile, status
 from PIL import Image
 
@@ -279,7 +279,7 @@ class DocumentValidator(FileValidator):
         try:
             from io import BytesIO
 
-            pdf_reader = PyPDF2.PdfReader(BytesIO(content))
+            pdf_reader = pypdf.PdfReader(BytesIO(content))
 
             num_pages = len(pdf_reader.pages)
             result["metadata"]["num_pages"] = num_pages
