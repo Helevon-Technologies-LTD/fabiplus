@@ -426,7 +426,7 @@ def downgrade() -> None:
                         timeout=5,
                     )
                     black_available = result.returncode == 0
-                except (subprocess.TimeoutExpired, FileNotFoundError, OSError):
+                except (subprocess.TimeoutExpired, OSError):
                     black_available = False
 
             # Read current alembic.ini
