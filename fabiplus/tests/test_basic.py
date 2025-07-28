@@ -46,19 +46,44 @@ def client_fixture(session: Session):
     original_engine = ModelRegistry._engine
     ModelRegistry._engine = session.bind
 
+    # Ensure models are properly registered before creating the app
+    from fabiplus.core.activity import Activity
+    from fabiplus.core.models import ModelRegistry
+    from fabiplus.core.user_model import User
+
+    # Explicitly register core models to ensure they're available
+    ModelRegistry.register(User)
+    ModelRegistry.register(Activity)
+
+    # Trigger model discovery to ensure all models are loaded
+    try:
+        ModelRegistry.discover_models()
+    except Exception:
+        # Model discovery might fail in test environment, but core models are already registered
+        pass
+
     app = create_app()
 
     # Override the get_session dependency
     app.dependency_overrides[ModelRegistry.get_session] = get_session_override
 
-    # Manually trigger API route generation since lifespan events might not run in tests
+    # Ensure API routes are included - this handles both cases where lifespan runs and doesn't run
     try:
         from fabiplus.api.auto import get_api_router
 
         api_router = get_api_router()
-        app.include_router(api_router)
+
+        # Check if routes are already included by checking existing routes
+        existing_paths = [route.path for route in app.routes if hasattr(route, "path")]
+        user_route_exists = any("/api/user/" in path for path in existing_paths)
+
+        if not user_route_exists:
+            app.include_router(api_router)
+
     except Exception as e:
-        print(f"Error generating API routes in test: {e}")
+        # If API route generation fails, the test will fail anyway
+        # but we don't want to crash the test setup
+        pass
 
     client = TestClient(app)
     yield client
@@ -197,9 +222,29 @@ def test_admin_endpoints_require_auth(client: TestClient):
 
 def test_api_endpoints_exist(client: TestClient):
     """Test that API endpoints are created for models"""
+    # First, verify that the API routes are actually available
+    # by checking the OpenAPI schema
+    response = client.get("/openapi.json")
+    assert response.status_code == 200
+    openapi_data = response.json()
+
+    # Check if user endpoints exist in the OpenAPI schema
+    paths = openapi_data.get("paths", {})
+    user_list_path = "/api/user/"
+    user_detail_path = "/api/user/{item_id}"
+
+    assert (
+        user_list_path in paths
+    ), f"User list endpoint not found in paths: {list(paths.keys())}"
+    assert (
+        user_detail_path in paths
+    ), f"User detail endpoint not found in paths: {list(paths.keys())}"
+
     # Test user endpoints - User model is a core model and requires authentication
     response = client.get("/api/user/")
-    assert response.status_code == 401
+    assert (
+        response.status_code == 401
+    ), f"Expected 401, got {response.status_code}. Response: {response.text}"
 
     # Verify the error message
     data = response.json()
