@@ -6,7 +6,7 @@ WebSocket-based real-time log streaming for admin interface
 import asyncio
 import json
 import re
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set
 
@@ -47,7 +47,7 @@ class LogEntry:
         self.logger = logger
         self.message = message
         self.raw_line = raw_line
-        self.parsed_at = datetime.utcnow()
+        self.parsed_at = datetime.now(timezone.utc)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -90,7 +90,8 @@ class LogParser:
                 groups = match.groupdict()
 
                 timestamp = groups.get(
-                    "timestamp", datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+                    "timestamp",
+                    datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
                 )
                 level = groups.get("level", "INFO").upper()
                 logger = groups.get("logger", "unknown")
@@ -100,7 +101,7 @@ class LogParser:
 
         # Fallback
         return LogEntry(
-            datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"),
+            datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
             "INFO",
             "unknown",
             line,

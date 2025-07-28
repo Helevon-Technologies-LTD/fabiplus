@@ -219,3 +219,5 @@ test-ci-locally.sh
 !bug_report.md
 !feature_request.md
 !SECURITY.md
+
+*.db

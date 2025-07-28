@@ -157,7 +157,7 @@ class FABIPlusSettings(BaseSettings):
     CUSTOM_SETTINGS_MODULE: Optional[str] = Field(
         default=None,
         description="Path to custom settings module",
-        env="FABIPLUS_SETTINGS",
+        alias="FABIPLUS_SETTINGS",
     )
 
     model_config = ConfigDict(

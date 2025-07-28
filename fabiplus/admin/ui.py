@@ -575,13 +575,13 @@ async def admin_activities_ui(
 
     # Get activity statistics
     with ModelRegistry.get_session() as session:
-        from datetime import datetime
+        from datetime import datetime, timezone
 
         # from datetime import timedelta  # Currently unused
         from ..core.activity import Activity
 
         total_count = session.exec(select(func.count()).select_from(Activity)).first()
-        today_start = datetime.utcnow().replace(
+        today_start = datetime.now(timezone.utc).replace(
             hour=0, minute=0, second=0, microsecond=0
         )
         today_count = session.exec(

@@ -6,7 +6,7 @@ Provides additional authentication options beyond the default OAuth2
 import hashlib
 import logging
 import secrets
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any, Callable, Optional
 
 import jwt
@@ -130,7 +130,7 @@ class CustomAuthMiddleware:
 
     def _is_rate_limited(self, client_ip: str) -> bool:
         """Simple rate limiting - 100 requests per minute"""
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         minute_ago = now - timedelta(minutes=1)
 
         if client_ip not in self.rate_limit_store:
@@ -284,7 +284,7 @@ def create_session_token(user_id: str) -> str:
     """Create a session token"""
     import base64
 
-    session_data = f"{user_id}:{datetime.utcnow().isoformat()}"
+    session_data = f"{user_id}:{datetime.now(timezone.utc).isoformat()}"
     return base64.b64encode(session_data.encode()).decode()
 
 
