@@ -38,7 +38,7 @@ class AdminView(GenericAPIView):
 
         fields = []
 
-        for field_name, field_info in self.model.__fields__.items():
+        for field_name, field_info in self.model.model_fields.items():
             # Handle Pydantic 2 FieldInfo compatibility
             field_annotation = getattr(
                 field_info, "annotation", getattr(field_info, "type_", str)

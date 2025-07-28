@@ -37,7 +37,7 @@ def process_form_data(
     processed_data = {}
 
     # Get model field information
-    for field_name, field_info in model_class.__fields__.items():
+    for field_name, field_info in model_class.model_fields.items():
         if field_name not in data:
             continue
 

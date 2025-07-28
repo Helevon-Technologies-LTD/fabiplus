@@ -52,10 +52,8 @@ class APIGenerator:
         fields = {}
         type_hints = get_type_hints(model_class)
 
-        # Get model fields (handle different Pydantic versions)
-        model_fields = getattr(model_class, "__fields__", None) or getattr(
-            model_class, "model_fields", {}
-        )
+        # Get model fields (Pydantic v2 approach)
+        model_fields = getattr(model_class, "model_fields", {})
 
         for field_name, field_info in model_fields.items():
             if field_name not in exclude_fields:
