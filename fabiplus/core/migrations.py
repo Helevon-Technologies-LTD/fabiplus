@@ -396,6 +396,69 @@ def downgrade() -> None:
         with open(script_mako, "w") as f:
             f.write(content)
 
+    def _configure_black_hook(self):
+        """Configure black post-write hook if black is available"""
+        try:
+            import importlib.util
+            import os
+            import subprocess
+            import sys
+
+            # Check if black is available in the current Python environment
+            black_available = False
+
+            # First, try to import black directly (most reliable for current environment)
+            try:
+                import black
+
+                black_available = True
+            except ImportError:
+                black_available = False
+
+            # If import failed, try to check if black executable is available in current environment
+            if not black_available:
+                try:
+                    # Use sys.executable to ensure we're checking the current Python environment
+                    result = subprocess.run(
+                        [sys.executable, "-m", "black", "--version"],
+                        capture_output=True,
+                        text=True,
+                        timeout=5,
+                    )
+                    black_available = result.returncode == 0
+                except (subprocess.TimeoutExpired, FileNotFoundError, OSError):
+                    black_available = False
+
+            # Read current alembic.ini
+            alembic_ini = Path.cwd() / "alembic.ini"
+            if not alembic_ini.exists():
+                return
+
+            with open(alembic_ini, "r") as f:
+                content = f.read()
+
+            # Configure black hook based on availability
+            if black_available:
+                # Enable black hook
+                content = content.replace(
+                    "# hooks = black\n# black.type = console_scripts\n# black.entrypoint = black\n# black.options = -l 79 REVISION_SCRIPT_FILENAME",
+                    "hooks = black\nblack.type = console_scripts\nblack.entrypoint = black\nblack.options = -l 79 REVISION_SCRIPT_FILENAME",
+                )
+            else:
+                # Ensure black hook is disabled (already commented out by default)
+                content = content.replace(
+                    "hooks = black\nblack.type = console_scripts\nblack.entrypoint = black\nblack.options = -l 79 REVISION_SCRIPT_FILENAME",
+                    "# hooks = black\n# black.type = console_scripts\n# black.entrypoint = black\n# black.options = -l 79 REVISION_SCRIPT_FILENAME",
+                )
+
+            # Write back the modified content
+            with open(alembic_ini, "w") as f:
+                f.write(content)
+
+        except Exception as e:
+            # If anything goes wrong, just continue without black formatting
+            print(f"Warning: Could not configure black hook: {e}")
+
     def makemigrations(self, message: Optional[str] = None) -> bool:
         """Create a new migration (like Django's makemigrations)"""
         try:
@@ -413,6 +476,9 @@ def downgrade() -> None:
 
         # Ensure all models are loaded
         ModelRegistry.discover_models()
+
+        # Check if black is available and enable post-write hook if it is
+        self._configure_black_hook()
 
         # Generate migration
         message = message or "Auto-generated migration"

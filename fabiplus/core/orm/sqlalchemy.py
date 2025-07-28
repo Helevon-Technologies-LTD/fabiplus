@@ -212,10 +212,15 @@ output_encoding = utf-8
 sqlalchemy.url = sqlite:///./{self.project_name}.db
 
 [post_write_hooks]
-hooks = black
-black.type = console_scripts
-black.entrypoint = black
-black.options = -l 79 REVISION_SCRIPT_FILENAME
+# post_write_hooks defines scripts or Python functions that are run
+# on newly generated revision scripts.
+
+# format using "black" - use the console_scripts runner, against the "black" entrypoint
+# Note: This hook is only enabled if black is available in the environment
+# hooks = black
+# black.type = console_scripts
+# black.entrypoint = black
+# black.options = -l 79 REVISION_SCRIPT_FILENAME
 
 [loggers]
 keys = root,sqlalchemy,alembic

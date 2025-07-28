@@ -225,10 +225,11 @@ sqlalchemy.url = sqlite:///./{self.project_name}.db
 # on newly generated revision scripts.
 
 # format using "black" - use the console_scripts runner, against the "black" entrypoint
-hooks = black
-black.type = console_scripts
-black.entrypoint = black
-black.options = -l 79 REVISION_SCRIPT_FILENAME
+# Note: This hook is only enabled if black is available in the environment
+# hooks = black
+# black.type = console_scripts
+# black.entrypoint = black
+# black.options = -l 79 REVISION_SCRIPT_FILENAME
 
 [loggers]
 keys = root,sqlalchemy,alembic
