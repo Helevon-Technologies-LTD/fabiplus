@@ -5,7 +5,7 @@ Pydantic-based settings with .env support and custom overrides
 
 from typing import List, Optional
 
-from pydantic import Field, ConfigDict
+from pydantic import ConfigDict, Field
 from pydantic_settings import BaseSettings
 
 
