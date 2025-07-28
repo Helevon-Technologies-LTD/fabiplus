@@ -28,7 +28,7 @@ packages = [{include = "fabiplus"}]
 python = "^3.10"
 fastapi = ">=0.104.0"
 uvicorn = {extras = ["standard"], version = ">=0.24.0"}
-pydantic = ">=2.5.0"
+pydantic = {extras = ["email"], version = ">=2.5.0"}
 pydantic-settings = ">=2.1.0"
 sqlalchemy = ">=2.0.0"
 alembic = ">=1.13.0"
