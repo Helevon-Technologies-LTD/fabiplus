@@ -37,10 +37,10 @@ class SQLModelBackend(BaseORMBackend):
     @property
     def optional_dependencies(self) -> Dict[str, List[str]]:
         return {
-            "postgresql": ["psycopg2-binary>=2.9.0"],
-            "mysql": ["pymysql>=1.1.0"],
-            "redis": ["redis>=5.0.0", "hiredis>=2.2.0"],
-            "monitoring": ["sentry-sdk[fastapi]>=1.38.0"],
+            "postgresql": ["psycopg2-binary"],
+            "mysql": ["pymysql"],
+            "redis": ["redis", "hiredis"],
+            "monitoring": ["sentry-sdk"],
         }
 
     def generate_model_code(

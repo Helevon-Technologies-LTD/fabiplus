@@ -5,7 +5,6 @@ WebSocket-based real-time log streaming for admin interface
 
 import asyncio
 import json
-
 import re
 from datetime import datetime
 from pathlib import Path
@@ -20,6 +19,9 @@ from watchdog.observers import Observer
 from ..conf.settings import settings
 from ..core.auth import get_current_superuser
 from ..core.models import User
+
+# Module-level dependency to avoid B008 warning
+SuperUserDep = Depends(get_current_superuser)
 
 
 class LogLevel:
@@ -344,7 +346,7 @@ async def websocket_logs(websocket: WebSocket):
 async def get_recent_logs(
     lines: int = 100,
     level: Optional[str] = None,
-    current_user: User = Depends(get_current_superuser),
+    current_user: User = SuperUserDep,
 ):
     """Get recent log entries (REST endpoint)"""
 

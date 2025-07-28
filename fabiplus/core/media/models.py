@@ -38,7 +38,7 @@ class MediaFolder(SQLModel, table=True):
     parent_id: Optional[uuid.UUID] = Field(default=None, foreign_key="media_folders.id")
     parent: Optional["MediaFolder"] = Relationship(
         back_populates="children",
-        sa_relationship_kwargs={"remote_side": "MediaFolder.id"}
+        sa_relationship_kwargs={"remote_side": "MediaFolder.id"},
     )
     children: List["MediaFolder"] = Relationship(back_populates="parent")
     files: List["MediaFile"] = Relationship(back_populates="folder")

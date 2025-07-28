@@ -16,6 +16,24 @@ from ..templates import AppTemplate
 console = Console()
 app = typer.Typer()
 
+# Module-level CLI argument/option instances to avoid B008 warnings
+NameArg = typer.Argument(..., help="App name")
+AppNameArg = typer.Argument(..., help="App name")
+ModelNameArg = typer.Argument(..., help="Model name")
+RemoveNameArg = typer.Argument(..., help="App name to remove")
+DeleteNameArg = typer.Argument(..., help="App name to delete")
+DirectoryOpt = typer.Option(None, "--directory", "-d", help="Target directory")
+TemplateOpt = typer.Option("default", "--template", "-t", help="App template")
+ForceOpt = typer.Option(False, "--force", "-f", help="Overwrite existing app")
+RemoveForceOpt = typer.Option(
+    False, "--force", "-f", help="Force removal without confirmation"
+)
+FieldsOpt = typer.Option(
+    "", "--fields", "-f", help="Model fields (name:type,name:type)"
+)
+ViewsOpt = typer.Option(True, "--views/--no-views", help="Generate API views")
+TestsOpt = typer.Option(True, "--tests/--no-tests", help="Generate test cases")
+
 
 @app.command("startapp")
 def start_app(
@@ -451,7 +469,7 @@ def generate_code(
     if tests:
         success_text += f"• Updated [cyan]{app_name}/tests.py[/cyan]\n"
 
-    success_text += f"""
+    success_text += """
 [bold]Next steps:[/bold]
 1. Run [cyan]fabiplus db makemigrations[/cyan]
 2. Run [cyan]fabiplus db migrate[/cyan]

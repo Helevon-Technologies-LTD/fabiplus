@@ -41,7 +41,7 @@ class APIKeyAuth:
             # For now, we'll use a simple hash check
             user = (
                 session.query(User)
-                .filter(User.api_key == api_key, User.is_active == True)
+                .filter(User.api_key == api_key, User.is_active.is_(True))
                 .first()
             )
             return user
@@ -83,7 +83,7 @@ class SessionAuth:
 
             decoded = base64.b64decode(session_id).decode()
             return decoded.split(":")[0] if ":" in decoded else None
-        except:
+        except (ValueError, TypeError):
             return None
 
 
@@ -204,7 +204,7 @@ class MultiAuth:
         if self.oauth2:
             try:
                 user = await get_current_active_user()
-            except:
+            except Exception:
                 pass
 
         # Try custom auth methods

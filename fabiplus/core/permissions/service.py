@@ -212,7 +212,7 @@ class PermissionService:
         from .models import DEFAULT_PERMISSIONS, DEFAULT_ROLES
 
         # Create default permissions
-        for perm_data in DEFAULT_PERMISSIONS:
+        for _perm_data in DEFAULT_PERMISSIONS:
             # Check if permission already exists
             # Implementation would go here
             pass
@@ -255,9 +255,11 @@ def require_permission(action: str, resource: str = None):
                 if not perm_service.has_permission(current_user, action, resource):
                     raise HTTPException(
                         status_code=status.HTTP_403_FORBIDDEN,
-                        detail=f"Permission denied: {resource}.{action}"
-                        if resource
-                        else f"Permission denied: {action}",
+                        detail=(
+                            f"Permission denied: {resource}.{action}"
+                            if resource
+                            else f"Permission denied: {action}"
+                        ),
                     )
 
             return await func(*args, current_user=current_user, **kwargs)

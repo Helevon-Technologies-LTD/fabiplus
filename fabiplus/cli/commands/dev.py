@@ -149,7 +149,6 @@ def run_tests(
 
     import subprocess
 
-
     cmd = ["python", "-m", "pytest"]
 
     if verbose:

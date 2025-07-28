@@ -3,7 +3,6 @@ Project scaffolding commands
 Django-style project creation with proper structure
 """
 
-
 from pathlib import Path
 from typing import Optional
 
@@ -122,7 +121,7 @@ def start_project(
 4. [cyan]fabiplus server run[/cyan]"""
 
     if docker:
-        success_text += f"""
+        success_text += """
 5. [cyan]docker-compose up[/cyan] (for Docker deployment)"""
 
     success_text += f"""
@@ -135,7 +134,7 @@ def start_project(
 • [blue]pyproject.toml[/blue] - Poetry configuration"""
 
     if docker:
-        success_text += f"""
+        success_text += """
 
 [bold]Docker files:[/bold]
 • [blue]Dockerfile[/blue] - Container definition
@@ -250,7 +249,7 @@ def init_project(
             console.print(f"[red]Error initializing project: {e}[/red]")
             raise typer.Exit(1)
 
-    success_text = f"""
+    success_text = """
 [bold green]✅ FABI+ initialized in current directory![/bold green]
 
 [bold]Next steps:[/bold]
@@ -274,7 +273,7 @@ def _create_project_docker_files(project_dir: Path, project_name: str):
     """Create Docker files for the project"""
 
     # Dockerfile
-    dockerfile_content = f"""# FABI+ Project Dockerfile
+    dockerfile_content = """# FABI+ Project Dockerfile
 FROM python:3.11-slim
 
 # Set environment variables

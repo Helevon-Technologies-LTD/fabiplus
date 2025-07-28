@@ -188,7 +188,7 @@ class FABIPlusSettings(BaseSettings):
                         if str(project_dir) not in sys.path:
                             sys.path.insert(0, str(project_dir))
                         break
-            except (OSError, FileNotFoundError):
+            except OSError:
                 # If we can't get current directory, skip auto-detection
                 pass
 
@@ -201,7 +201,7 @@ class FABIPlusSettings(BaseSettings):
                     current_dir = str(Path.cwd())
                     if current_dir not in sys.path:
                         sys.path.insert(0, current_dir)
-                except (OSError, FileNotFoundError):
+                except OSError:
                     # If we can't get current directory, skip path modification
                     pass
 

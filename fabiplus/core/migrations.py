@@ -270,7 +270,7 @@ datefmt = %H:%M:%S
 
     def _update_env_py(self, env_py: Path):
         """Update env.py to work with FABI+ models"""
-        content = f'''"""FABI+ Alembic Environment"""
+        content = '''"""FABI+ Alembic Environment"""
 
 from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool

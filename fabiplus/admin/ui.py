@@ -9,13 +9,10 @@ import uuid
 from datetime import date, datetime
 from decimal import Decimal
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Type, Union, get_args, get_origin
+from typing import Any, Dict, Optional, Type, Union, get_args, get_origin
 
 from fastapi import (
     APIRouter,
-    Cookie,
-    Depends,
-    Form,
     HTTPException,
     Request,
     WebSocket,
@@ -23,12 +20,11 @@ from fastapi import (
     status,
 )
 from fastapi.responses import HTMLResponse, RedirectResponse
-from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.templating import Jinja2Templates
-from sqlmodel import Session, func, select
+from sqlmodel import func, select
 
 from ..conf.settings import settings
-from ..core.auth import auth_backend, get_current_staff_user, get_current_superuser
+from ..core.auth import auth_backend
 from ..core.models import BaseModel, ModelRegistry, User
 from ..core.views import FilterParams, PaginationParams, SortParams
 from .routes import AdminView
@@ -128,7 +124,7 @@ def process_form_data(
                 if field_value != "":
                     processed_data[field_name] = field_value
 
-        except (ValueError, TypeError) as e:
+        except (ValueError, TypeError):
             # If conversion fails, keep the original value and let the model validation handle it
             if field_value != "":
                 processed_data[field_name] = field_value
@@ -579,8 +575,9 @@ async def admin_activities_ui(
 
     # Get activity statistics
     with ModelRegistry.get_session() as session:
-        from datetime import datetime, timedelta
+        from datetime import datetime
 
+        # from datetime import timedelta  # Currently unused
         from ..core.activity import Activity
 
         total_count = session.exec(select(func.count()).select_from(Activity)).first()
@@ -1258,7 +1255,7 @@ async def admin_model_add_post(request: Request, model_name: str):
 
     try:
         # Create object
-        result = admin_view.create(data, session=session, current_user=current_user)
+        admin_view.create(data, session=session, current_user=current_user)
 
         # Redirect to model list with success message
         return RedirectResponse(
@@ -1319,9 +1316,7 @@ async def admin_model_update_post(
 
     try:
         # Update object
-        result = admin_view.update(
-            item_id, data, session=session, current_user=current_user
-        )
+        admin_view.update(item_id, data, session=session, current_user=current_user)
 
         # Redirect to model list with success message
         return RedirectResponse(
@@ -1497,9 +1492,11 @@ async def websocket_logs(websocket: WebSocket):
                 log_entry = {
                     "timestamp": activity.timestamp.strftime("%Y-%m-%d %H:%M:%S"),
                     "level": activity.level.upper() if activity.level else "INFO",
-                    "logger": f"fabiplus.{activity.activity_type.lower()}"
-                    if activity.activity_type
-                    else "fabiplus.system",
+                    "logger": (
+                        f"fabiplus.{activity.activity_type.lower()}"
+                        if activity.activity_type
+                        else "fabiplus.system"
+                    ),
                     "message": activity.description,
                     "raw_line": f"{activity.timestamp.strftime('%Y-%m-%d %H:%M:%S')} - {activity.activity_type} - {activity.description}",
                     "user": activity.user_email or "system",
@@ -1541,12 +1538,14 @@ async def websocket_logs(websocket: WebSocket):
                             "timestamp": activity.timestamp.strftime(
                                 "%Y-%m-%d %H:%M:%S"
                             ),
-                            "level": activity.level.upper()
-                            if activity.level
-                            else "INFO",
-                            "logger": f"fabiplus.{activity.activity_type.lower()}"
-                            if activity.activity_type
-                            else "fabiplus.system",
+                            "level": (
+                                activity.level.upper() if activity.level else "INFO"
+                            ),
+                            "logger": (
+                                f"fabiplus.{activity.activity_type.lower()}"
+                                if activity.activity_type
+                                else "fabiplus.system"
+                            ),
                             "message": activity.description,
                             "raw_line": f"{activity.timestamp.strftime('%Y-%m-%d %H:%M:%S')} - {activity.activity_type} - {activity.description}",
                         }

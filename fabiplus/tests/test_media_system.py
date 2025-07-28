@@ -10,7 +10,7 @@ from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import pytest
-from fastapi import UploadFile
+from fastapi import HTTPException, UploadFile
 from fastapi.testclient import TestClient
 from PIL import Image
 
@@ -123,7 +123,7 @@ class TestFileValidators:
         mock_file.seek = MagicMock()
 
         # Should raise HTTPException for large file
-        with pytest.raises(Exception):  # HTTPException
+        with pytest.raises(HTTPException):
             await validator.validate(mock_file)
 
     async def test_extension_validation(self):

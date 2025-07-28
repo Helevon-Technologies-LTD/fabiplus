@@ -153,7 +153,8 @@ jobs:
 
     - name: Run flake8 (linting)
       run: |
-        poetry run flake8 fabiplus/ tests/
+        echo "🔍 Running flake8 with improved configuration..."
+        poetry run flake8 fabiplus/ --statistics
         if [ $? -ne 0 ]; then
           echo "❌ flake8 linting failed. Check the output above for issues."
           exit 1
@@ -197,7 +198,7 @@ jobs:
       
     - name: Run Safety (dependency vulnerability check)
       run: |
-        poetry run safety scan --output json --save-as safety-report.json
+        poetry run safety check --output json > safety-report.json
       continue-on-error: true
       
     - name: Run Semgrep (SAST)

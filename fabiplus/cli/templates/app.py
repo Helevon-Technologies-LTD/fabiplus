@@ -3,7 +3,6 @@ App template engine
 Creates Django-style app structure with models, views, admin, and tests
 """
 
-
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
@@ -159,6 +158,23 @@ from fabiplus.core.models import BaseModel, register_model
 #
 #     def __str__(self):
 #         return self.name
+#
+# Example with foreign key relationship:
+# @register_model
+# class Post(BaseModel, table=True):
+#     """Blog post model"""
+#
+#     title: str = Field(max_length=200, description="Post title")
+#     content: str = Field(description="Post content")
+#     # Foreign key to User model (note: use table name "users", not "user")
+#     author_id: uuid.UUID = Field(foreign_key="users.id", description="Post author")
+#
+#     class Config:
+#         _verbose_name = "Post"
+#         _verbose_name_plural = "Posts"
+#
+#     def __str__(self):
+#         return self.title
 '''
         elif self.orm_backend == "sqlalchemy":
             return '''"""

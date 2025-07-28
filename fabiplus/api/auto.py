@@ -4,17 +4,14 @@ Automatically generates CRUD endpoints for registered models
 """
 
 import uuid
-from typing import Any, Dict, List, Type
+from typing import Dict, List, Type
 
 from fastapi import APIRouter, Depends, status
-from pydantic import create_model
 from sqlmodel import Session
 
 from ..conf.settings import settings
 from ..core.auth import User, get_current_active_user
 from ..core.models import BaseModel, ModelRegistry
-from ..core.permissions.models import PermissionAction
-from ..core.permissions.service import require_model_permission
 from ..core.views import (
     AuthenticatedGenericAPIView,
     FilterParams,
@@ -23,6 +20,13 @@ from ..core.views import (
     PaginationParams,
     SortParams,
 )
+
+# Module-level dependency instances to avoid B008 warnings
+SessionDep = Depends(ModelRegistry.get_session)
+PaginationDep = Depends()
+FilterDep = Depends()
+SortDep = Depends()
+ActiveUserDep = Depends(get_current_active_user)
 
 
 class APIGenerator:
@@ -124,11 +128,11 @@ class APIGenerator:
 
             @router.get("/", response_model=PaginatedResponse)
             async def list_items(
-                session: Session = Depends(ModelRegistry.get_session),
-                pagination: PaginationParams = Depends(),
-                filters: FilterParams = Depends(),
-                sorting: SortParams = Depends(),
-                current_user: User = Depends(get_current_active_user),
+                session: Session = SessionDep,
+                pagination: PaginationParams = PaginationDep,
+                filters: FilterParams = FilterDep,
+                sorting: SortParams = SortDep,
+                current_user: User = ActiveUserDep,
             ):
                 """List all items with pagination, filtering, and sorting"""
                 return view.list(
@@ -139,10 +143,10 @@ class APIGenerator:
 
             @router.get("/", response_model=PaginatedResponse)
             async def list_items(
-                session: Session = Depends(ModelRegistry.get_session),
-                pagination: PaginationParams = Depends(),
-                filters: FilterParams = Depends(),
-                sorting: SortParams = Depends(),
+                session: Session = SessionDep,
+                pagination: PaginationParams = PaginationDep,
+                filters: FilterParams = FilterDep,
+                sorting: SortParams = SortDep,
             ):
                 """List all items with pagination, filtering, and sorting"""
                 return view.list(session, pagination, filters, sorting)
@@ -153,8 +157,8 @@ class APIGenerator:
             @router.get("/{item_id}", response_model=response_schema)
             async def retrieve_item(
                 item_id: uuid.UUID,
-                session: Session = Depends(ModelRegistry.get_session),
-                current_user: User = Depends(get_current_active_user),
+                session: Session = SessionDep,
+                current_user: User = ActiveUserDep,
             ):
                 """Retrieve a specific item by ID"""
                 return view.retrieve(item_id, session, current_user=current_user)
@@ -164,7 +168,7 @@ class APIGenerator:
             @router.get("/{item_id}", response_model=response_schema)
             async def retrieve_item(
                 item_id: uuid.UUID,
-                session: Session = Depends(ModelRegistry.get_session),
+                session: Session = SessionDep,
             ):
                 """Retrieve a specific item by ID"""
                 return view.retrieve(item_id, session)
@@ -174,8 +178,8 @@ class APIGenerator:
 
             def create_endpoint_func(
                 item_data: create_schema,
-                session: Session = Depends(ModelRegistry.get_session),
-                current_user: User = Depends(get_current_active_user),
+                session: Session = SessionDep,
+                current_user: User = ActiveUserDep,
             ):
                 """Create a new item"""
                 return view.create(item_data.dict(), session, current_user=current_user)
@@ -184,7 +188,7 @@ class APIGenerator:
 
             def create_endpoint_func(
                 item_data: create_schema,
-                session: Session = Depends(ModelRegistry.get_session),
+                session: Session = SessionDep,
             ):
                 """Create a new item"""
                 return view.create(item_data.dict(), session)
@@ -200,8 +204,8 @@ class APIGenerator:
             def update_endpoint_func(
                 item_id: uuid.UUID,
                 item_data: update_schema,
-                session: Session = Depends(ModelRegistry.get_session),
-                current_user: User = Depends(get_current_active_user),
+                session: Session = SessionDep,
+                current_user: User = ActiveUserDep,
             ):
                 """Update an existing item"""
                 return view.update(
@@ -213,7 +217,7 @@ class APIGenerator:
             def update_endpoint_func(
                 item_id: uuid.UUID,
                 item_data: update_schema,
-                session: Session = Depends(ModelRegistry.get_session),
+                session: Session = SessionDep,
             ):
                 """Update an existing item"""
                 return view.update(item_id, item_data.dict(), session)
@@ -227,8 +231,8 @@ class APIGenerator:
             def patch_endpoint_func(
                 item_id: uuid.UUID,
                 item_data: update_schema,
-                session: Session = Depends(ModelRegistry.get_session),
-                current_user: User = Depends(get_current_active_user),
+                session: Session = SessionDep,
+                current_user: User = ActiveUserDep,
             ):
                 """Partially update an existing item"""
                 return view.update(
@@ -240,7 +244,7 @@ class APIGenerator:
             def patch_endpoint_func(
                 item_id: uuid.UUID,
                 item_data: update_schema,
-                session: Session = Depends(ModelRegistry.get_session),
+                session: Session = SessionDep,
             ):
                 """Partially update an existing item"""
                 return view.update(item_id, item_data.dict(), session)
@@ -254,8 +258,8 @@ class APIGenerator:
             @router.delete("/{item_id}", response_model=Dict[str, str])
             async def delete_item(
                 item_id: uuid.UUID,
-                session: Session = Depends(ModelRegistry.get_session),
-                current_user: User = Depends(get_current_active_user),
+                session: Session = SessionDep,
+                current_user: User = ActiveUserDep,
             ):
                 """Delete an item"""
                 return view.delete(item_id, session, current_user=current_user)
@@ -265,7 +269,7 @@ class APIGenerator:
             @router.delete("/{item_id}", response_model=Dict[str, str])
             async def delete_item(
                 item_id: uuid.UUID,
-                session: Session = Depends(ModelRegistry.get_session),
+                session: Session = SessionDep,
             ):
                 """Delete an item"""
                 return view.delete(item_id, session)
@@ -344,14 +348,14 @@ class APIGenerator:
 
         # First, include custom routers from apps (they take precedence)
         custom_routers = self._discover_custom_routers()
-        for app_name, router in custom_routers.items():
+        for _app_name, router in custom_routers.items():
             main_router.include_router(router)
 
         # Generate all model routers (only for models without custom routers)
         self.generate_all_routers()
 
         # Include auto-generated model routers
-        for model_name, router in self.routers.items():
+        for _model_name, router in self.routers.items():
             main_router.include_router(router)
 
         return main_router
@@ -428,7 +432,7 @@ class CustomAPIView:
 
 def create_custom_endpoint(
     path: str,
-    methods: list = ["GET"],
+    methods: list = None,
     model: Type[BaseModel] = None,
     auth_required: bool = None,
 ):
@@ -442,7 +446,11 @@ def create_custom_endpoint(
     """
 
     def decorator(func):
+        # Set default methods if not provided
+        endpoint_methods = methods if methods is not None else ["GET"]
         # This would be implemented to register the custom endpoint
+        # endpoint_methods would be used here
+        _ = endpoint_methods  # Suppress unused variable warning
         # For now, just return the function
         return func
 

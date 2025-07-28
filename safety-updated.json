@@ -1,0 +1,878 @@
+{
+    "report_meta": {
+        "scan_target": "environment",
+        "scanned": [
+            "/home/danielaiyelu/Desktop/Helevon/new_fabi/venv/lib/python3.10/site-packages",
+            "/home/danielaiyelu/Desktop/Helevon/new_fabi/venv/lib/python3.10/site-packages/setuptools/_vendor"
+        ],
+        "policy_file": null,
+        "policy_file_source": "local",
+        "api_key": false,
+        "local_database_path": null,
+        "safety_version": "2.3.4",
+        "timestamp": "2025-07-16 16:15:13",
+        "packages_found": 151,
+        "vulnerabilities_found": 7,
+        "vulnerabilities_ignored": 0,
+        "remediations_recommended": 0,
+        "telemetry": {
+            "os_type": "Linux",
+            "os_release": "6.12.10-76061203-generic",
+            "os_description": "Linux-6.12.10-76061203-generic-x86_64-with-glibc2.35",
+            "python_version": "3.10.12",
+            "safety_command": "check",
+            "safety_options": {
+                "output": {
+                    "--output": 1
+                }
+            },
+            "safety_version": "2.3.4",
+            "safety_source": "cli"
+        },
+        "git": {
+            "branch": "main",
+            "tag": "",
+            "commit": "f3996a8c557c67b990454c8338d57750316fa3cf",
+            "dirty": true,
+            "origin": "https://github.com/Helevon-Technologies-LTD/fabiplus.git"
+        },
+        "project": null,
+        "json_version": 1
+    },
+    "scanned_packages": {
+        "markupsafe": {
+            "name": "markupsafe",
+            "version": "3.0.2"
+        },
+        "pyyaml": {
+            "name": "pyyaml",
+            "version": "6.0.2"
+        },
+        "aerich": {
+            "name": "aerich",
+            "version": "0.9.1"
+        },
+        "aiofiles": {
+            "name": "aiofiles",
+            "version": "24.1.0"
+        },
+        "aiosqlite": {
+            "name": "aiosqlite",
+            "version": "0.21.0"
+        },
+        "alembic": {
+            "name": "alembic",
+            "version": "1.16.1"
+        },
+        "annotated-types": {
+            "name": "annotated-types",
+            "version": "0.7.0"
+        },
+        "anyio": {
+            "name": "anyio",
+            "version": "4.9.0"
+        },
+        "asyncclick": {
+            "name": "asyncclick",
+            "version": "8.1.8.0"
+        },
+        "attrs": {
+            "name": "attrs",
+            "version": "25.3.0"
+        },
+        "authlib": {
+            "name": "authlib",
+            "version": "1.6.0"
+        },
+        "babel": {
+            "name": "babel",
+            "version": "2.17.0"
+        },
+        "backports-datetime-fromisoformat": {
+            "name": "backports-datetime-fromisoformat",
+            "version": "2.0.3"
+        },
+        "backrefs": {
+            "name": "backrefs",
+            "version": "5.8"
+        },
+        "bandit": {
+            "name": "bandit",
+            "version": "1.8.6"
+        },
+        "bcrypt": {
+            "name": "bcrypt",
+            "version": "4.3.0"
+        },
+        "black": {
+            "name": "black",
+            "version": "24.10.0"
+        },
+        "certifi": {
+            "name": "certifi",
+            "version": "2025.4.26"
+        },
+        "cffi": {
+            "name": "cffi",
+            "version": "1.17.1"
+        },
+        "cfgv": {
+            "name": "cfgv",
+            "version": "3.4.0"
+        },
+        "charset-normalizer": {
+            "name": "charset-normalizer",
+            "version": "3.4.2"
+        },
+        "click": {
+            "name": "click",
+            "version": "8.1.7"
+        },
+        "colorama": {
+            "name": "colorama",
+            "version": "0.4.6"
+        },
+        "coverage": {
+            "name": "coverage",
+            "version": "7.9.1"
+        },
+        "cryptography": {
+            "name": "cryptography",
+            "version": "45.0.4"
+        },
+        "dictdiffer": {
+            "name": "dictdiffer",
+            "version": "0.9.0"
+        },
+        "distlib": {
+            "name": "distlib",
+            "version": "0.3.9"
+        },
+        "dnspython": {
+            "name": "dnspython",
+            "version": "2.7.0"
+        },
+        "dparse": {
+            "name": "dparse",
+            "version": "0.6.4"
+        },
+        "ecdsa": {
+            "name": "ecdsa",
+            "version": "0.19.1"
+        },
+        "email-validator": {
+            "name": "email-validator",
+            "version": "2.2.0"
+        },
+        "exceptiongroup": {
+            "name": "exceptiongroup",
+            "version": "1.3.0"
+        },
+        "execnet": {
+            "name": "execnet",
+            "version": "2.1.1"
+        },
+        "fabiplus": {
+            "name": "fabiplus",
+            "version": "0.1.0"
+        },
+        "fastapi": {
+            "name": "fastapi",
+            "version": "0.115.14"
+        },
+        "fastapi-cli": {
+            "name": "fastapi-cli",
+            "version": "0.0.7"
+        },
+        "filelock": {
+            "name": "filelock",
+            "version": "3.18.0"
+        },
+        "flake8": {
+            "name": "flake8",
+            "version": "6.1.0"
+        },
+        "flake8-bugbear": {
+            "name": "flake8-bugbear",
+            "version": "23.12.2"
+        },
+        "flake8-docstrings": {
+            "name": "flake8-docstrings",
+            "version": "1.7.0"
+        },
+        "ghp-import": {
+            "name": "ghp-import",
+            "version": "2.1.0"
+        },
+        "greenlet": {
+            "name": "greenlet",
+            "version": "3.2.3"
+        },
+        "h11": {
+            "name": "h11",
+            "version": "0.16.0"
+        },
+        "httpcore": {
+            "name": "httpcore",
+            "version": "1.0.9"
+        },
+        "httptools": {
+            "name": "httptools",
+            "version": "0.6.4"
+        },
+        "httpx": {
+            "name": "httpx",
+            "version": "0.25.2"
+        },
+        "identify": {
+            "name": "identify",
+            "version": "2.6.12"
+        },
+        "idna": {
+            "name": "idna",
+            "version": "3.10"
+        },
+        "iniconfig": {
+            "name": "iniconfig",
+            "version": "2.1.0"
+        },
+        "iso8601": {
+            "name": "iso8601",
+            "version": "2.1.0"
+        },
+        "isort": {
+            "name": "isort",
+            "version": "5.13.2"
+        },
+        "itsdangerous": {
+            "name": "itsdangerous",
+            "version": "2.2.0"
+        },
+        "jinja2": {
+            "name": "jinja2",
+            "version": "3.1.6"
+        },
+        "joblib": {
+            "name": "joblib",
+            "version": "1.5.1"
+        },
+        "mako": {
+            "name": "mako",
+            "version": "1.3.10"
+        },
+        "markdown": {
+            "name": "markdown",
+            "version": "3.8"
+        },
+        "markdown-it-py": {
+            "name": "markdown-it-py",
+            "version": "3.0.0"
+        },
+        "marshmallow": {
+            "name": "marshmallow",
+            "version": "4.0.0"
+        },
+        "mccabe": {
+            "name": "mccabe",
+            "version": "0.7.0"
+        },
+        "mdurl": {
+            "name": "mdurl",
+            "version": "0.1.2"
+        },
+        "mergedeep": {
+            "name": "mergedeep",
+            "version": "1.3.4"
+        },
+        "mkdocs": {
+            "name": "mkdocs",
+            "version": "1.6.1"
+        },
+        "mkdocs-get-deps": {
+            "name": "mkdocs-get-deps",
+            "version": "0.2.0"
+        },
+        "mkdocs-material": {
+            "name": "mkdocs-material",
+            "version": "9.6.14"
+        },
+        "mkdocs-material-extensions": {
+            "name": "mkdocs-material-extensions",
+            "version": "1.3.1"
+        },
+        "mypy": {
+            "name": "mypy",
+            "version": "1.16.0"
+        },
+        "mypy-extensions": {
+            "name": "mypy-extensions",
+            "version": "1.1.0"
+        },
+        "nltk": {
+            "name": "nltk",
+            "version": "3.9.1"
+        },
+        "nodeenv": {
+            "name": "nodeenv",
+            "version": "1.9.1"
+        },
+        "orjson": {
+            "name": "orjson",
+            "version": "3.10.18"
+        },
+        "packaging": {
+            "name": "packaging",
+            "version": "25.0"
+        },
+        "paginate": {
+            "name": "paginate",
+            "version": "0.5.7"
+        },
+        "passlib": {
+            "name": "passlib",
+            "version": "1.7.4"
+        },
+        "pathspec": {
+            "name": "pathspec",
+            "version": "0.12.1"
+        },
+        "pbr": {
+            "name": "pbr",
+            "version": "6.1.1"
+        },
+        "pillow": {
+            "name": "pillow",
+            "version": "11.2.1"
+        },
+        "pip": {
+            "name": "pip",
+            "version": "22.0.2"
+        },
+        "platformdirs": {
+            "name": "platformdirs",
+            "version": "4.3.8"
+        },
+        "pluggy": {
+            "name": "pluggy",
+            "version": "1.6.0"
+        },
+        "pre-commit": {
+            "name": "pre-commit",
+            "version": "3.8.0"
+        },
+        "psutil": {
+            "name": "psutil",
+            "version": "6.1.1"
+        },
+        "pyasn1": {
+            "name": "pyasn1",
+            "version": "0.6.1"
+        },
+        "pycodestyle": {
+            "name": "pycodestyle",
+            "version": "2.11.1"
+        },
+        "pycparser": {
+            "name": "pycparser",
+            "version": "2.22"
+        },
+        "pydantic": {
+            "name": "pydantic",
+            "version": "2.11.6"
+        },
+        "pydantic-core": {
+            "name": "pydantic-core",
+            "version": "2.33.2"
+        },
+        "pydantic-extra-types": {
+            "name": "pydantic-extra-types",
+            "version": "2.10.5"
+        },
+        "pydantic-settings": {
+            "name": "pydantic-settings",
+            "version": "2.9.1"
+        },
+        "pydocstyle": {
+            "name": "pydocstyle",
+            "version": "6.3.0"
+        },
+        "pyflakes": {
+            "name": "pyflakes",
+            "version": "3.1.0"
+        },
+        "pygments": {
+            "name": "pygments",
+            "version": "2.19.1"
+        },
+        "pymdown-extensions": {
+            "name": "pymdown-extensions",
+            "version": "10.15"
+        },
+        "pypdf2": {
+            "name": "pypdf2",
+            "version": "3.0.1"
+        },
+        "pypika-tortoise": {
+            "name": "pypika-tortoise",
+            "version": "0.6.1"
+        },
+        "pytest": {
+            "name": "pytest",
+            "version": "7.4.4"
+        },
+        "pytest-asyncio": {
+            "name": "pytest-asyncio",
+            "version": "0.21.2"
+        },
+        "pytest-cov": {
+            "name": "pytest-cov",
+            "version": "4.1.0"
+        },
+        "pytest-xdist": {
+            "name": "pytest-xdist",
+            "version": "3.8.0"
+        },
+        "python-dateutil": {
+            "name": "python-dateutil",
+            "version": "2.9.0.post0"
+        },
+        "python-dotenv": {
+            "name": "python-dotenv",
+            "version": "1.1.0"
+        },
+        "python-jose": {
+            "name": "python-jose",
+            "version": "3.5.0"
+        },
+        "python-magic": {
+            "name": "python-magic",
+            "version": "0.4.27"
+        },
+        "python-multipart": {
+            "name": "python-multipart",
+            "version": "0.0.19"
+        },
+        "pytz": {
+            "name": "pytz",
+            "version": "2025.2"
+        },
+        "pyyaml-env-tag": {
+            "name": "pyyaml-env-tag",
+            "version": "1.1"
+        },
+        "regex": {
+            "name": "regex",
+            "version": "2024.11.6"
+        },
+        "requests": {
+            "name": "requests",
+            "version": "2.32.4"
+        },
+        "rich": {
+            "name": "rich",
+            "version": "13.9.4"
+        },
+        "rich-toolkit": {
+            "name": "rich-toolkit",
+            "version": "0.14.7"
+        },
+        "rsa": {
+            "name": "rsa",
+            "version": "4.9.1"
+        },
+        "ruamel.yaml": {
+            "name": "ruamel.yaml",
+            "version": "0.18.14"
+        },
+        "ruamel.yaml.clib": {
+            "name": "ruamel.yaml.clib",
+            "version": "0.2.12"
+        },
+        "safety": {
+            "name": "safety",
+            "version": "2.3.4"
+        },
+        "safety-schemas": {
+            "name": "safety-schemas",
+            "version": "0.0.14"
+        },
+        "setuptools": {
+            "name": "setuptools",
+            "version": "80.9.0"
+        },
+        "shellingham": {
+            "name": "shellingham",
+            "version": "1.5.4"
+        },
+        "six": {
+            "name": "six",
+            "version": "1.17.0"
+        },
+        "sniffio": {
+            "name": "sniffio",
+            "version": "1.3.1"
+        },
+        "snowballstemmer": {
+            "name": "snowballstemmer",
+            "version": "3.0.1"
+        },
+        "sqlalchemy": {
+            "name": "sqlalchemy",
+            "version": "2.0.41"
+        },
+        "sqlmodel": {
+            "name": "sqlmodel",
+            "version": "0.0.14"
+        },
+        "starlette": {
+            "name": "starlette",
+            "version": "0.40.0"
+        },
+        "stevedore": {
+            "name": "stevedore",
+            "version": "5.4.1"
+        },
+        "tenacity": {
+            "name": "tenacity",
+            "version": "9.1.2"
+        },
+        "tomli": {
+            "name": "tomli",
+            "version": "2.2.1"
+        },
+        "tomlkit": {
+            "name": "tomlkit",
+            "version": "0.13.3"
+        },
+        "tortoise-orm": {
+            "name": "tortoise-orm",
+            "version": "0.25.1"
+        },
+        "tqdm": {
+            "name": "tqdm",
+            "version": "4.67.1"
+        },
+        "typer": {
+            "name": "typer",
+            "version": "0.12.3"
+        },
+        "typing-extensions": {
+            "name": "typing-extensions",
+            "version": "4.14.0"
+        },
+        "typing-inspection": {
+            "name": "typing-inspection",
+            "version": "0.4.1"
+        },
+        "ujson": {
+            "name": "ujson",
+            "version": "5.10.0"
+        },
+        "urllib3": {
+            "name": "urllib3",
+            "version": "2.4.0"
+        },
+        "uvicorn": {
+            "name": "uvicorn",
+            "version": "0.24.0.post1"
+        },
+        "uvloop": {
+            "name": "uvloop",
+            "version": "0.21.0"
+        },
+        "virtualenv": {
+            "name": "virtualenv",
+            "version": "20.31.2"
+        },
+        "watchdog": {
+            "name": "watchdog",
+            "version": "6.0.0"
+        },
+        "watchfiles": {
+            "name": "watchfiles",
+            "version": "1.0.5"
+        },
+        "websockets": {
+            "name": "websockets",
+            "version": "15.0.1"
+        },
+        "autocommand": {
+            "name": "autocommand",
+            "version": "2.2.2"
+        },
+        "backports.tarfile": {
+            "name": "backports.tarfile",
+            "version": "1.2.0"
+        },
+        "importlib-metadata": {
+            "name": "importlib-metadata",
+            "version": "8.0.0"
+        },
+        "inflect": {
+            "name": "inflect",
+            "version": "7.3.1"
+        },
+        "jaraco.collections": {
+            "name": "jaraco.collections",
+            "version": "5.1.0"
+        },
+        "jaraco.context": {
+            "name": "jaraco.context",
+            "version": "5.3.0"
+        },
+        "jaraco.functools": {
+            "name": "jaraco.functools",
+            "version": "4.0.1"
+        },
+        "jaraco.text": {
+            "name": "jaraco.text",
+            "version": "3.12.1"
+        },
+        "more-itertools": {
+            "name": "more-itertools",
+            "version": "10.3.0"
+        },
+        "typeguard": {
+            "name": "typeguard",
+            "version": "4.3.0"
+        },
+        "wheel": {
+            "name": "wheel",
+            "version": "0.45.1"
+        },
+        "zipp": {
+            "name": "zipp",
+            "version": "3.19.2"
+        }
+    },
+    "affected_packages": {
+        "ecdsa": {
+            "name": "ecdsa",
+            "version": "0.19.1",
+            "found": "/home/danielaiyelu/Desktop/Helevon/new_fabi/venv/lib/python3.10/site-packages",
+            "insecure_versions": [],
+            "secure_versions": [],
+            "latest_version_without_known_vulnerabilities": null,
+            "latest_version": null,
+            "more_info_url": "https://data.safetycli.com"
+        },
+        "pip": {
+            "name": "pip",
+            "version": "22.0.2",
+            "found": "/home/danielaiyelu/Desktop/Helevon/new_fabi/venv/lib/python3.10/site-packages",
+            "insecure_versions": [],
+            "secure_versions": [],
+            "latest_version_without_known_vulnerabilities": null,
+            "latest_version": null,
+            "more_info_url": "https://data.safetycli.com"
+        },
+        "pypdf2": {
+            "name": "pypdf2",
+            "version": "3.0.1",
+            "found": "/home/danielaiyelu/Desktop/Helevon/new_fabi/venv/lib/python3.10/site-packages",
+            "insecure_versions": [],
+            "secure_versions": [],
+            "latest_version_without_known_vulnerabilities": null,
+            "latest_version": null,
+            "more_info_url": "https://data.safetycli.com"
+        },
+        "python-jose": {
+            "name": "python-jose",
+            "version": "3.5.0",
+            "found": "/home/danielaiyelu/Desktop/Helevon/new_fabi/venv/lib/python3.10/site-packages",
+            "insecure_versions": [],
+            "secure_versions": [],
+            "latest_version_without_known_vulnerabilities": null,
+            "latest_version": null,
+            "more_info_url": "https://data.safetycli.com"
+        }
+    },
+    "announcements": [],
+    "vulnerabilities": [
+        {
+            "vulnerability_id": "64459",
+            "package_name": "ecdsa",
+            "ignored": {},
+            "ignored_reason": null,
+            "ignored_expires": null,
+            "vulnerable_spec": ">=0",
+            "all_vulnerable_specs": [
+                ">=0"
+            ],
+            "analyzed_version": "0.19.1",
+            "advisory": "The python-ecdsa library, which implements ECDSA cryptography in Python, is vulnerable to the Minerva attack (CVE-2024-23342). This vulnerability arises because scalar multiplication is not performed in constant time, affecting ECDSA signatures, key generation, and ECDH operations. ECDSA signature verification remains unaffected. The project maintainers have stated that there is no plan to release a fix for this vulnerability, citing their security policy:\r\n\"As stated in the security policy, side-channel vulnerabilities are outside the scope of the project. This is not due to a lack of interest in side-channel secure implementations but rather because the main goal of the project is to be pure Python. Implementing side-channel-free code in pure Python is impossible. Therefore, we do not plan to release a fix for this vulnerability.\"\r\nNOTE: The specs we include in this advisory differ from the publicly available on other sources. That's because research by Safety CLI Cybersecurity Team confirms that there is no plan to address this vulnerability.",
+            "is_transitive": false,
+            "published_date": null,
+            "fixed_versions": [],
+            "closest_versions_without_known_vulnerabilities": [],
+            "resources": [],
+            "CVE": "CVE-2024-23342",
+            "severity": null,
+            "affected_versions": [],
+            "more_info_url": "https://data.safetycli.com/v/64459/f17"
+        },
+        {
+            "vulnerability_id": "64396",
+            "package_name": "ecdsa",
+            "ignored": {},
+            "ignored_reason": null,
+            "ignored_expires": null,
+            "vulnerable_spec": ">=0",
+            "all_vulnerable_specs": [
+                ">=0"
+            ],
+            "analyzed_version": "0.19.1",
+            "advisory": "Ecdsa does not protects against side-channel attacks. This is because Python does not provide side-channel secure primitives (with the exception of hmac.compare_digest()), making side-channel secure programming impossible. For a sophisticated attacker observing just one operation with a private key will be sufficient to completely reconstruct the private key.\r\nhttps://pypi.org/project/ecdsa/#Security",
+            "is_transitive": false,
+            "published_date": null,
+            "fixed_versions": [],
+            "closest_versions_without_known_vulnerabilities": [],
+            "resources": [],
+            "CVE": null,
+            "severity": null,
+            "affected_versions": [],
+            "more_info_url": "https://data.safetycli.com/v/64396/f17"
+        },
+        {
+            "vulnerability_id": "62044",
+            "package_name": "pip",
+            "ignored": {},
+            "ignored_reason": null,
+            "ignored_expires": null,
+            "vulnerable_spec": "<23.3",
+            "all_vulnerable_specs": [
+                "<23.3"
+            ],
+            "analyzed_version": "22.0.2",
+            "advisory": "Affected versions of Pip are vulnerable to Command Injection. When installing a package from a Mercurial VCS URL (ie \"pip install hg+...\") with pip prior to v23.3, the specified Mercurial revision could be used to inject arbitrary configuration options to the \"hg clone\" call (ie \"--config\"). Controlling the Mercurial configuration can modify how and which repository is installed. This vulnerability does not affect users who aren't installing from Mercurial.",
+            "is_transitive": false,
+            "published_date": null,
+            "fixed_versions": [],
+            "closest_versions_without_known_vulnerabilities": [],
+            "resources": [],
+            "CVE": "CVE-2023-5752",
+            "severity": null,
+            "affected_versions": [],
+            "more_info_url": "https://data.safetycli.com/v/62044/f17"
+        },
+        {
+            "vulnerability_id": "75180",
+            "package_name": "pip",
+            "ignored": {},
+            "ignored_reason": null,
+            "ignored_expires": null,
+            "vulnerable_spec": "<25.0",
+            "all_vulnerable_specs": [
+                "<25.0"
+            ],
+            "analyzed_version": "22.0.2",
+            "advisory": "Pip solves a security vulnerability that previously allowed maliciously crafted wheel files to execute unauthorized code during installation.",
+            "is_transitive": false,
+            "published_date": null,
+            "fixed_versions": [],
+            "closest_versions_without_known_vulnerabilities": [],
+            "resources": [],
+            "CVE": null,
+            "severity": null,
+            "affected_versions": [],
+            "more_info_url": "https://data.safetycli.com/v/75180/f17"
+        },
+        {
+            "vulnerability_id": "59234",
+            "package_name": "pypdf2",
+            "ignored": {},
+            "ignored_reason": null,
+            "ignored_expires": null,
+            "vulnerable_spec": ">=2.2.0,<=3.0.1",
+            "all_vulnerable_specs": [
+                ">=2.2.0,<=3.0.1"
+            ],
+            "analyzed_version": "3.0.1",
+            "advisory": "Pypdf2 is vulnerable to CVE-2023-36464: An attacker may craft a PDF which leads to an infinite loop if '__parse_content_stream' is executed. That is, for example, the case if the user extracted text from such a PDF. Users may modify the line 'while peek not in (b\"\\r\", b\"\\n\")' in 'pypdf/generic/_data_structures.py' to 'while peek not in (b\"\\r\", b\"\\n\", b\"\")' as a workaround.\r\nhttps://github.com/py-pdf/pypdf/pull/1828\r\nhttps://github.com/py-pdf/pypdf/security/advisories/GHSA-4vvm-4w3v-6mr8",
+            "is_transitive": false,
+            "published_date": null,
+            "fixed_versions": [],
+            "closest_versions_without_known_vulnerabilities": [],
+            "resources": [],
+            "CVE": "CVE-2023-36464",
+            "severity": null,
+            "affected_versions": [],
+            "more_info_url": "https://data.safetycli.com/v/59234/f17"
+        },
+        {
+            "vulnerability_id": "70716",
+            "package_name": "python-jose",
+            "ignored": {},
+            "ignored_reason": null,
+            "ignored_expires": null,
+            "vulnerable_spec": ">=0",
+            "all_vulnerable_specs": [
+                ">=0"
+            ],
+            "analyzed_version": "3.5.0",
+            "advisory": "Affected versions of Python-jose allow attackers to cause a denial of service (resource consumption) during a decode via a crafted JSON Web Encryption (JWE) token with a high compression ratio, aka a \"JWT bomb.\" This is similar to CVE-2024-21319.",
+            "is_transitive": false,
+            "published_date": null,
+            "fixed_versions": [],
+            "closest_versions_without_known_vulnerabilities": [],
+            "resources": [],
+            "CVE": "CVE-2024-33664",
+            "severity": null,
+            "affected_versions": [],
+            "more_info_url": "https://data.safetycli.com/v/70716/f17"
+        },
+        {
+            "vulnerability_id": "70715",
+            "package_name": "python-jose",
+            "ignored": {},
+            "ignored_reason": null,
+            "ignored_expires": null,
+            "vulnerable_spec": ">=0",
+            "all_vulnerable_specs": [
+                ">=0"
+            ],
+            "analyzed_version": "3.5.0",
+            "advisory": "Affected versions of Python-jose have a algorithm confusion vulnerability with OpenSSH ECDSA keys and other key formats. This is similar to CVE-2022-29217.",
+            "is_transitive": false,
+            "published_date": null,
+            "fixed_versions": [],
+            "closest_versions_without_known_vulnerabilities": [],
+            "resources": [],
+            "CVE": "CVE-2024-33663",
+            "severity": null,
+            "affected_versions": [],
+            "more_info_url": "https://data.safetycli.com/v/70715/f17"
+        }
+    ],
+    "ignored_vulnerabilities": [],
+    "remediations": {
+        "ecdsa": {
+            "current_version": "0.19.1",
+            "vulnerabilities_found": 2,
+            "recommended_version": null,
+            "other_recommended_versions": [],
+            "more_info_url": "https://data.safetycli.com/?from=0.19.1"
+        },
+        "pip": {
+            "current_version": "22.0.2",
+            "vulnerabilities_found": 2,
+            "recommended_version": null,
+            "other_recommended_versions": [],
+            "more_info_url": "https://data.safetycli.com/?from=22.0.2"
+        },
+        "pypdf2": {
+            "current_version": "3.0.1",
+            "vulnerabilities_found": 1,
+            "recommended_version": null,
+            "other_recommended_versions": [],
+            "more_info_url": "https://data.safetycli.com/?from=3.0.1"
+        },
+        "python-jose": {
+            "current_version": "3.5.0",
+            "vulnerabilities_found": 2,
+            "recommended_version": null,
+            "other_recommended_versions": [],
+            "more_info_url": "https://data.safetycli.com/?from=3.5.0"
+        }
+    }
+}

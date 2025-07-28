@@ -1,6 +1,6 @@
 {
   "errors": [],
-  "generated_at": "2025-07-16T12:53:25Z",
+  "generated_at": "2025-07-28T09:03:42Z",
   "metrics": {
     "_totals": {
       "CONFIDENCE.HIGH": 381,
@@ -11,7 +11,7 @@
       "SEVERITY.LOW": 377,
       "SEVERITY.MEDIUM": 2,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 16092,
+      "loc": 16266,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -50,7 +50,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 1,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 262,
+      "loc": 263,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -63,7 +63,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 426,
+      "loc": 427,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -76,7 +76,7 @@
       "SEVERITY.LOW": 1,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 1185,
+      "loc": 1183,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -102,7 +102,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 319,
+      "loc": 323,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -141,7 +141,7 @@
       "SEVERITY.LOW": 3,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 627,
+      "loc": 643,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -336,7 +336,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 448,
+      "loc": 600,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -674,7 +674,7 @@
       "SEVERITY.LOW": 0,
       "SEVERITY.MEDIUM": 0,
       "SEVERITY.UNDEFINED": 0,
-      "loc": 210,
+      "loc": 212,
       "nosec": 0,
       "skipped_tests": 0
     },
@@ -941,7 +941,7 @@
   },
   "results": [
     {
-      "code": "142             Path(\"/var/log/fabiplus\"),\n143             Path(\"/tmp/fabiplus_logs\"),\n144             Path.cwd(),  # Current directory as fallback\n",
+      "code": "144             Path(\"/var/log/fabiplus\"),\n145             Path(\"/tmp/fabiplus_logs\"),\n146             Path.cwd(),  # Current directory as fallback\n",
       "col_offset": 17,
       "end_col_offset": 37,
       "filename": "fabiplus/admin/logs.py",
@@ -952,16 +952,16 @@
       },
       "issue_severity": "MEDIUM",
       "issue_text": "Probable insecure usage of temp file/directory.",
-      "line_number": 143,
+      "line_number": 145,
       "line_range": [
-        143
+        145
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b108_hardcoded_tmp_directory.html",
       "test_id": "B108",
       "test_name": "hardcoded_tmp_directory"
     },
     {
-      "code": "1568             await websocket.close()\n1569         except Exception:\n1570             pass\n",
+      "code": "1567             await websocket.close()\n1568         except Exception:\n1569             pass\n",
       "col_offset": 8,
       "end_col_offset": 16,
       "filename": "fabiplus/admin/ui.py",
@@ -972,17 +972,17 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Try, Except, Pass detected.",
-      "line_number": 1569,
+      "line_number": 1568,
       "line_range": [
-        1569,
-        1570
+        1568,
+        1569
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b110_try_except_pass.html",
       "test_id": "B110",
       "test_name": "try_except_pass"
     },
     {
-      "code": "154                 models_count = content.count(\"class \") - content.count(\"class Meta\")\n155         except Exception:\n156             pass\n157 \n",
+      "code": "172                 models_count = content.count(\"class \") - content.count(\"class Meta\")\n173         except Exception:\n174             pass\n175 \n",
       "col_offset": 8,
       "end_col_offset": 16,
       "filename": "fabiplus/cli/commands/app.py",
@@ -993,17 +993,17 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Try, Except, Pass detected.",
-      "line_number": 155,
+      "line_number": 173,
       "line_range": [
-        155,
-        156
+        173,
+        174
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b110_try_except_pass.html",
       "test_id": "B110",
       "test_name": "try_except_pass"
     },
     {
-      "code": "793                     return True\n794         except Exception:\n795             pass\n796 \n",
+      "code": "811                     return True\n812         except Exception:\n813             pass\n814 \n",
       "col_offset": 8,
       "end_col_offset": 16,
       "filename": "fabiplus/cli/commands/app.py",
@@ -1014,17 +1014,17 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Try, Except, Pass detected.",
-      "line_number": 794,
+      "line_number": 812,
       "line_range": [
-        794,
-        795
+        812,
+        813
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b110_try_except_pass.html",
       "test_id": "B110",
       "test_name": "try_except_pass"
     },
     {
-      "code": "845 \n846                 except Exception:\n847                     continue\n848 \n",
+      "code": "863 \n864                 except Exception:\n865                     continue\n866 \n",
       "col_offset": 16,
       "end_col_offset": 28,
       "filename": "fabiplus/cli/commands/app.py",
@@ -1035,10 +1035,10 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Try, Except, Continue detected.",
-      "line_number": 846,
+      "line_number": 864,
       "line_range": [
-        846,
-        847
+        864,
+        865
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b112_try_except_continue.html",
       "test_id": "B112",
@@ -1105,7 +1105,7 @@
       "test_name": "blacklist"
     },
     {
-      "code": "165     try:\n166         result = subprocess.run(cmd, check=True)\n167         console.print(\"[green]\u2705 Tests completed successfully[/green]\")\n",
+      "code": "164     try:\n165         result = subprocess.run(cmd, check=True)\n166         console.print(\"[green]\u2705 Tests completed successfully[/green]\")\n",
       "col_offset": 17,
       "end_col_offset": 48,
       "filename": "fabiplus/cli/commands/dev.py",
@@ -1116,16 +1116,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 166,
+      "line_number": 165,
       "line_range": [
-        166
+        165
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "176 \n177     import subprocess\n178 \n",
+      "code": "175 \n176     import subprocess\n177 \n",
       "col_offset": 4,
       "end_col_offset": 21,
       "filename": "fabiplus/cli/commands/dev.py",
@@ -1136,16 +1136,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 177,
+      "line_number": 176,
       "line_range": [
-        177
+        176
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_imports.html#b404-import-subprocess",
       "test_id": "B404",
       "test_name": "blacklist"
     },
     {
-      "code": "188         try:\n189             subprocess.run(cmd, check=True, capture_output=True)\n190             console.print(f\"[green]\u2705 {tool_name} passed[/green]\")\n",
+      "code": "187         try:\n188             subprocess.run(cmd, check=True, capture_output=True)\n189             console.print(f\"[green]\u2705 {tool_name} passed[/green]\")\n",
       "col_offset": 12,
       "end_col_offset": 64,
       "filename": "fabiplus/cli/commands/dev.py",
@@ -1156,16 +1156,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 189,
+      "line_number": 188,
       "line_range": [
-        189
+        188
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "200 \n201     import subprocess\n202 \n",
+      "code": "199 \n200     import subprocess\n201 \n",
       "col_offset": 4,
       "end_col_offset": 21,
       "filename": "fabiplus/cli/commands/dev.py",
@@ -1176,16 +1176,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "Consider possible security implications associated with the subprocess module.",
-      "line_number": 201,
+      "line_number": 200,
       "line_range": [
-        201
+        200
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/blacklists/blacklist_imports.html#b404-import-subprocess",
       "test_id": "B404",
       "test_name": "blacklist"
     },
     {
-      "code": "211         try:\n212             subprocess.run(cmd, check=True)\n213             console.print(f\"[green]\u2705 {tool_name} completed[/green]\")\n",
+      "code": "210         try:\n211             subprocess.run(cmd, check=True)\n212             console.print(f\"[green]\u2705 {tool_name} completed[/green]\")\n",
       "col_offset": 12,
       "end_col_offset": 43,
       "filename": "fabiplus/cli/commands/dev.py",
@@ -1196,16 +1196,16 @@
       },
       "issue_severity": "LOW",
       "issue_text": "subprocess call - check for execution of untrusted input.",
-      "line_number": 212,
+      "line_number": 211,
       "line_range": [
-        212
+        211
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b603_subprocess_without_shell_equals_true.html",
       "test_id": "B603",
       "test_name": "subprocess_without_shell_equals_true"
     },
     {
-      "code": "25         self.orm_backend = orm_backend\n26         self.jinja_env = Environment(loader=BaseLoader())\n27 \n",
+      "code": "24         self.orm_backend = orm_backend\n25         self.jinja_env = Environment(loader=BaseLoader())\n26 \n",
       "col_offset": 25,
       "end_col_offset": 57,
       "filename": "fabiplus/cli/templates/app.py",
@@ -1216,9 +1216,9 @@
       },
       "issue_severity": "HIGH",
       "issue_text": "By default, jinja2 sets autoescape to False. Consider using autoescape=True or use the select_autoescape function to mitigate XSS vulnerabilities.",
-      "line_number": 26,
+      "line_number": 25,
       "line_range": [
-        26
+        25
       ],
       "more_info": "https://bandit.readthedocs.io/en/1.8.6/plugins/b701_jinja2_autoescape_false.html",
       "test_id": "B701",
@@ -1265,7 +1265,7 @@
       "test_name": "hashlib"
     },
     {
-      "code": "206                 user = await get_current_active_user()\n207             except:\n208                 pass\n209 \n",
+      "code": "206                 user = await get_current_active_user()\n207             except Exception:\n208                 pass\n209 \n",
       "col_offset": 12,
       "end_col_offset": 20,
       "filename": "fabiplus/core/custom_auth.py",

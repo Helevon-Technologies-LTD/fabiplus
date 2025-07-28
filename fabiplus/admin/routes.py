@@ -7,12 +7,20 @@ import uuid
 from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from sqlmodel import Session, func, select, text
+from sqlmodel import Session, func, select
 
 from ..conf.settings import settings
 from ..core.auth import get_current_staff_user, get_current_superuser
-from ..core.models import BaseModel, ModelRegistry, User
+from ..core.models import ModelRegistry, User
 from ..core.views import FilterParams, GenericAPIView, PaginationParams, SortParams
+
+# Module-level dependency instances to avoid B008 warnings
+StaffUserDep = Depends(get_current_staff_user)
+SuperUserDep = Depends(get_current_superuser)
+PaginationDep = Depends()
+FilterDep = Depends()
+SortDep = Depends()
+QueryDep = Query(None, description="Search term")
 
 
 class AdminView(GenericAPIView):
@@ -22,10 +30,11 @@ class AdminView(GenericAPIView):
 
     def get_model_info(self) -> Dict[str, Any]:
         """Get model metadata for admin interface"""
-        import typing
-        from datetime import date, datetime
-        from decimal import Decimal
-        from typing import get_args, get_origin
+        # Import types for field analysis
+        # import typing  # Currently unused
+        # from datetime import date, datetime  # Currently unused
+        # from decimal import Decimal  # Currently unused
+        # from typing import get_args, get_origin  # Currently unused
 
         fields = []
 
@@ -273,7 +282,7 @@ class AdminView(GenericAPIView):
             return []
 
         # For foreign key fields, return related objects
-        field = getattr(self.model, field_name)
+        # field = getattr(self.model, field_name)  # Currently unused
 
         # This is a simplified implementation
         # In a real implementation, you'd inspect the field type and relationships
@@ -318,7 +327,7 @@ def create_admin_router() -> APIRouter:
     )
 
     @router.get("/", response_model=Dict[str, Any])
-    async def admin_dashboard(current_user: User = Depends(get_current_staff_user)):
+    async def admin_dashboard(current_user: User = StaffUserDep):
         """Admin dashboard with overview statistics"""
 
         models = ModelRegistry.get_all_models()
@@ -352,7 +361,7 @@ def create_admin_router() -> APIRouter:
         return dashboard_data
 
     @router.get("/models/", response_model=List[Dict[str, Any]])
-    async def list_models(current_user: User = Depends(get_current_staff_user)):
+    async def list_models(current_user: User = StaffUserDep):
         """List all available models"""
 
         models = ModelRegistry.get_all_models()
@@ -369,10 +378,10 @@ def create_admin_router() -> APIRouter:
     @router.get("/{model_name}/", response_model=Dict[str, Any])
     async def admin_model_list(
         model_name: str,
-        pagination: PaginationParams = Depends(),
-        filters: FilterParams = Depends(),
-        sorting: SortParams = Depends(),
-        current_user: User = Depends(get_current_staff_user),
+        pagination: PaginationParams = PaginationDep,
+        filters: FilterParams = FilterDep,
+        sorting: SortParams = SortDep,
+        current_user: User = StaffUserDep,
     ):
         """List objects for a specific model in admin interface"""
 
@@ -402,7 +411,7 @@ def create_admin_router() -> APIRouter:
     async def admin_model_detail(
         model_name: str,
         item_id: uuid.UUID,
-        current_user: User = Depends(get_current_staff_user),
+        current_user: User = StaffUserDep,
     ):
         """Get detailed view of a specific object"""
 
@@ -427,7 +436,7 @@ def create_admin_router() -> APIRouter:
     async def admin_model_create(
         model_name: str,
         data: Dict[str, Any],
-        current_user: User = Depends(get_current_staff_user),
+        current_user: User = StaffUserDep,
     ):
         """Create new object via admin interface"""
 
@@ -446,7 +455,7 @@ def create_admin_router() -> APIRouter:
         model_name: str,
         item_id: uuid.UUID,
         data: Dict[str, Any],
-        current_user: User = Depends(get_current_staff_user),
+        current_user: User = StaffUserDep,
     ):
         """Update object via admin interface"""
 
@@ -464,7 +473,7 @@ def create_admin_router() -> APIRouter:
     async def admin_model_delete(
         model_name: str,
         item_id: uuid.UUID,
-        current_user: User = Depends(get_current_staff_user),
+        current_user: User = StaffUserDep,
     ):
         """Delete object via admin interface"""
 
@@ -482,7 +491,7 @@ def create_admin_router() -> APIRouter:
     async def admin_bulk_delete(
         model_name: str,
         ids: List[uuid.UUID],
-        current_user: User = Depends(get_current_superuser),
+        current_user: User = SuperUserDep,
     ):
         """Bulk delete objects (superuser only)"""
 
@@ -504,8 +513,8 @@ def create_admin_router() -> APIRouter:
     async def admin_field_choices(
         model_name: str,
         field_name: str,
-        search: Optional[str] = Query(None, description="Search term"),
-        current_user: User = Depends(get_current_staff_user),
+        search: Optional[str] = QueryDep,
+        current_user: User = StaffUserDep,
     ):
         """Get choices for a specific field (for dropdowns)"""
 

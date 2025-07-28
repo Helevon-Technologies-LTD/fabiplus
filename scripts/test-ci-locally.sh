@@ -54,18 +54,18 @@ print_status $? "Dependencies installation"
 
 # Run code formatting checks
 echo -e "${YELLOW}🎨 Running Black (code formatting)...${NC}"
-poetry run black --check --diff fabiplus/ tests/ || {
-    echo -e "${YELLOW}⚠️  Black formatting issues found. Run 'poetry run black fabiplus/ tests/' to fix.${NC}"
+poetry run black --check --diff fabiplus/ || {
+    echo -e "${YELLOW}⚠️  Black formatting issues found. Run 'poetry run black fabiplus/' to fix.${NC}"
 }
 
 echo -e "${YELLOW}📋 Running isort (import sorting)...${NC}"
-poetry run isort --check-only --diff fabiplus/ tests/ || {
-    echo -e "${YELLOW}⚠️  Import sorting issues found. Run 'poetry run isort fabiplus/ tests/' to fix.${NC}"
+poetry run isort --check-only --diff fabiplus/ || {
+    echo -e "${YELLOW}⚠️  Import sorting issues found. Run 'poetry run isort fabiplus/' to fix.${NC}"
 }
 
 # Run linting
 echo -e "${YELLOW}🔍 Running flake8 (linting)...${NC}"
-poetry run flake8 fabiplus/ tests/ || {
+poetry run flake8 fabiplus/ --statistics || {
     echo -e "${YELLOW}⚠️  Linting issues found. Check output above.${NC}"
 }
 
@@ -82,7 +82,7 @@ poetry run bandit -r fabiplus/ -f json -o bandit-report.json || {
 }
 
 echo -e "${YELLOW}🔒 Running Safety (dependency vulnerabilities)...${NC}"
-poetry run safety scan --output json --save-as safety-report.json || {
+poetry run safety check --output json > safety-report.json || {
     echo -e "${YELLOW}⚠️  Dependency vulnerabilities found. Check safety-report.json${NC}"
 }
 
@@ -107,8 +107,8 @@ echo "  - htmlcov/ (HTML coverage report)"
 echo "  - dist/ (built packages)"
 echo ""
 echo "🔧 To fix formatting issues:"
-echo "  poetry run black fabiplus/ tests/"
-echo "  poetry run isort fabiplus/ tests/"
+echo "  poetry run black fabiplus/"
+echo "  poetry run isort fabiplus/"
 echo ""
 echo "📚 To view coverage report:"
 echo "  open htmlcov/index.html"

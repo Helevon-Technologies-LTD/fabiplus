@@ -208,6 +208,7 @@ SAMPLE_USE.md
 WORKING_FEATURES_SUMMARY.md
 
 dockertest
+test-ci-locally.sh
 
 # Ignore all markdown files
 *.md

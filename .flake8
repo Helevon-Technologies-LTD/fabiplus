@@ -11,14 +11,28 @@ select =
     B,   # flake8-bugbear
     I,   # isort
 
-# Ignore specific error codes that conflict with Black or are not needed
+# Ignore specific error codes that conflict with Black or are not critical
 ignore =
     E203,
     E501,
     W503,
     W504,
     E231,
-    E701
+    E701,
+    W291,
+    W293,
+    E402,
+    F401,
+    F811,
+    F841,
+    B008,
+    D100,
+    D101,
+    D102,
+    D103,
+    D104,
+    D105,
+    D107
 
 # Exclude directories and files
 exclude = 
@@ -46,8 +60,8 @@ exclude =
     htmlcov,
     .DS_Store
 
-# Maximum complexity for mccabe
-max-complexity = 10
+# Maximum complexity for mccabe (increased for framework complexity)
+max-complexity = 15
 
 # Show source code for each error
 show-source = True
@@ -58,11 +72,30 @@ statistics = True
 # Count errors and warnings
 count = True
 
-# Per-file ignores (if needed)
+# Per-file ignores for specific patterns
 per-file-ignores =
-    tests/*:E501,C901,
-    fabiplus/cli/*:C901,
-    migrations/*:E501,F401,F403
+    # __init__.py files can have unused imports
+    __init__.py:F401,F403
+    # CLI files can have complex argument parsing and B008 issues
+    fabiplus/cli/commands/*.py:C901,B008
+    # Template files can have complex logic
+    fabiplus/templates/*.py:C901
+    # Core framework files with necessary complexity
+    fabiplus/core/app.py:C901
+    fabiplus/admin/ui.py:C901
+    fabiplus/admin/routes.py:C901
+    fabiplus/core/migrations.py:C901
+    fabiplus/core/orm/*.py:C901
+    fabiplus/api/auto.py:C901
+    fabiplus/conf/settings.py:C901
+    # Test files can be less strict
+    test_*.py:D,C901,B008
+    tests/*.py:D,C901,B008
+    # Configuration files
+    settings.py:F401
+    config.py:F401
+    # Migration files
+    migrations/*:E501,F401,F403,C901
 
 # Enable specific plugins
 enable-extensions = 

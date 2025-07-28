@@ -201,7 +201,7 @@ flake8 = "^6.1.0"
 {% for extra_name, extra_deps in orm_optional_dependencies.items() -%}
 {{ extra_name }} = [{% for dep in extra_deps %}"{{ dep }}"{% if not loop.last %}, {% endif %}{% endfor %}]
 {% endfor -%}
-{% endif -%}
+{% endif %}
 
 [build-system]
 requires = ["poetry-core"]
@@ -280,7 +280,7 @@ OAUTH2_TOKEN_URL = "/auth/token"
 OAUTH2_SCOPES = {{"read": "Read access", "write": "Write access", "admin": "Admin access"}}
 
 # Admin Routes Visibility
-ADMIN_ROUTES_IN_DOCS = {{{{ show_admin_routes|lower }}}}
+ADMIN_ROUTES_IN_DOCS = {{{{ show_admin_routes|string|title }}}}
 
 {orm_settings}
 
