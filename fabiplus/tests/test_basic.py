@@ -80,7 +80,7 @@ def client_fixture(session: Session):
         if not user_route_exists:
             app.include_router(api_router)
 
-    except Exception as e:
+    except Exception:
         # If API route generation fails, the test will fail anyway
         # but we don't want to crash the test setup
         pass
