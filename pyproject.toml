@@ -8,9 +8,29 @@ license = "MIT"
 homepage = "https://github.com/Helevon-Technologies-LTD/fabiplus"
 repository = "https://github.com/Helevon-Technologies-LTD/fabiplus"
 documentation = "https://fabiplus.helevon.org"
-keywords = ["fastapi", "django", "framework", "api", "web", "backend", "python", "cli", "admin", "orm"]
+keywords = [
+    "fabiplus",
+    "fabiplus-framework",
+    "fastapi",
+    "django",
+    "framework",
+    "api",
+    "web",
+    "backend",
+    "python",
+    "cli",
+    "admin",
+    "orm",
+    "django-like",
+    "sqlmodel",
+    "sqlalchemy",
+    "helevon",
+    "helevon-technologies-ltd",
+    "helevon-framework",
+    "fabiplus-framework-helevon-technologies-ltd"
+]
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
@@ -24,22 +44,6 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Application Frameworks",
     "Framework :: FastAPI",
     "Environment :: Web Environment",
-]
-repository = "https://github.com/Helevon-Technologies-LTD/fabiplus"
-documentation = "https://fabiplus.helevon.org"
-keywords = ["fastapi", "framework", "api", "admin", "django-like", "sqlmodel", "sqlalchemy"]
-classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
-    "Topic :: Software Development :: Libraries :: Application Frameworks",
-    "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 packages = [{include = "fabiplus"}]
 
