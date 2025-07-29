@@ -476,7 +476,7 @@ jobs:
       # Poetry will now use OIDC to authenticate with PyPI
       run: |
         echo "🚀 Publishing FABI+ v${{ steps.get_version.outputs.version }} to PyPI using OIDC..."
-        poetry publish --no-build
+        poetry publish --dist dist/
         echo "✅ Successfully published to PyPI!"
 
     - name: Notify success
