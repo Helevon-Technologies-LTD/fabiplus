@@ -14,7 +14,7 @@ class BaseORMBackend(ABC):
     All ORM implementations must inherit from this class
     """
 
-    def __init__(self, project_name: str, database_url: str = None):
+    def __init__(self, project_name: str, database_url: Optional[str] = None):
         self.project_name = project_name
         self.database_url = database_url or f"sqlite:///./{project_name}.db"
 
@@ -38,7 +38,10 @@ class BaseORMBackend(ABC):
 
     @abstractmethod
     def generate_model_code(
-        self, model_name: str, fields: List[Tuple[str, str]], app_name: str = None
+        self,
+        model_name: str,
+        fields: List[Tuple[str, str]],
+        app_name: Optional[str] = None,
     ) -> str:
         """Generate model code for this ORM"""
         pass
@@ -111,7 +114,7 @@ class ORMRegistry:
     _backends: Dict[str, Type[BaseORMBackend]] = {}
 
     @classmethod
-    def register(cls, backend_class: Type[BaseORMBackend]):
+    def register(cls, backend_class: Type[BaseORMBackend]) -> Type[BaseORMBackend]:
         """Register an ORM backend"""
         backend_instance = backend_class("temp", "temp://")
         cls._backends[backend_instance.name] = backend_class

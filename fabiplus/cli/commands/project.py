@@ -3,7 +3,6 @@ Project scaffolding commands
 Django-style project creation with proper structure
 """
 
-
 from pathlib import Path
 from typing import Optional
 
@@ -40,7 +39,7 @@ def start_project(
         False, "--force", "-f", help="Overwrite existing directory"
     ),
     docker: bool = typer.Option(False, "--docker", help="Include Docker files"),
-):
+) -> None:
     """
     Create a new FABI+ project with proper structure
 
@@ -97,10 +96,10 @@ def start_project(
             # Create project structure
             template_engine = ProjectTemplate(
                 name,
-                template,
+                template or "default",
                 include_docker=docker,
-                orm_backend=orm,
-                auth_backend=auth,
+                orm_backend=orm or "sqlmodel",
+                auth_backend=auth or "oauth2",
                 show_admin_routes=show_admin_routes,
             )
             template_engine.create_project(project_dir, force=force)
@@ -122,7 +121,7 @@ def start_project(
 4. [cyan]fabiplus server run[/cyan]"""
 
     if docker:
-        success_text += f"""
+        success_text += """
 5. [cyan]docker-compose up[/cyan] (for Docker deployment)"""
 
     success_text += f"""
@@ -135,7 +134,7 @@ def start_project(
 • [blue]pyproject.toml[/blue] - Poetry configuration"""
 
     if docker:
-        success_text += f"""
+        success_text += """
 
 [bold]Docker files:[/bold]
 • [blue]Dockerfile[/blue] - Container definition
@@ -147,7 +146,7 @@ def start_project(
 
 
 @app.command("list-templates")
-def list_templates():
+def list_templates() -> None:
     """List available project templates"""
 
     templates = {
@@ -169,7 +168,7 @@ def list_templates():
 
 
 @app.command("list-orms")
-def list_orms():
+def list_orms() -> None:
     """List available ORM backends"""
 
     from fabiplus.core.orm import ORMRegistry
@@ -206,7 +205,7 @@ def init_project(
     force: bool = typer.Option(
         False, "--force", "-f", help="Initialize in non-empty directory"
     )
-):
+) -> None:
     """
     Initialize FABI+ in existing directory
 
@@ -250,7 +249,7 @@ def init_project(
             console.print(f"[red]Error initializing project: {e}[/red]")
             raise typer.Exit(1)
 
-    success_text = f"""
+    success_text = """
 [bold green]✅ FABI+ initialized in current directory![/bold green]
 
 [bold]Next steps:[/bold]
@@ -270,11 +269,11 @@ def init_project(
     )
 
 
-def _create_project_docker_files(project_dir: Path, project_name: str):
+def _create_project_docker_files(project_dir: Path, project_name: str) -> None:
     """Create Docker files for the project"""
 
     # Dockerfile
-    dockerfile_content = f"""# FABI+ Project Dockerfile
+    dockerfile_content = """# FABI+ Project Dockerfile
 FROM python:3.11-slim
 
 # Set environment variables

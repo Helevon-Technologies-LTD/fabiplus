@@ -24,8 +24,8 @@ class StreamingJSONResponse(StreamingResponse):
         total_count: Optional[int] = None,
         include_metadata: bool = True,
         background: Optional[BackgroundTask] = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.data_generator = data_generator
         self.chunk_size = chunk_size
         self.total_count = total_count
@@ -98,8 +98,8 @@ class StreamingCSVResponse(StreamingResponse):
         include_header: bool = True,
         delimiter: str = ",",
         background: Optional[BackgroundTask] = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.data_generator = data_generator
         self.fieldnames = fieldnames
         self.include_header = include_header
@@ -186,8 +186,8 @@ class StreamingXMLResponse(StreamingResponse):
         item_element: str = "item",
         filename: Optional[str] = None,
         background: Optional[BackgroundTask] = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.data_generator = data_generator
         self.root_element = root_element
         self.item_element = item_element
@@ -255,13 +255,13 @@ class ChunkedDataResponse(StreamingResponse):
 
     def __init__(
         self,
-        data_source: Callable,
+        data_source: Callable[..., Any],
         chunk_size: int = 1000,
         formatter: Optional[Callable[[List[Any]], str]] = None,
         content_type: str = "application/json",
         background: Optional[BackgroundTask] = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.data_source = data_source
         self.chunk_size = chunk_size
         self.formatter = formatter or self._default_formatter
@@ -310,8 +310,8 @@ class ServerSentEventsResponse(StreamingResponse):
         event_generator: AsyncIterator[Dict[str, Any]],
         retry_timeout: int = 5000,
         background: Optional[BackgroundTask] = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.event_generator = event_generator
         self.retry_timeout = retry_timeout
 
@@ -369,11 +369,11 @@ class ProgressStreamResponse(StreamingResponse):
 
     def __init__(
         self,
-        operation: Callable,
+        operation: Callable[..., Any],
         progress_callback: Optional[Callable[[int, int, str], None]] = None,
         background: Optional[BackgroundTask] = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.operation = operation
         self.progress_callback = progress_callback
 
@@ -388,7 +388,7 @@ class ProgressStreamResponse(StreamingResponse):
     async def _stream_progress(self) -> AsyncIterator[str]:
         """Stream progress updates"""
 
-        def progress_handler(current: int, total: int, message: str = ""):
+        def progress_handler(current: int, total: int, message: str = "") -> None:
             """Internal progress handler"""
             progress_data = {
                 "current": current,
@@ -398,7 +398,9 @@ class ProgressStreamResponse(StreamingResponse):
                 "timestamp": datetime.now().isoformat(),
             }
 
-            return f"data: {json.dumps(progress_data)}\n\n"
+            # Send progress update via callback if provided
+            if self.progress_callback:
+                self.progress_callback(current, total, message)
 
         try:
             # Start operation

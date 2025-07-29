@@ -125,9 +125,9 @@ class SecurityMiddleware(BaseHTTPMiddleware):
 
         # HSTS (only in production)
         if settings.ENVIRONMENT == "production":
-            response.headers[
-                "Strict-Transport-Security"
-            ] = "max-age=31536000; includeSubDomains; preload"
+            response.headers["Strict-Transport-Security"] = (
+                "max-age=31536000; includeSubDomains; preload"
+            )
 
     async def _validate_csrf_token(self, request: Request) -> bool:
         """Validate CSRF token"""

@@ -38,7 +38,7 @@ class ProjectTemplate:
         self.orm_class = ORMRegistry.get_backend(orm_backend)
         self.orm_instance = self.orm_class(project_name)
 
-    def create_project(self, project_dir: Path, force: bool = False):
+    def create_project(self, project_dir: Path, force: bool = False) -> None:
         """Create a new FABI+ project"""
 
         if project_dir.exists() and force:
@@ -52,11 +52,11 @@ class ProjectTemplate:
         self._create_migration_config(project_dir)
         self._create_main_app(project_dir)
 
-    def init_existing_project(self, project_dir: Path):
+    def init_existing_project(self, project_dir: Path) -> None:
         """Initialize FABI+ in existing directory"""
         self._create_project_files(project_dir)
 
-    def _create_project_structure(self, project_dir: Path):
+    def _create_project_structure(self, project_dir: Path) -> None:
         """Create basic project directory structure"""
 
         directories = [
@@ -73,7 +73,7 @@ class ProjectTemplate:
                 if directory in [self.project_name, "apps", "tests"]:
                     (project_dir / directory / "__init__.py").touch()
 
-    def _create_project_files(self, project_dir: Path):
+    def _create_project_files(self, project_dir: Path) -> None:
         """Create project configuration files"""
 
         context = self._get_template_context()
@@ -113,7 +113,7 @@ class ProjectTemplate:
             else:
                 full_path.touch()
 
-    def _create_migration_config(self, project_dir: Path):
+    def _create_migration_config(self, project_dir: Path) -> None:
         """Create migration configuration files"""
         migration_files = self.orm_instance.generate_migration_config(project_dir)
 
@@ -122,7 +122,7 @@ class ProjectTemplate:
             full_path.parent.mkdir(parents=True, exist_ok=True)
             full_path.write_text(content)
 
-    def _create_main_app(self, project_dir: Path):
+    def _create_main_app(self, project_dir: Path) -> None:
         """Create main application directory"""
         from .app import AppTemplate
 
@@ -161,27 +161,35 @@ python = "^3.10"
 {% if ">=" in dep -%}
 {% set parts = dep.split(">=") -%}
 {% if "[" in parts[0] -%}
-"{{ parts[0] }}" = ">={{ parts[1] }}"
+{% set pkg_parts = parts[0].split("[") -%}
+{% set extras = parts[0].split("[")[1].rstrip("]") -%}
+{{ pkg_parts[0] }} = {extras = ["{{ extras }}"], version = ">={{ parts[1] }}"}
 {% else -%}
 {{ parts[0] }} = ">={{ parts[1] }}"
 {% endif -%}
 {% elif "==" in dep -%}
 {% set parts = dep.split("==") -%}
 {% if "[" in parts[0] -%}
-"{{ parts[0] }}" = "=={{ parts[1] }}"
+{% set pkg_parts = parts[0].split("[") -%}
+{% set extras = parts[0].split("[")[1].rstrip("]") -%}
+{{ pkg_parts[0] }} = {extras = ["{{ extras }}"], version = "=={{ parts[1] }}"}
 {% else -%}
 {{ parts[0] }} = "=={{ parts[1] }}"
 {% endif -%}
 {% elif "=" in dep -%}
 {% set parts = dep.split("=") -%}
 {% if "[" in parts[0] -%}
-"{{ parts[0] }}" = "{{ parts[1] }}"
+{% set pkg_parts = parts[0].split("[") -%}
+{% set extras = parts[0].split("[")[1].rstrip("]") -%}
+{{ pkg_parts[0] }} = {extras = ["{{ extras }}"], version = "{{ parts[1] }}"}
 {% else -%}
 {{ parts[0] }} = "{{ parts[1] }}"
 {% endif -%}
 {% else -%}
 {% if "[" in dep -%}
-"{{ dep }}" = "^0.1.0"
+{% set pkg_parts = dep.split("[") -%}
+{% set extras = dep.split("[")[1].rstrip("]") -%}
+{{ pkg_parts[0] }} = {extras = ["{{ extras }}"], version = "^0.1.0"}
 {% else -%}
 {{ dep }} = "^0.1.0"
 {% endif -%}
@@ -201,7 +209,7 @@ flake8 = "^6.1.0"
 {% for extra_name, extra_deps in orm_optional_dependencies.items() -%}
 {{ extra_name }} = [{% for dep in extra_deps %}"{{ dep }}"{% if not loop.last %}, {% endif %}{% endfor %}]
 {% endfor -%}
-{% endif -%}
+{% endif %}
 
 [build-system]
 requires = ["poetry-core"]
@@ -280,7 +288,7 @@ OAUTH2_TOKEN_URL = "/auth/token"
 OAUTH2_SCOPES = {{"read": "Read access", "write": "Write access", "admin": "Admin access"}}
 
 # Admin Routes Visibility
-ADMIN_ROUTES_IN_DOCS = {{{{ show_admin_routes|lower }}}}
+ADMIN_ROUTES_IN_DOCS = {{{{ show_admin_routes|string|title }}}}
 
 {orm_settings}
 

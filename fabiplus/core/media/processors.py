@@ -139,9 +139,9 @@ class FileProcessor:
                     rgb_thumbnail = Image.new("RGB", thumbnail.size, (255, 255, 255))
                     rgb_thumbnail.paste(
                         thumbnail,
-                        mask=thumbnail.split()[-1]
-                        if thumbnail.mode == "RGBA"
-                        else None,
+                        mask=(
+                            thumbnail.split()[-1] if thumbnail.mode == "RGBA" else None
+                        ),
                     )
                     thumbnail = rgb_thumbnail
 
@@ -350,7 +350,7 @@ class ImageProcessor(FileProcessor):
             # Try to use a nice font, fall back to default
             try:
                 font = ImageFont.truetype("arial.ttf", 36)
-            except:
+            except OSError:
                 font = ImageFont.load_default()
 
             # Position watermark in bottom right

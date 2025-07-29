@@ -7,6 +7,7 @@ import uuid
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Type
 
+from pydantic import ConfigDict, field_serializer
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.types import CHAR, TypeDecorator
 from sqlmodel import Field, Session, SQLModel, create_engine
@@ -65,9 +66,17 @@ class BaseModel(SQLModel):
         default_factory=lambda: datetime.now(timezone.utc)
     )
 
-    class Config:
-        arbitrary_types_allowed = True
-        json_encoders = {datetime: lambda v: v.isoformat(), uuid.UUID: lambda v: str(v)}
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+
+    @field_serializer("created_at", "updated_at", when_used="json")
+    def serialize_datetime(self, value: Optional[datetime]) -> Optional[str]:
+        """Serialize datetime fields to ISO format"""
+        return value.isoformat() if value else None
+
+    @field_serializer("id", when_used="json")
+    def serialize_uuid(self, value: Optional[uuid.UUID]) -> Optional[str]:
+        """Serialize UUID fields to string"""
+        return str(value) if value else None
 
     @classmethod
     def get_table_name(cls) -> str:

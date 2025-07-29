@@ -88,22 +88,8 @@ async def lifespan(app: FastAPI):
     logger.info("Shutting down FABI+ application...")
 
 
-def create_app() -> FastAPI:
-    """
-    Create and configure FastAPI application
-    """
-
-    # Create FastAPI app
-    app = FastAPI(
-        title=settings.APP_NAME,
-        version=settings.APP_VERSION,
-        description=f"{settings.APP_NAME} - Built with FABI+ Framework",
-        debug=settings.DEBUG,
-        lifespan=lifespan,
-        docs_url="/docs",
-        redoc_url="/redoc",
-    )
-
+def _setup_middleware(app: FastAPI) -> None:
+    """Setup middleware for the FastAPI application"""
     # Add CORS middleware
     app.add_middleware(
         CORSMiddleware,
@@ -140,7 +126,164 @@ def create_app() -> FastAPI:
     except ImportError as e:
         logger.warning(f"Activity logging middleware not available: {e}")
 
-    # Exception handlers
+
+def _setup_auth_endpoints(app: FastAPI) -> None:
+    """Setup authentication endpoints"""
+    from passlib.context import CryptContext
+    from pydantic import BaseModel, EmailStr
+
+    from .auth import get_current_active_user
+    from .models import ModelRegistry, User
+
+    # Define dependency for this function scope
+    ActiveUserDep = Depends(get_current_active_user)
+
+    # Password hashing
+    pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+    class UserRegistration(BaseModel):
+        username: str
+        email: EmailStr
+        password: str
+        first_name: str = ""
+        last_name: str = ""
+
+    class UserResponse(BaseModel):
+        id: str
+        username: str
+        email: str
+        first_name: str
+        last_name: str
+        is_staff: bool
+        is_superuser: bool
+
+    # Authentication endpoints
+    @app.post("/auth/token", tags=["Authentication"])
+    async def login(request: Request):
+        """
+        Login endpoint that accepts both form data and JSON
+        """
+        try:
+            content_type = request.headers.get("content-type", "")
+
+            if "application/json" in content_type:
+                # Handle JSON login
+                data = await request.json()
+                username = data.get("username")
+                password = data.get("password")
+            else:
+                # Handle form data login
+                form = await request.form()
+                username = form.get("username")
+                password = form.get("password")
+
+            if not username or not password:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail="Username and password are required",
+                )
+
+            # Authenticate user
+            user = auth_backend.authenticate_user(username, password)
+
+            if not user:
+                raise HTTPException(
+                    status_code=status.HTTP_401_UNAUTHORIZED,
+                    detail="Incorrect username or password",
+                )
+
+            logger.info(f"Authentication successful for user: {username}")
+            access_token = auth_backend.create_access_token(
+                data={"sub": str(user.id), "username": user.username}
+            )
+
+            return {
+                "access_token": access_token,
+                "token_type": "bearer",
+                "user": {
+                    "id": str(user.id),
+                    "username": user.username,
+                    "email": user.email,
+                    "is_staff": user.is_staff,
+                    "is_superuser": user.is_superuser,
+                },
+            }
+        except HTTPException:
+            raise
+        except Exception as e:
+            logger.error(f"Authentication error: {str(e)}")
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Authentication service error",
+            )
+
+    @app.get("/auth/me", response_model=UserResponse, tags=["Authentication"])
+    async def get_current_user(current_user: User = ActiveUserDep):
+        """Get current authenticated user"""
+        return UserResponse(
+            id=str(current_user.id),
+            username=current_user.username,
+            email=current_user.email,
+            first_name=current_user.first_name,
+            last_name=current_user.last_name,
+            is_staff=current_user.is_staff,
+            is_superuser=current_user.is_superuser,
+        )
+
+    @app.post("/auth/register", response_model=UserResponse, tags=["Authentication"])
+    async def register_user(user_data: UserRegistration):
+        """Register a new user"""
+        session = ModelRegistry.get_session()
+
+        # Check if user already exists
+        existing_user = (
+            session.query(User)
+            .filter(
+                (User.username == user_data.username) | (User.email == user_data.email)
+            )
+            .first()
+        )
+
+        if existing_user:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Username or email already registered",
+            )
+
+        # Create new user
+        hashed_password = pwd_context.hash(user_data.password)
+        new_user = User(
+            username=user_data.username,
+            email=user_data.email,
+            hashed_password=hashed_password,
+            first_name=user_data.first_name,
+            last_name=user_data.last_name,
+            is_active=True,
+            is_staff=False,
+            is_superuser=False,
+        )
+
+        session.add(new_user)
+        session.commit()
+        session.refresh(new_user)
+
+        logger.info(f"New user registered: {user_data.username}")
+
+        return UserResponse(
+            id=str(new_user.id),
+            username=new_user.username,
+            email=new_user.email,
+            first_name=new_user.first_name,
+            last_name=new_user.last_name,
+            is_staff=new_user.is_staff,
+            is_superuser=new_user.is_superuser,
+        )
+
+
+def _setup_exception_handlers(app: FastAPI) -> None:
+    """Setup exception handlers for the FastAPI application"""
+    from pydantic import ValidationError
+
     @app.exception_handler(AuthenticationError)
     async def auth_exception_handler(_request, exc: AuthenticationError):
         return JSONResponse(
@@ -151,18 +294,62 @@ def create_app() -> FastAPI:
 
     @app.exception_handler(PermissionError)
     async def permission_exception_handler(_request, exc: PermissionError):
-        return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
+        return JSONResponse(
+            status_code=403,
+            content={"detail": str(exc)},
+        )
+
+    @app.exception_handler(ValidationError)
+    async def validation_exception_handler(_request, exc: ValidationError):
+        return JSONResponse(
+            status_code=422,
+            content={"detail": exc.errors()},
+        )
 
     @app.exception_handler(HTTPException)
     async def http_exception_handler(_request, exc: HTTPException):
-        return JSONResponse(status_code=exc.status_code, content={"detail": exc.detail})
+        return JSONResponse(
+            status_code=exc.status_code,
+            content={"detail": exc.detail},
+        )
 
     @app.exception_handler(Exception)
-    async def general_exception_handler(_request, exc: Exception):
+    async def general_exception_handler(request, exc: Exception):
         logger.error(f"Unhandled exception: {exc}", exc_info=True)
+        if settings.DEBUG:
+            return JSONResponse(
+                status_code=500,
+                content={
+                    "detail": f"Internal server error: {str(exc)}",
+                    "type": type(exc).__name__,
+                },
+            )
         return JSONResponse(
-            status_code=500, content={"detail": "Internal server error"}
+            status_code=500,
+            content={"detail": "Internal server error"},
         )
+
+
+def create_app() -> FastAPI:
+    """
+    Create and configure FastAPI application
+    """
+
+    # Create FastAPI app
+    app = FastAPI(
+        title=settings.APP_NAME,
+        version=settings.APP_VERSION,
+        description=f"{settings.APP_NAME} - Built with FABI+ Framework",
+        debug=settings.DEBUG,
+        lifespan=lifespan,
+        docs_url="/docs",
+        redoc_url="/redoc",
+    )
+
+    # Setup middleware, exception handlers, and auth endpoints
+    _setup_middleware(app)
+    _setup_exception_handlers(app)
+    _setup_auth_endpoints(app)
 
     # Root endpoint
     @app.get("/")
@@ -432,9 +619,9 @@ def create_app() -> FastAPI:
                 is_active=new_user.is_active,
                 is_staff=new_user.is_staff,
                 is_superuser=new_user.is_superuser,
-                created_at=new_user.created_at.isoformat()
-                if new_user.created_at
-                else "",
+                created_at=(
+                    new_user.created_at.isoformat() if new_user.created_at else ""
+                ),
             )
 
         except HTTPException:
@@ -465,9 +652,9 @@ def create_app() -> FastAPI:
             is_active=current_user.is_active,
             is_staff=current_user.is_staff,
             is_superuser=current_user.is_superuser,
-            created_at=current_user.created_at.isoformat()
-            if current_user.created_at
-            else "",
+            created_at=(
+                current_user.created_at.isoformat() if current_user.created_at else ""
+            ),
         )
 
     # API router is now included in lifespan startup after models are loaded
@@ -497,7 +684,7 @@ def create_app() -> FastAPI:
     # Load and register plugins
     _load_plugins(app)
 
-    logger.info(f"FABI+ application created successfully")
+    logger.info("FABI+ application created successfully")
     logger.info(f"Environment: {settings.ENVIRONMENT}")
     logger.info(f"Debug mode: {settings.DEBUG}")
     logger.info(f"API prefix: {settings.API_PREFIX}")

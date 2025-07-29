@@ -4,7 +4,7 @@ Async-first ORM implementation
 """
 
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from .base import BaseORMBackend, register_orm_backend
 
@@ -36,14 +36,17 @@ class TortoiseBackend(BaseORMBackend):
     @property
     def optional_dependencies(self) -> Dict[str, List[str]]:
         return {
-            "postgresql": ["asyncpg>=0.29.0"],
-            "mysql": ["aiomysql>=0.2.0"],
-            "redis": ["redis>=5.0.0", "hiredis>=2.2.0"],
-            "monitoring": ["sentry-sdk[fastapi]>=1.38.0"],
+            "postgresql": ["asyncpg"],
+            "mysql": ["aiomysql"],
+            "redis": ["redis", "hiredis"],
+            "monitoring": ["sentry-sdk"],
         }
 
     def generate_model_code(
-        self, model_name: str, fields: List[Tuple[str, str]], app_name: str = None
+        self,
+        model_name: str,
+        fields: List[Tuple[str, str]],
+        app_name: Optional[str] = None,
     ) -> str:
         """Generate Tortoise ORM model code"""
 
@@ -188,7 +191,7 @@ def get_tortoise_config():
     def generate_migration_config(self, project_dir: Path) -> Dict[str, str]:
         """Generate Aerich migration configuration for Tortoise ORM"""
 
-        aerich_ini = f"""[tool.aerich]
+        aerich_ini = """[tool.aerich]
 tortoise_orm = "fabiplus.conf.settings.TORTOISE_ORM"
 location = "./migrations"
 src_folder = "./"

@@ -5,7 +5,7 @@ Tests model-level, field-level, and row-level access control
 
 import uuid
 from datetime import datetime, timedelta
-from unittest.mock import MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 from fastapi import HTTPException
@@ -340,7 +340,8 @@ class TestPermissionCheckers:
         self.user.groups = []
         self.user.roles = []
 
-    def test_model_permission_checker(self):
+    @pytest.mark.asyncio
+    async def test_model_permission_checker(self):
         """Test ModelPermissionChecker"""
 
         # Create model permission
@@ -362,9 +363,11 @@ class TestPermissionCheckers:
 
         # This would be async in real implementation
         # For testing, we'll mock the async behavior
-        with patch.object(checker, "check_permission") as mock_check:
+        with patch.object(
+            checker, "check_permission", new_callable=AsyncMock
+        ) as mock_check:
             mock_check.return_value = True
-            result = checker.check_permission(self.user, read_perm)
+            result = await checker.check_permission(self.user, read_perm)
             assert result is True
 
     def test_composite_permission_checker(self):
@@ -440,7 +443,8 @@ class TestPermissionIntegration:
         self.user.groups = []
         self.user.roles = []
 
-    def test_full_permission_workflow(self):
+    @pytest.mark.asyncio
+    async def test_full_permission_workflow(self):
         """Test complete permission workflow"""
 
         # 1. Create permissions
@@ -465,7 +469,9 @@ class TestPermissionIntegration:
         checker = CompositePermissionChecker(self.session)
 
         # Mock the async methods for testing
-        with patch.object(checker, "check_permission") as mock_check:
+        with patch.object(
+            checker, "check_permission", new_callable=AsyncMock
+        ) as mock_check:
             mock_check.return_value = True
 
             # Test model permission
@@ -476,7 +482,7 @@ class TestPermissionIntegration:
                 resource="User",
             )
 
-            result = checker.check_permission(self.user, model_permission)
+            result = await checker.check_permission(self.user, model_permission)
             assert result is True
 
     def test_permission_hierarchy(self):

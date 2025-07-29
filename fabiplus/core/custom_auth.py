@@ -6,7 +6,7 @@ Provides additional authentication options beyond the default OAuth2
 import hashlib
 import logging
 import secrets
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Any, Callable, Optional
 
 import jwt
@@ -41,7 +41,7 @@ class APIKeyAuth:
             # For now, we'll use a simple hash check
             user = (
                 session.query(User)
-                .filter(User.api_key == api_key, User.is_active == True)
+                .filter(User.api_key == api_key, User.is_active.is_(True))
                 .first()
             )
             return user
@@ -83,7 +83,7 @@ class SessionAuth:
 
             decoded = base64.b64decode(session_id).decode()
             return decoded.split(":")[0] if ":" in decoded else None
-        except:
+        except (ValueError, TypeError):
             return None
 
 
@@ -130,7 +130,7 @@ class CustomAuthMiddleware:
 
     def _is_rate_limited(self, client_ip: str) -> bool:
         """Simple rate limiting - 100 requests per minute"""
-        now = datetime.utcnow()
+        now = datetime.now(timezone.utc)
         minute_ago = now - timedelta(minutes=1)
 
         if client_ip not in self.rate_limit_store:
@@ -204,7 +204,7 @@ class MultiAuth:
         if self.oauth2:
             try:
                 user = await get_current_active_user()
-            except:
+            except Exception:
                 pass
 
         # Try custom auth methods
@@ -284,7 +284,7 @@ def create_session_token(user_id: str) -> str:
     """Create a session token"""
     import base64
 
-    session_data = f"{user_id}:{datetime.utcnow().isoformat()}"
+    session_data = f"{user_id}:{datetime.now(timezone.utc).isoformat()}"
     return base64.b64encode(session_data.encode()).decode()
 
 

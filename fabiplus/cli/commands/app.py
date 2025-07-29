@@ -16,6 +16,8 @@ from ..templates import AppTemplate
 console = Console()
 app = typer.Typer()
 
+# Note: Removed module-level CLI argument/option instances to fix Typer compatibility issues
+
 
 @app.command("startapp")
 def start_app(
@@ -27,7 +29,7 @@ def start_app(
         "default", "--template", "-t", help="App template to use"
     ),
     force: bool = typer.Option(False, "--force", "-f", help="Overwrite existing app"),
-):
+) -> None:
     """
     Create a new FABI+ app with models, views, and admin
 
@@ -81,7 +83,9 @@ def start_app(
             orm_backend = _detect_project_orm_backend()
 
             # Create app structure
-            template_engine = AppTemplate(name, template, orm_backend=orm_backend)
+            template_engine = AppTemplate(
+                name, template or "default", orm_backend=orm_backend
+            )
             template_engine.create_app(app_dir, force=force)
 
             progress.update(task, description="App created successfully!")
@@ -451,7 +455,7 @@ def generate_code(
     if tests:
         success_text += f"• Updated [cyan]{app_name}/tests.py[/cyan]\n"
 
-    success_text += f"""
+    success_text += """
 [bold]Next steps:[/bold]
 1. Run [cyan]fabiplus db makemigrations[/cyan]
 2. Run [cyan]fabiplus db migrate[/cyan]

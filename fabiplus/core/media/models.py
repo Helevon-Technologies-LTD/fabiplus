@@ -7,7 +7,6 @@ import uuid
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-from pydantic import validator
 from sqlalchemy import Text
 from sqlmodel import JSON, Column, Field, Relationship, SQLModel
 
@@ -19,8 +18,11 @@ class MediaFolder(SQLModel, table=True):
 
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
     name: str = Field(max_length=255, description="Folder name")
-    slug: str = Field(
-        max_length=255, unique=True, description="URL-friendly folder name"
+    slug: Optional[str] = Field(
+        default=None,
+        max_length=255,
+        unique=True,
+        description="URL-friendly folder name",
     )
     description: Optional[str] = Field(default="", description="Folder description")
     parent_id: Optional[uuid.UUID] = Field(
@@ -38,7 +40,7 @@ class MediaFolder(SQLModel, table=True):
     parent_id: Optional[uuid.UUID] = Field(default=None, foreign_key="media_folders.id")
     parent: Optional["MediaFolder"] = Relationship(
         back_populates="children",
-        sa_relationship_kwargs={"remote_side": "MediaFolder.id"}
+        sa_relationship_kwargs={"remote_side": "MediaFolder.id"},
     )
     children: List["MediaFolder"] = Relationship(back_populates="parent")
     files: List["MediaFile"] = Relationship(back_populates="folder")
@@ -61,15 +63,15 @@ class MediaFolder(SQLModel, table=True):
     def __str__(self):
         return self.name
 
-    @validator("slug", pre=True, always=True)
-    def generate_slug(cls, v, values):
-        if not v and "name" in values:
+    def __init__(self, **data):
+        # Auto-generate slug if not provided
+        if not data.get("slug") and data.get("name"):
             import re
 
-            slug = re.sub(r"[^a-zA-Z0-9\-_]", "-", values["name"].lower())
+            slug = re.sub(r"[^a-zA-Z0-9\-_]", "-", data["name"].lower())
             slug = re.sub(r"-+", "-", slug).strip("-")
-            return slug
-        return v
+            data["slug"] = slug
+        super().__init__(**data)
 
 
 class MediaFile(SQLModel, table=True):

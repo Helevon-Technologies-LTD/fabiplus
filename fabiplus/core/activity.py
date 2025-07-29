@@ -5,11 +5,12 @@ Tracks user activities and system events for admin monitoring
 
 import json
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel as PydanticBaseModel
+from pydantic import ConfigDict, field_serializer
 from sqlmodel import Field, Relationship, Session, SQLModel, select
 
 from .models import BaseModel, ModelRegistry, User
@@ -46,7 +47,9 @@ class Activity(BaseModel, table=True):
 
     # Core fields
     id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
-    timestamp: datetime = Field(default_factory=datetime.utcnow, index=True)
+    timestamp: datetime = Field(
+        default_factory=lambda: datetime.now(timezone.utc), index=True
+    )
 
     # Activity details
     activity_type: ActivityType = Field(index=True)
@@ -89,8 +92,17 @@ class Activity(BaseModel, table=True):
     # Relationships (commented out to avoid circular dependency issues)
     # user: Optional[User] = Relationship(back_populates="activities")
 
-    class Config:
-        json_encoders = {datetime: lambda v: v.isoformat(), uuid.UUID: lambda v: str(v)}
+    model_config = ConfigDict()
+
+    @field_serializer("timestamp", "created_at", "updated_at", when_used="json")
+    def serialize_datetime(self, value: Optional[datetime]) -> Optional[str]:
+        """Serialize datetime fields to ISO format"""
+        return value.isoformat() if value else None
+
+    @field_serializer("id", "user_id", when_used="json")
+    def serialize_uuid(self, value: Optional[uuid.UUID]) -> Optional[str]:
+        """Serialize UUID fields to string"""
+        return str(value) if value else None
 
     def __str__(self):
         return f"{self.action} by {self.user_email or 'System'} at {self.timestamp}"

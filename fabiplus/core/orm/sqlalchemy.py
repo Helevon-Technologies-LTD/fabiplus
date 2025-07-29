@@ -4,7 +4,7 @@ Pure SQLAlchemy implementation without SQLModel
 """
 
 from pathlib import Path
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 from .base import BaseORMBackend, register_orm_backend
 
@@ -36,14 +36,17 @@ class SQLAlchemyBackend(BaseORMBackend):
     @property
     def optional_dependencies(self) -> Dict[str, List[str]]:
         return {
-            "postgresql": ["psycopg2-binary>=2.9.0"],
-            "mysql": ["pymysql>=1.1.0"],
-            "redis": ["redis>=5.0.0", "hiredis>=2.2.0"],
-            "monitoring": ["sentry-sdk[fastapi]>=1.38.0"],
+            "postgresql": ["psycopg2-binary"],
+            "mysql": ["pymysql"],
+            "redis": ["redis", "hiredis"],
+            "monitoring": ["sentry-sdk"],
         }
 
     def generate_model_code(
-        self, model_name: str, fields: List[Tuple[str, str]], app_name: str = None
+        self,
+        model_name: str,
+        fields: List[Tuple[str, str]],
+        app_name: Optional[str] = None,
     ) -> str:
         """Generate SQLAlchemy model code"""
 
@@ -209,10 +212,15 @@ output_encoding = utf-8
 sqlalchemy.url = sqlite:///./{self.project_name}.db
 
 [post_write_hooks]
-hooks = black
-black.type = console_scripts
-black.entrypoint = black
-black.options = -l 79 REVISION_SCRIPT_FILENAME
+# post_write_hooks defines scripts or Python functions that are run
+# on newly generated revision scripts.
+
+# format using "black" - use the console_scripts runner, against the "black" entrypoint
+# Note: This hook is only enabled if black is available in the environment
+# hooks = black
+# black.type = console_scripts
+# black.entrypoint = black
+# black.options = -l 79 REVISION_SCRIPT_FILENAME
 
 [loggers]
 keys = root,sqlalchemy,alembic
@@ -335,6 +343,7 @@ Create Date: ${create_date}
 """
 from alembic import op
 import sqlalchemy as sa
+import sqlmodel  # Required for core models that use SQLModel types
 import fabiplus
 import fabiplus.core.user_model
 ${imports if imports else ""}

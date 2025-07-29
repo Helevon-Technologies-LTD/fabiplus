@@ -71,7 +71,7 @@ def show_models():
 
         # Show fields
         fields = []
-        for field_name, field_info in model_class.__fields__.items():
+        for field_name, field_info in model_class.model_fields.items():
             field_type = str(field_info.type_).replace("typing.", "")
             required = "required" if field_info.required else "optional"
             fields.append(f"    {field_name}: {field_type} ({required})")
@@ -148,7 +148,6 @@ def run_tests(
     """Run tests"""
 
     import subprocess
-
 
     cmd = ["python", "-m", "pytest"]
 

@@ -21,7 +21,7 @@
 ### 🔥 **Core Features**
 - **FastAPI Backend**: High-performance async API with automatic OpenAPI documentation
 - **Django-style Admin**: Familiar admin interface with CRUD operations
-- **Multiple ORM Support**: SQLModel, SQLAlchemy, and Tortoise ORM
+- **Multiple ORM Support**: SQLModel and SQLAlchemy (Tortoise ORM planned for future release)
 - **Auto-generated APIs**: Automatic CRUD endpoints for your models
 - **CLI Tools**: Django-like management commands (`startproject`, `startapp`, `migrate`)
 

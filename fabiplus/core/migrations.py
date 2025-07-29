@@ -270,7 +270,7 @@ datefmt = %H:%M:%S
 
     def _update_env_py(self, env_py: Path):
         """Update env.py to work with FABI+ models"""
-        content = f'''"""FABI+ Alembic Environment"""
+        content = '''"""FABI+ Alembic Environment"""
 
 from logging.config import fileConfig
 from sqlalchemy import engine_from_config, pool
@@ -348,41 +348,116 @@ else:
             f.write(content)
 
     def _update_script_template(self, script_mako: Path):
-        """Update script.py.mako template to include required imports"""
-        content = '''"""${message}
+        """Update script.py.mako template to include required imports based on ORM backend"""
 
-Revision ID: ${up_revision}
-Revises: ${down_revision | comma,n}
-Create Date: ${create_date}
+        # Generate backend-specific imports
+        # Note: Even SQLAlchemy backend needs sqlmodel import because core models use SQLModel
+        if self.orm_backend == "sqlmodel":
+            orm_imports = "import sqlmodel"
+        elif self.orm_backend == "sqlalchemy":
+            orm_imports = (
+                "import sqlmodel  # Required for core models that use SQLModel types"
+            )
+        else:  # tortoise
+            orm_imports = "# Tortoise ORM backend - no additional ORM imports needed"
+
+        content = f'''"""${{message}}
+
+Revision ID: ${{up_revision}}
+Revises: ${{down_revision | comma,n}}
+Create Date: ${{create_date}}
 
 """
 from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
-import sqlmodel
+{orm_imports}
 import fabiplus.core.user_model
-${imports if imports else ""}
+${{imports if imports else ""}}
 
 # revision identifiers, used by Alembic.
-revision: str = ${repr(up_revision)}
-down_revision: Union[str, None] = ${repr(down_revision)}
-branch_labels: Union[str, Sequence[str], None] = ${repr(branch_labels)}
-depends_on: Union[str, Sequence[str], None] = ${repr(depends_on)}
+revision: str = ${{repr(up_revision)}}
+down_revision: Union[str, None] = ${{repr(down_revision)}}
+branch_labels: Union[str, Sequence[str], None] = ${{repr(branch_labels)}}
+depends_on: Union[str, Sequence[str], None] = ${{repr(depends_on)}}
 
 
 def upgrade() -> None:
     """Upgrade schema."""
-    ${upgrades if upgrades else "pass"}
+    ${{upgrades if upgrades else "pass"}}
 
 
 def downgrade() -> None:
     """Downgrade schema."""
-    ${downgrades if downgrades else "pass"}
+    ${{downgrades if downgrades else "pass"}}
 '''
 
         with open(script_mako, "w") as f:
             f.write(content)
+
+    def _configure_black_hook(self):
+        """Configure black post-write hook if black is available"""
+        try:
+            import importlib.util
+            import os
+            import subprocess
+            import sys
+
+            # Check if black is available in the current Python environment
+            black_available = False
+
+            # First, try to import black directly (most reliable for current environment)
+            try:
+                import black
+
+                black_available = True
+            except ImportError:
+                black_available = False
+
+            # If import failed, try to check if black executable is available in current environment
+            if not black_available:
+                try:
+                    # Use sys.executable to ensure we're checking the current Python environment
+                    result = subprocess.run(
+                        [sys.executable, "-m", "black", "--version"],
+                        capture_output=True,
+                        text=True,
+                        timeout=5,
+                    )
+                    black_available = result.returncode == 0
+                except (subprocess.TimeoutExpired, OSError):
+                    black_available = False
+
+            # Read current alembic.ini
+            alembic_ini = Path.cwd() / "alembic.ini"
+            if not alembic_ini.exists():
+                return
+
+            with open(alembic_ini, "r") as f:
+                content = f.read()
+
+            # Configure black hook based on availability
+            if black_available:
+                # Enable black hook
+                content = content.replace(
+                    "# hooks = black\n# black.type = console_scripts\n# black.entrypoint = black\n# black.options = -l 79 REVISION_SCRIPT_FILENAME",
+                    "hooks = black\nblack.type = console_scripts\nblack.entrypoint = black\nblack.options = -l 79 REVISION_SCRIPT_FILENAME",
+                )
+            else:
+                # Ensure black hook is disabled (already commented out by default)
+                content = content.replace(
+                    "hooks = black\nblack.type = console_scripts\nblack.entrypoint = black\nblack.options = -l 79 REVISION_SCRIPT_FILENAME",
+                    "# hooks = black\n# black.type = console_scripts\n# black.entrypoint = black\n# black.options = -l 79 REVISION_SCRIPT_FILENAME",
+                )
+
+            # Write back the modified content
+            with open(alembic_ini, "w") as f:
+                f.write(content)
+
+        except Exception as e:
+            # If anything goes wrong, just continue without black formatting
+            print(f"Warning: Could not configure black hook: {e}")
 
     def makemigrations(self, message: Optional[str] = None) -> bool:
         """Create a new migration (like Django's makemigrations)"""
@@ -401,6 +476,9 @@ def downgrade() -> None:
 
         # Ensure all models are loaded
         ModelRegistry.discover_models()
+
+        # Check if black is available and enable post-write hook if it is
+        self._configure_black_hook()
 
         # Generate migration
         message = message or "Auto-generated migration"

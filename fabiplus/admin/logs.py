@@ -5,9 +5,8 @@ WebSocket-based real-time log streaming for admin interface
 
 import asyncio
 import json
-
 import re
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Set
 
@@ -20,6 +19,9 @@ from watchdog.observers import Observer
 from ..conf.settings import settings
 from ..core.auth import get_current_superuser
 from ..core.models import User
+
+# Module-level dependency to avoid B008 warning
+SuperUserDep = Depends(get_current_superuser)
 
 
 class LogLevel:
@@ -45,7 +47,7 @@ class LogEntry:
         self.logger = logger
         self.message = message
         self.raw_line = raw_line
-        self.parsed_at = datetime.utcnow()
+        self.parsed_at = datetime.now(timezone.utc)
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -88,7 +90,8 @@ class LogParser:
                 groups = match.groupdict()
 
                 timestamp = groups.get(
-                    "timestamp", datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
+                    "timestamp",
+                    datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
                 )
                 level = groups.get("level", "INFO").upper()
                 logger = groups.get("logger", "unknown")
@@ -98,7 +101,7 @@ class LogParser:
 
         # Fallback
         return LogEntry(
-            datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"),
+            datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
             "INFO",
             "unknown",
             line,
@@ -344,7 +347,7 @@ async def websocket_logs(websocket: WebSocket):
 async def get_recent_logs(
     lines: int = 100,
     level: Optional[str] = None,
-    current_user: User = Depends(get_current_superuser),
+    current_user: User = SuperUserDep,
 ):
     """Get recent log entries (REST endpoint)"""
 
