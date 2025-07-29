@@ -1,11 +1,30 @@
 [tool.poetry]
 name = "fabiplus"
-version = "0.1.0"
+version = "1.0.0"
 description = "FABI+ Framework - Production-ready, modular, extensible API-only Python framework"
 authors = ["FABI+ Development Team <team@fabiplus.dev>"]
 readme = "README.md"
 license = "MIT"
 homepage = "https://github.com/Helevon-Technologies-LTD/fabiplus"
+repository = "https://github.com/Helevon-Technologies-LTD/fabiplus"
+documentation = "https://fabiplus.helevon.org"
+keywords = ["fastapi", "django", "framework", "api", "web", "backend", "python", "cli", "admin", "orm"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Framework :: FastAPI",
+    "Environment :: Web Environment",
+]
 repository = "https://github.com/Helevon-Technologies-LTD/fabiplus"
 documentation = "https://fabiplus.helevon.org"
 keywords = ["fastapi", "framework", "api", "admin", "django-like", "sqlmodel", "sqlalchemy"]

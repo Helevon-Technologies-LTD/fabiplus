@@ -407,8 +407,78 @@ jobs:
         name: dist
         path: dist/
 
+    - name: Get version from pyproject.toml
+      id: get_version
+      run: |
+        VERSION=$(poetry version --short)
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "📦 Current version: $VERSION"
+
+    - name: Check if version tag exists
+      id: check_tag
+      run: |
+        if git tag -l | grep -q "^v${{ steps.get_version.outputs.version }}$"; then
+          echo "tag_exists=true" >> $GITHUB_OUTPUT
+          echo "⚠️ Tag v${{ steps.get_version.outputs.version }} already exists"
+        else
+          echo "tag_exists=false" >> $GITHUB_OUTPUT
+          echo "✅ Tag v${{ steps.get_version.outputs.version }} does not exist"
+        fi
+
+    - name: Create and push tag
+      if: steps.check_tag.outputs.tag_exists == 'false'
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+        git tag -a "v${{ steps.get_version.outputs.version }}" -m "Release v${{ steps.get_version.outputs.version }}"
+        git push origin "v${{ steps.get_version.outputs.version }}"
+        echo "🏷️ Created and pushed tag v${{ steps.get_version.outputs.version }}"
+
+    - name: Create GitHub Release
+      if: steps.check_tag.outputs.tag_exists == 'false'
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: "v${{ steps.get_version.outputs.version }}"
+        release_name: "FABI+ v${{ steps.get_version.outputs.version }}"
+        body: |
+          ## FABI+ Framework v${{ steps.get_version.outputs.version }}
+
+          ### 🚀 Installation
+          ```bash
+          pip install fabiplus
+          ```
+
+          ### 📋 What's New
+          - Production-ready Django-style FastAPI framework
+          - Comprehensive CLI command system
+          - Built-in admin interface
+          - User authentication and permissions
+          - Database migrations with Alembic
+          - Automatic API generation
+
+          ### 🔗 Links
+          - [Documentation](https://fabiplus.helevon.org)
+          - [PyPI Package](https://pypi.org/project/fabiplus/)
+          - [GitHub Repository](https://github.com/Helevon-Technologies-LTD/fabiplus)
+
+          **Full Changelog**: https://github.com/Helevon-Technologies-LTD/fabiplus/compare/v${{ steps.get_version.outputs.version }}...v${{ steps.get_version.outputs.version }}
+        draft: false
+        prerelease: false
+
     - name: Publish to PyPI
-      if: startsWith(github.ref, 'refs/tags/')
+      if: steps.check_tag.outputs.tag_exists == 'false'
       env:
         POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}
-      run: poetry publish --no-build
+      run: |
+        echo "🚀 Publishing FABI+ v${{ steps.get_version.outputs.version }} to PyPI..."
+        poetry publish --no-build
+        echo "✅ Successfully published to PyPI!"
+
+    - name: Notify success
+      if: steps.check_tag.outputs.tag_exists == 'false'
+      run: |
+        echo "🎉 FABI+ v${{ steps.get_version.outputs.version }} has been successfully released!"
+        echo "📦 PyPI: https://pypi.org/project/fabiplus/${{ steps.get_version.outputs.version }}/"
+        echo "🏷️ GitHub: https://github.com/Helevon-Technologies-LTD/fabiplus/releases/tag/v${{ steps.get_version.outputs.version }}"
