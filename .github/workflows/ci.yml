@@ -472,13 +472,8 @@ jobs:
 
     - name: Publish to PyPI
       if: steps.check_tag.outputs.tag_exists == 'false'
-      # Remove the POETRY_PYPI_TOKEN_PYPI environment variable
-      # Poetry will now use OIDC to authenticate with PyPI
-      run: |
-        echo "🚀 Publishing FABI+ v${{ steps.get_version.outputs.version }} to PyPI using OIDC..."
-        poetry publish --dist dist/
-        echo "✅ Successfully published to PyPI!"
-
+      uses: pypa/gh-action-pypi-publish@release/v1
+      
     - name: Notify success
       if: steps.check_tag.outputs.tag_exists == 'false'
       run: |
