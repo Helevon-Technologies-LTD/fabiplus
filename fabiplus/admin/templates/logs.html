@@ -439,8 +439,8 @@ function addLogEntry(logData) {
     const timestamp = new Date(logData.timestamp).toLocaleTimeString();
     entry.innerHTML = `
         <span class="log-timestamp">[${timestamp}]</span>
-        <span class="log-level">${logData.level}</span>
-        <span class="log-logger">${logData.logger}</span>
+        <span class="log-level">${escapeHtml(logData.level)}</span>
+        <span class="log-logger">${escapeHtml(logData.logger)}</span>
         <span class="log-message">${escapeHtml(logData.message)}</span>
     `;
     
